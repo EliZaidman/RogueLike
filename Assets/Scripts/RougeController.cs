@@ -48,7 +48,7 @@ public class RougeController : MonoBehaviour
 
         rb.AddForce(movement * moveSpeed);
 
-        if (IsGrounded)
+        if (IsGrounded /*&& depthChecker*/)
         {
             if (Input.GetKey(KeyCode.Space))
             {

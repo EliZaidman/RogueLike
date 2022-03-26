@@ -14,6 +14,7 @@ public class DepthChecker : MonoBehaviour
             con.canGoDeep = true;
             con.rb.constraints = RigidbodyConstraints.None;
             con.rb.constraints = RigidbodyConstraints.FreezeRotation;
+            Debug.Log("insde");
         }
     }
     private void OnTriggerExit(Collider player)
@@ -21,8 +22,9 @@ public class DepthChecker : MonoBehaviour
         if (player.tag == "Player")
         {
             con.canGoDeep = false;
-            con.rb.constraints = RigidbodyConstraints.FreezePositionZ;
-            con.rb.constraints = RigidbodyConstraints.FreezeRotation;
+            con.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+            
+            Debug.Log("Exit");
         }
     }
 }
