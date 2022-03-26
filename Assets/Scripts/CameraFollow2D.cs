@@ -9,6 +9,14 @@ public class CameraFollow2D : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
+    [HideInInspector] public Vector3 currentY;
+    [HideInInspector] public Vector3 currentZ;
+
+    private void Update()
+    {
+        currentY = new Vector3(gameObject.transform.position.x, offset.y, gameObject.transform.position.z);
+        currentZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, offset.z);
+    }
     void FixedUpdate()
     {
         Vector3 desiredPosition = target.position + offset;
@@ -16,5 +24,6 @@ public class CameraFollow2D : MonoBehaviour
         transform.position = smoothedPosition;
 
         transform.LookAt(target);
+        target.LookAt(gameObject.transform);
     }
 }

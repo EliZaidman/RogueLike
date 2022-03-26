@@ -20,6 +20,7 @@ public class RougeController : MonoBehaviour
 
     // Classes
     DepthChecker depthChecker;
+    public CameraFollow2D cameraFollow;
     #endregion
     private void Start()
     {
@@ -43,10 +44,19 @@ public class RougeController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        rb.AddForce(movement * moveSpeed);
+        if (cameraFollow.offset == new Vector3(90, cameraFollow.currentY.y, cameraFollow.currentZ.z))
+        {
+            Vector3 movement = new Vector3(moveVertical, 0.0f, moveHorizontal);
+            rb.AddForce(movement * moveSpeed);
+            Debug.Log("90deg");
+        }
+        else
+        {
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            rb.AddForce(movement * moveSpeed);
+            Debug.Log("not 90dig");
+        }
+        
 
         if (IsGrounded /*&& depthChecker*/)
         {
