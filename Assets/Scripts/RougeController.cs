@@ -8,21 +8,15 @@ public class RougeController : MonoBehaviour
 {
     #region Variables
     //Variables for Player
+    [HideInInspector] public Rigidbody rb;
     public bool canGoDeep = false;
-    [HideInInspector]
-    public Rigidbody rb;
-
     public float moveSpeed;
     public int jumpSpeed;
-    private Vector3 moveDir;  
-    public float rotateSpeed = 200f;
-    private float rotate;
+
     // IsGrounded
     public MeshRenderer renda;
     public float Height;
     bool IsGrounded;
-    Ray ray;
-
 
     // Classes
     DepthChecker depthChecker;
@@ -43,14 +37,10 @@ public class RougeController : MonoBehaviour
     {
         //Checking For Grounded Every Second
         ChackIfGrounded();
-
     }
 
     void FixedUpdate()
     {
-        //rb.MovePosition(transform.position + moveDir);
-        //transform.Rotate(0, rotate, 0);
-
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
