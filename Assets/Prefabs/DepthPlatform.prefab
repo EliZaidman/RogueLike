@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   con: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!65 &651587238
 BoxCollider:
   m_ObjectHideFlags: 0

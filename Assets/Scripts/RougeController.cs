@@ -45,11 +45,15 @@ public class RougeController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
+
+
         if (cameraFollow.offset == new Vector3(90, cameraFollow.offset.y, cameraFollow.offset.z))
         {
             Vector3 movement = new Vector3(moveVertical, 0.0f, moveHorizontal);
             rb.AddForce(movement * moveSpeed);
             Debug.Log("90deg");
+
         }
         else
         {

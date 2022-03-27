@@ -6,6 +6,7 @@ public class DepthChecker : MonoBehaviour
 {
     // Classes
     public RougeController con;
+    public CameraFollow2D cam;
 
     private void OnTriggerStay(Collider player)
     {
@@ -22,8 +23,14 @@ public class DepthChecker : MonoBehaviour
         if (player.tag == "Player")
         {
             con.canGoDeep = false;
-            con.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-            
+            if (cam.offset == new Vector3(90, cam.offset.y, cam.offset.z))
+            {
+            con.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX;
+            }
+            else
+            {
+                con.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+            }
             Debug.Log("Exit");
         }
     }
