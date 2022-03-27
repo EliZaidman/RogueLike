@@ -9,13 +9,22 @@ public class CameraFollow2D : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
+    [HideInInspector] public Vector3 frontView;
+    [HideInInspector] public Vector3 sideView;
     [HideInInspector] public Vector3 currentY;
     [HideInInspector] public Vector3 currentZ;
 
+    private void Start()
+    {
+        frontView = new Vector3(0, offset.y, offset.z);
+        sideView = new Vector3(90, offset.y, offset.z);
+    }
     private void Update()
     {
-        currentY = new Vector3(gameObject.transform.position.x, offset.y, gameObject.transform.position.z);
-        currentZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, offset.z);
+        //currentY = new Vector3(offset.x, offset.y, gameObject.transform.position.z);
+        //currentZ = new Vector3(offset.x, gameObject.transform.position.y, offset.z);
+
+
     }
     void FixedUpdate()
     {

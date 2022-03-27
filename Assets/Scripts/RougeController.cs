@@ -38,13 +38,14 @@ public class RougeController : MonoBehaviour
     {
         //Checking For Grounded Every Second
         ChackIfGrounded();
+
     }
 
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        if (cameraFollow.offset == new Vector3(90, cameraFollow.currentY.y, cameraFollow.currentZ.z))
+        if (cameraFollow.offset == new Vector3(90, cameraFollow.offset.y, cameraFollow.offset.z))
         {
             Vector3 movement = new Vector3(moveVertical, 0.0f, moveHorizontal);
             rb.AddForce(movement * moveSpeed);
@@ -54,7 +55,7 @@ public class RougeController : MonoBehaviour
         {
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             rb.AddForce(movement * moveSpeed);
-            Debug.Log("not 90dig");
+            Debug.Log("not 90deg");
         }
         
 
@@ -80,4 +81,8 @@ public class RougeController : MonoBehaviour
             Debug.Log("Not Grounded!");
         }
     }
+
+    
+    
+    
 }
