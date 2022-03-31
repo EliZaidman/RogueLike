@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow2D : MonoBehaviour
 {
     public Transform target;
-
+    public Transform crouchPos;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
@@ -23,8 +23,7 @@ public class CameraFollow2D : MonoBehaviour
     {
         //currentY = new Vector3(offset.x, offset.y, gameObject.transform.position.z);
         //currentZ = new Vector3(offset.x, gameObject.transform.position.y, offset.z);
-
-
+        Crouch();
     }
     void FixedUpdate()
     {
@@ -34,5 +33,13 @@ public class CameraFollow2D : MonoBehaviour
 
         transform.LookAt(target);
         target.LookAt(gameObject.transform);
+    }
+
+    void Crouch()
+    {
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+
+        }
     }
 }
