@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8666799303717427}
   - component: {fileID: 1764950327617391461}
-  - component: {fileID: 2329603801005908861}
   - component: {fileID: 5967941622112672646}
   m_Layer: 0
   m_Name: Capsule
@@ -145,14 +144,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!222 &2329603801005908861
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360072584215685230}
-  m_CullTransparentMesh: 1
 --- !u!212 &5967941622112672646
 SpriteRenderer:
   m_ObjectHideFlags: 0

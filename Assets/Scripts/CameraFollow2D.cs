@@ -33,6 +33,6 @@ public class CameraFollow2D : MonoBehaviour
         transform.position = smoothedPosition;
 
         transform.LookAt(target);
-        target.LookAt(gameObject.transform);
+        //target.LookAt(gameObject.transform);
     }
 }

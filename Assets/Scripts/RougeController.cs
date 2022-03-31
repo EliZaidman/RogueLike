@@ -7,11 +7,25 @@ using Vector3 = UnityEngine.Vector3;
 public class RougeController : MonoBehaviour
 {
     #region Variables
+
+    //Enum
+    public enum CurrnetView
+    {
+        FrontView = 6,
+        SideView = 7,
+        BackView = 8,
+    }
     //Variables for Player
     [HideInInspector] public Rigidbody rb;
-    public bool canGoDeep = false;
+    public bool canGoDeep;
     public float moveSpeed;
     public int jumpSpeed;
+
+    public GameObject goto2;
+    public Quaternion wantedPos = Quaternion.Euler(0, 90, 0);
+    public Quaternion wantedPos2 = Quaternion.Euler(0, 0, 0);
+    public Quaternion rotation_;
+    public float speed = 2f;
 
     // IsGrounded
     public MeshRenderer renda;
@@ -29,15 +43,29 @@ public class RougeController : MonoBehaviour
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;
 
+        rotation_ = transform.rotation;
         // IsGrounded
         //renda = gameObject.GetComponent<MeshRenderer>();
         //Height = renda.bounds.size.y;
     }
-    
+
     private void Update()
     {
         //Checking For Grounded Every Second
         ChackIfGrounded();
+
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            float push = gameObject.transform.position.z + 20;
+             gameObject.transform.Translate(0.2f, Time.deltaTime, 0, Space.World);
+            // StartCoroutine(RotateOverTime(transform.rotation, wantedPos, 2));
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+            StartCoroutine(RotateOverTime(transform.rotation, wantedPos2, 2));
+        }
 
     }
 
@@ -47,21 +75,25 @@ public class RougeController : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
 
 
-
-        if (cameraFollow.offset == new Vector3(90, cameraFollow.offset.y, cameraFollow.offset.z))
+        if (gameObject.layer == (int)CurrnetView.SideView)
         {
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX;
             Vector3 movement = new Vector3(moveVertical, 0.0f, moveHorizontal);
             rb.AddForce(movement * moveSpeed);
-            Debug.Log("90deg");
-
+            Debug.Log("SideView");
         }
         else
         {
+            if (!canGoDeep)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+            }
+
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             rb.AddForce(movement * moveSpeed);
-            Debug.Log("not 90deg");
+            Debug.Log("FrontView");
         }
-        
+
 
         if (IsGrounded /*&& depthChecker*/)
         {
@@ -71,7 +103,6 @@ public class RougeController : MonoBehaviour
             }
         }
     }
-
     private void ChackIfGrounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, Height))
@@ -86,7 +117,17 @@ public class RougeController : MonoBehaviour
         }
     }
 
-    
-    
-    
+
+    IEnumerator RotateOverTime(Quaternion start, Quaternion end, float dur)
+    {
+        float t = 0f;
+        while (t < dur)
+        {
+            transform.rotation = Quaternion.Slerp(start, end, t / dur);
+            yield return null;
+            t += Time.deltaTime;
+        }
+        transform.rotation = end;
+    }
+
 }
