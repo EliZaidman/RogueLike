@@ -21,14 +21,11 @@ public class RougeController : MonoBehaviour
     public float moveSpeed;
     public int jumpSpeed;
 
-    public GameObject goto2;
     public Quaternion wantedPos = Quaternion.Euler(0, 90, 0);
     public Quaternion wantedPos2 = Quaternion.Euler(0, 0, 0);
-    public Quaternion rotation_;
     public float speed = 2f;
 
     // IsGrounded
-    public MeshRenderer renda;
     public float Height;
     bool IsGrounded;
 
@@ -42,8 +39,6 @@ public class RougeController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;
-
-        rotation_ = transform.rotation;
         // IsGrounded
         //renda = gameObject.GetComponent<MeshRenderer>();
         //Height = renda.bounds.size.y;
@@ -55,16 +50,18 @@ public class RougeController : MonoBehaviour
         ChackIfGrounded();
 
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            float push = gameObject.transform.position.z + 20;
-             gameObject.transform.Translate(0.2f, Time.deltaTime, 0, Space.World);
-            // StartCoroutine(RotateOverTime(transform.rotation, wantedPos, 2));
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
+            if (gameObject.layer == (int)CurrnetView.FrontView)
+            {
+                StartCoroutine(RotateOverTime(transform.rotation, wantedPos, 2));
 
-            StartCoroutine(RotateOverTime(transform.rotation, wantedPos2, 2));
+            }
+            else
+            {
+
+                StartCoroutine(RotateOverTime(transform.rotation, wantedPos2, 2));
+            }
         }
 
     }
@@ -124,10 +121,35 @@ public class RougeController : MonoBehaviour
         while (t < dur)
         {
             transform.rotation = Quaternion.Slerp(start, end, t / dur);
+            if (gameObject.layer == (int)CurrnetView.FrontView)
+            {
+                gameObject.transform.Translate(0, 0, 0.3f / 15, Space.World);
+                //yield return new WaitForSeconds(2f);
+                //gameObject.layer = (int)CurrnetView.SideView;
+            }
+            else
+            {
+                gameObject.transform.Translate(0, 0, -0.02f , Space.World);
+                //yield return new WaitForSeconds(2f);
+                //gameObject.layer = (int)CurrnetView.FrontView;
+            }
+
+
+
+
             yield return null;
             t += Time.deltaTime;
         }
         transform.rotation = end;
+        if (gameObject.layer == (int)CurrnetView.SideView)
+        {
+            gameObject.layer = (int)CurrnetView.FrontView;
+        }
+        else
+        {
+            gameObject.layer = (int)CurrnetView.SideView;
+
+        }
     }
 
 }
