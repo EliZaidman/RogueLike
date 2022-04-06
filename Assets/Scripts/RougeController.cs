@@ -21,17 +21,15 @@ public class RougeController : MonoBehaviour
     public float moveSpeed;
     public int jumpSpeed;
 
-    public Quaternion wantedPos = Quaternion.Euler(0, 90, 0);
-    public Quaternion wantedPos2 = Quaternion.Euler(0, 0, 0);
+    [HideInInspector]  public Quaternion sideView = Quaternion.Euler(0, 270, 0);
+    [HideInInspector]  public Quaternion frontView = Quaternion.Euler(0, 0, 0);
     public float speed = 2f;
 
     // IsGrounded
     public float Height;
     bool IsGrounded;
+    bool isPressed;
 
-    // Classes
-    DepthChecker depthChecker;
-    public CameraFollow2D cameraFollow;
     #endregion
     private void Start()
     {
@@ -49,20 +47,24 @@ public class RougeController : MonoBehaviour
         //Checking For Grounded Every Second
         ChackIfGrounded();
 
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (canGoDeep && !isPressed)
         {
-            if (gameObject.layer == (int)CurrnetView.FrontView)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(RotateOverTime(transform.rotation, wantedPos, 2));
+                rb.isKinematic = true;
+                isPressed = true;
+                if (gameObject.layer == (int)CurrnetView.FrontView)
+                {
+                    StartCoroutine(RotateOverTime(transform.rotation, sideView, 2));
+                }
+                else
+                {
 
-            }
-            else
-            {
-
-                StartCoroutine(RotateOverTime(transform.rotation, wantedPos2, 2));
+                    StartCoroutine(RotateOverTime(transform.rotation, frontView, 2));
+                }
             }
         }
+
 
     }
 
@@ -129,7 +131,7 @@ public class RougeController : MonoBehaviour
             }
             else
             {
-                gameObject.transform.Translate(0, 0, -0.02f , Space.World);
+                gameObject.transform.Translate(0, 0, -0.02f, Space.World);
                 //yield return new WaitForSeconds(2f);
                 //gameObject.layer = (int)CurrnetView.FrontView;
             }
@@ -148,8 +150,10 @@ public class RougeController : MonoBehaviour
         else
         {
             gameObject.layer = (int)CurrnetView.SideView;
-
         }
+        yield return new WaitForSeconds(0.3f);
+        rb.isKinematic = false;
+        isPressed = false;
     }
 
 }
