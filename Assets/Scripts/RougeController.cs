@@ -21,13 +21,19 @@ public class RougeController : MonoBehaviour
     public float moveSpeed;
     public int jumpSpeed;
 
+    public GameObject bullet;
+    public GameObject currentBall;
+    public Transform bulletResPos;
+    public GameObject sprite;
+    public int bulletVelocity;
+
     [HideInInspector]  public Quaternion sideView = Quaternion.Euler(0, 270, 0);
     [HideInInspector]  public Quaternion frontView = Quaternion.Euler(0, 0, 0);
     public float speed = 2f;
 
     // IsGrounded
     public float Height;
-    bool IsGrounded;
+    public bool IsGrounded;
     bool isPressed;
 
     #endregion
@@ -47,31 +53,49 @@ public class RougeController : MonoBehaviour
         //Checking For Grounded Every Second
         ChackIfGrounded();
 
-        if (canGoDeep && !isPressed)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                rb.isKinematic = true;
-                isPressed = true;
-                if (gameObject.layer == (int)CurrnetView.FrontView)
-                {
-                    StartCoroutine(RotateOverTime(transform.rotation, sideView, 2));
-                }
-                else
-                {
-
-                    StartCoroutine(RotateOverTime(transform.rotation, frontView, 2));
-                }
-            }
+            currentBall = Instantiate(bullet, bulletResPos.position, bulletResPos.rotation);
+            currentBall.GetComponent<Rigidbody>().AddRelativeForce(new Vector3
+                                                     (bulletVelocity, 0, 0));
         }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            sprite.transform.rotation = new Quaternion(0, 0, 0,0);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            sprite.transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    rb.isKinematic = true;
+        //    isPressed = true;
+        //    if (gameObject.layer == (int)CurrnetView.FrontView)
+        //    {
+        //        StartCoroutine(RotateOverTime(transform.rotation, sideView, 2));
+        //    }
+        //    else
+        //    {
 
+        //        StartCoroutine(RotateOverTime(transform.rotation, frontView, 2));
+        //    }
+        //}
     }
 
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
+        if (IsGrounded /*&& depthChecker*/)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+            }
+        }
 
 
         if (gameObject.layer == (int)CurrnetView.SideView)
@@ -93,14 +117,6 @@ public class RougeController : MonoBehaviour
             Debug.Log("FrontView");
         }
 
-
-        if (IsGrounded /*&& depthChecker*/)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
-            }
-        }
     }
     private void ChackIfGrounded()
     {
