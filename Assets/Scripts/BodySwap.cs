@@ -20,7 +20,12 @@ public class BodySwap : MonoBehaviour
             player.GetComponent<RougeController>().enabled = false;
             collision.gameObject.GetComponent<RougeController>().enabled = true;
             _camera.transform.SetParent(collision.transform, false);
+<<<<<<< HEAD
             Destroy(gameObject);
+=======
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+>>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
             GameManager.instance.currentPlayer.Add(collision.gameObject);
         }
 
@@ -29,7 +34,12 @@ public class BodySwap : MonoBehaviour
             GameManager.instance.currentPlayer[0].GetComponent<RougeController>().enabled = false;
             player.GetComponent<RougeController>().enabled = true;
             _camera.transform.SetParent(collision.transform, false);
+<<<<<<< HEAD
             Destroy(gameObject);
+=======
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+>>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
         }
     }
 }
