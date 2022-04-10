@@ -14,10 +14,6 @@ GameObject:
   - component: {fileID: 7279120798487143306}
   - component: {fileID: 6999504794229054711}
   - component: {fileID: 6120374705425368233}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 2754152372040018003}
->>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -130,20 +126,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-<<<<<<< HEAD
-=======
---- !u!114 &2754152372040018003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238819421735936951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9f152bdd9fc4546a1615502f62bc0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 100
-  rougeController: {fileID: 2983133692202641330, guid: 671da76d96fab9e44814f157634e63d1, type: 3}
->>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
