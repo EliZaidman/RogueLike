@@ -25,17 +25,24 @@ Transform:
   m_GameObject: {fileID: 541380535}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: -5.229641, y: -0.84436923, z: 0}
 =======
   m_LocalPosition: {x: -6.2, y: -0.84436923, z: 0}
 >>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
+=======
+  m_LocalPosition: {x: -5.229641, y: -0.84436923, z: 0}
+>>>>>>> main
   m_LocalScale: {x: 2.7237701, y: 2.7237701, z: 2.7237701}
   m_Children: []
   m_Father: {fileID: 8666799303717427}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +75,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2484260581930810182}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &963194227
 Camera:
@@ -174,7 +181,10 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+<<<<<<< HEAD
 >>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
+=======
+>>>>>>> main
 --- !u!1 &360072584215685230
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,10 +199,14 @@ GameObject:
   - component: {fileID: 45346283}
   m_Layer: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: Capsule
 =======
   m_Name: Sprite
 >>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
+=======
+  m_Name: Sprite
+>>>>>>> main
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +225,7 @@ RectTransform:
   m_Children:
   - {fileID: 541380536}
   m_Father: {fileID: 2484260581930810182}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -403,10 +417,14 @@ GameObject:
   m_Layer: 6
   m_Name: Player 2D
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TagString: Player
 =======
   m_TagString: Untagged
 >>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
+=======
+  m_TagString: Player
+>>>>>>> main
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -422,11 +440,16 @@ Transform:
   m_LocalPosition: {x: 5.8, y: 1.81, z: -3.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 8666799303717427}
 <<<<<<< HEAD
 =======
   - {fileID: 963194228}
 >>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
+=======
+  - {fileID: 963194228}
+  - {fileID: 8666799303717427}
+>>>>>>> main
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
