@@ -21,14 +21,7 @@ public class RougeController : MonoBehaviour
     public float moveSpeed;
     public int jumpSpeed;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     Pooler objPooler;
->>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
-=======
-    Pooler objPooler;
->>>>>>> main
     public GameObject bullet;
     public GameObject currentBall;
     public Transform bulletResPos;
@@ -48,15 +41,8 @@ public class RougeController : MonoBehaviour
     private void Start()
     {
         // Lock rotation of rb - 2.5D Effect
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        objPooler = Pooler.Instance;
->>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
-=======
-        objPooler = Pooler.Instance;
 
->>>>>>> main
+        objPooler = Pooler.Instance;
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;
@@ -72,25 +58,15 @@ public class RougeController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            currentBall = Instantiate(bullet, bulletResPos.position, bulletResPos.rotation);
-=======
-            //Switched to pooling
-            objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
-            //currentBall = Instantiate(bullet, bulletResPos.position, bulletResPos.rotation);
->>>>>>> d304b0d0d893b133da15b939214a8313c9f9996f
+            currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
             currentBall.GetComponent<Rigidbody>().AddRelativeForce(new Vector3
                                                      (bulletVelocity, 0, 0));
-=======
-            currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
 
             if (sprite.transform.rotation == new Quaternion(0, 180, 0, 0))
                 currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity;
             else
                 currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity;
 
->>>>>>> main
         }
 
         if (Input.GetKeyDown(KeyCode.A))
