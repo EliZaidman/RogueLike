@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class DashMovement : MonoBehaviour
 {
-    public RougeController Player;
-
+    public MovementV2 mvm2;
     Vector3 dashPos;
     [SerializeField]float DashDist = 1.2f;
-    public float dashTime = 1.000005f;
-    void Start()
-    {
-        
-    }
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -23,7 +18,16 @@ public class DashMovement : MonoBehaviour
 
     public void Dash()
     {
-        dashPos.x = transform.position.x + DashDist;
-        gameObject.transform.position = dashTime * Vector3.Lerp(gameObject.transform.position, dashPos, Time.deltaTime);
+        Debug.Log("Dash");
+        dashPos = gameObject.transform.position;
+        if (mvm2.facingRight)
+        {
+            dashPos.x += DashDist;
+        }
+        else
+        {
+            dashPos.x -= DashDist;
+        }
+        gameObject.transform.position = dashPos;
     }
 }

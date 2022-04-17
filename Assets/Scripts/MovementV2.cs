@@ -15,7 +15,7 @@ public class MovementV2 : MonoBehaviour
     public float rayLenugh;
     public Camera mainCamera;
 
-    bool facingRight = true;
+    public bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
     bool isGroundedDown = false;

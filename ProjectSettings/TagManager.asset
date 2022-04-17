@@ -9,6 +9,7 @@ TagManager:
   - Hat
   - Picture
   - HP
+  - Spell1
   layers:
   - Default
   - TransparentFX
