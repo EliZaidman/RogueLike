@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Hat
   - Picture
+  - HP
   layers:
   - Default
   - TransparentFX

@@ -54,70 +54,10 @@ public class MovementV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Movement controls
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-        }
-        else
-        {
-            moveDirection = 0;
-        }
-
-        // Change facing direction
-        if (moveDirection != 0)
-        {
-            if (moveDirection >= 0 && !facingRight)
-            {
-                facingRight = true;
-                t.localScale = new Vector3(Mathf.Abs(t.localScale.x), t.localScale.y, transform.localScale.z);
-            }
-            if (moveDirection <= 0 && facingRight)
-            {
-                facingRight = false;
-                t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
-            }
-        }
-
-        //Shooting
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (GameManager.instance.bulletsAmount.Count < 3)
-            {
-                currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
-                GameManager.instance.addedBullet = false;
-                if (facingRight)
-                    currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity;
-                else
-                    currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity;
-            }
-        }
-
-        // Jumping
-
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.S) && isGrounded)
-        {
-            StartCoroutine(GoDownPlatform());
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            if (mainCollider.enabled)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, jumpHeight);
-                isJumped = true;
-            }
-
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Space) && isJumped)
-        {
-            if (mainCollider.enabled)
-            {
-                isJumped = false;
-                rb.velocity = new Vector3(rb.velocity.x, jumpHeight);
-            }
-        }
+        Directions();
+        Shooting();
+        Jumping();
+        
         // Camera follow
         if (mainCamera)
         {
@@ -131,7 +71,12 @@ public class MovementV2 : MonoBehaviour
         CheckPlatformUnder();
         GroundCheck(_depth);
         // Apply movement velocity
+        if (Time.timeScale == 1)      
         rb.velocity = new Vector3((moveDirection) * maxSpeed, rb.velocity.y);
+        else
+        rb.velocity = new Vector3((moveDirection) * maxSpeed * 1.25f, rb.velocity.y);
+
+
     }
 
     private void GroundCheck(float Depth)
@@ -195,5 +140,93 @@ public class MovementV2 : MonoBehaviour
         }
     }
 
+    private void Directions()
+    {
+        // Movement controls
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+        }
+        else
+        {
+            moveDirection = 0;
+        }
 
+        // Change facing direction
+        if (moveDirection != 0)
+        {
+            if (moveDirection >= 0 && !facingRight)
+            {
+                facingRight = true;
+                t.localScale = new Vector3(Mathf.Abs(t.localScale.x), t.localScale.y, transform.localScale.z);
+            }
+            if (moveDirection <= 0 && facingRight)
+            {
+                facingRight = false;
+                t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
+            }
+        }
+    }
+
+    private void Shooting()
+    {
+        if (Time.timeScale == 1)
+        {
+            //Shooting
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (GameManager.instance.bulletsAmount.Count < 3)
+                {
+                    currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
+                    GameManager.instance.addedBullet = false;
+                    if (facingRight)
+                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity;
+                    else
+                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity;
+                }
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (GameManager.instance.bulletsAmount.Count < 3)
+                {
+                    currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
+                    GameManager.instance.addedBullet = false;
+                    if (facingRight)
+                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity * 1.25f;
+                    else
+                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.left *  bulletVelocity * 1.25f;
+                }
+            }
+        }
+    }
+
+    private void Jumping()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.S) && isGrounded)
+        {
+            StartCoroutine(GoDownPlatform());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            if (mainCollider.enabled)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, jumpHeight);
+                isJumped = true;
+            }
+
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Space) && isJumped)
+        {
+            if (mainCollider.enabled)
+            {
+                isJumped = false;
+                rb.velocity = new Vector3(rb.velocity.x, jumpHeight);
+            }
+        }
+    }
 }

@@ -1,23 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
-    public List<GameObject> bulletsAmount = new List<GameObject>();
-    public GameObject bullet;
-    public int curNumber = 0;
-    public List<GameObject> bulletPictures = new List<GameObject>();
-    public bool addedBullet;
-    public static GameManager instance;
-
-    public GameObject _player;
-    public GameObject templatePos;
+    [HideInInspector]public List<GameObject> bulletsAmount = new List<GameObject>();
+    [HideInInspector] public int curNumber = 0;
+    [HideInInspector] public GameObject bullet;
+    [HideInInspector] public bool addedBullet;
+    [HideInInspector] public static GameManager instance;
 
     public float playerHp;
 
+    public List<GameObject> bulletPictures = new List<GameObject>();
+    public GameObject _player;
 
+    public Slider _PlayerHp;
     void Awake()
     {
         MakeInstance();
@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         AddToList();
-
+        Death();
+        _PlayerHp.value = playerHp;
 
     }
     public void looseCondition()
@@ -70,17 +71,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FindPicture(GameObject gameObject)
-    {
-        int p = 0;
 
-        if (p < 3)
+    public void Death()
+    {
+        if (playerHp <= 0)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                p++;
-               gameObject.transform.position = bulletPictures[i-1].transform.position;
-            }
+        //DO SHIT
         }
     }
 }
