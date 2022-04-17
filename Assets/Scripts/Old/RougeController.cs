@@ -35,7 +35,7 @@ public class RougeController : MonoBehaviour
     // IsGrounded
     public float Height;
     public bool IsGrounded;
-    bool isPressed;
+    public bool isPressed;
 
     #endregion
     private void Start()
