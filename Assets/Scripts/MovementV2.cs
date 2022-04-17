@@ -25,10 +25,18 @@ public class MovementV2 : MonoBehaviour
     CapsuleCollider mainCollider;
     Transform t;
 
+    Pooler objPooler;
+    public GameObject currentBall;
+    public List<GameObject> activeBalls = new List<GameObject>();
+    public Transform bulletResPos;
+    public GameObject sprite;
+    public int bulletVelocity;
+
     public GameObject raypos;
     // Use this for initialization
     void Start()
     {
+        objPooler = Pooler.Instance;
         t = transform;
         rb = GetComponent<Rigidbody>();
         mainCollider = GetComponent<CapsuleCollider>();
@@ -71,6 +79,20 @@ public class MovementV2 : MonoBehaviour
             }
         }
 
+        //Shooting
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (GameManager.instance.bulletsAmount.Count < 3)
+            {
+                currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
+                GameManager.instance.addedBullet = false;
+                if (facingRight)
+                    currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity;
+                else
+                    currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity;
+            }
+        }
+
         // Jumping
 
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.S) && isGrounded)
@@ -78,7 +100,7 @@ public class MovementV2 : MonoBehaviour
             StartCoroutine(GoDownPlatform());
         }
 
-         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             if (mainCollider.enabled)
             {
@@ -117,7 +139,7 @@ public class MovementV2 : MonoBehaviour
 
         Bounds colliderBounds = mainCollider.bounds;
         float colliderRadius = mainCollider.bounds.size.x * Depth * Mathf.Abs(transform.localScale.x);
-        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.2f, colliderRadius * 0.5f, 0);
+        Vector3 groundCheckPos = colliderBounds.center + new Vector3(colliderBounds.size.x /** 0.2f*/, colliderRadius - 5, 0);
         // Check if player is grounded
         Collider[] colliders = Physics.OverlapSphere(groundCheckPos, colliderRadius);
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
@@ -151,12 +173,12 @@ public class MovementV2 : MonoBehaviour
             {
 
                 isGroundedDown = true;
-                Debug.Log("Can Go Down");
+                // Debug.Log("Can Go Down");
             }
             else
             {
                 isGroundedDown = false;
-                Debug.Log("You Cannot Go Down");
+                // Debug.Log("You Cannot Go Down");
             }
 
         }
@@ -172,4 +194,6 @@ public class MovementV2 : MonoBehaviour
             mainCollider.enabled = true;
         }
     }
+
+
 }

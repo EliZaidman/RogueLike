@@ -9,7 +9,7 @@ public class Pooler : MonoBehaviour
     {
         public string tag;
         public GameObject prefab;
-        public int size;    
+        public int size;
     }
 
     #region Singleton
@@ -28,6 +28,7 @@ public class Pooler : MonoBehaviour
 
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDic;
+    public Canvas canvas;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class Pooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.transform.SetParent(canvas.transform, false);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -48,7 +50,7 @@ public class Pooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnFromPool (string tag, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDic.ContainsKey(tag))
         {
@@ -62,21 +64,8 @@ public class Pooler : MonoBehaviour
         objToSpawn.transform.position = position;
         objToSpawn.transform.rotation = rotation;
 
-        //if (objToSpawn.GetComponent<Rigidbody>() != null)
-        //{
-        //    objToSpawn.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        //    objToSpawn.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        //}
-
-        //IPooledObject pooledObj = objToSpawn.GetComponent<IPooledObject>();
-        //if (pooledObj != null)
-        //{
-        //    pooledObj.OnObjectSpawn();
-        //}
-
         poolDic[tag].Enqueue(objToSpawn);
-
         return objToSpawn;
     }
-        
+
 }

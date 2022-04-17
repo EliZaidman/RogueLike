@@ -26,16 +26,15 @@ public class BodySwap : MonoBehaviour
             collision.gameObject.GetComponent<RougeController>().enabled = true;
             _camera.transform.SetParent(collision.transform, false);
             Destroy(gameObject);
-
             //Destroy(gameObject);
             gameObject.SetActive(false);
 
-            GameManager.instance.currentPlayer.Add(collision.gameObject);
+            GameManager.instance.bulletsAmount.Add(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.instance.currentPlayer[0].GetComponent<RougeController>().enabled = false;
+            GameManager.instance.bulletsAmount[0].GetComponent<RougeController>().enabled = false;
             player.GetComponent<RougeController>().enabled = true;
             _camera.transform.SetParent(collision.transform, false);
 

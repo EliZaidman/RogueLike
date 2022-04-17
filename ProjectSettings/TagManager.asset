@@ -7,6 +7,7 @@ TagManager:
   - Tether Points
   - Enemy
   - Hat
+  - Picture
   layers:
   - Default
   - TransparentFX
