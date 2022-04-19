@@ -26,8 +26,8 @@ public class MovementV2 : MonoBehaviour
     Transform t;
 
     Pooler objPooler;
-    public GameObject currentBall;
-    public List<GameObject> activeBalls = new List<GameObject>();
+    [HideInInspector] public GameObject currentBall;
+    [HideInInspector] public List<GameObject> activeBalls = new List<GameObject>();
     public Transform bulletResPos;
     public GameObject sprite;
     public int bulletVelocity;
