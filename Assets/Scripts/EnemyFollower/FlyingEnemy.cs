@@ -43,9 +43,11 @@ public class FlyingEnemy : MonoBehaviour
     }
     private void Flip()
     {
-        if (transform.position.x > player.transform.position.x)
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-        else
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+        //if (transform.position.x > player.transform.position.x)
+        //transform.rotation = Quaternion.Euler(0, 0, 0);
+        //else
+        //    transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        gameObject.transform.LookAt(player.transform.position);
     }
 }

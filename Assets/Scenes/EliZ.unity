@@ -1360,7 +1360,6 @@ MonoBehaviour:
   curNumber: 0
   bullet: {fileID: 0}
   addedBullet: 0
-  hpNumber: {fileID: 0}
   playerHp: 10
   bulletPictures:
   - {fileID: 1079297520}
@@ -1788,6 +1787,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1823059040640791165, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2826845810033693834, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
       propertyPath: m_RootOrder
       value: 1
