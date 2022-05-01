@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     GameObject player;
-    private Quaternion wantedRotation;
-    private Vector3 wantedPosition;
+    public Quaternion wantedRotation;
+    public Vector3 wantedPosition;
 
     Quaternion startRot;
     Vector3 startPos;
@@ -62,14 +62,14 @@ public class Enemy : MonoBehaviour
     {
         if (gameObject.transform.position.x > player.transform.position.x)
         {
-            wantedRotation = Quaternion.Euler(299, 0, 90);
-            Debug.Log("if");
+            wantedRotation = Quaternion.Euler(wantedRotation.x, wantedRotation.y, 90);
+           // Debug.Log("if");
 
         }
         else
         {
-            wantedRotation = Quaternion.Euler(299, 0, -90);
-            Debug.Log("else");
+            wantedRotation = Quaternion.Euler(wantedRotation.x, wantedRotation.y, - 90);
+            //Debug.Log("else");
         }
     }
     private void OnTriggerStay(Collider other)

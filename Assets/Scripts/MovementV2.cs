@@ -74,7 +74,7 @@ public class MovementV2 : MonoBehaviour
         if (Time.timeScale == 1)      
         rb.velocity = new Vector3((moveDirection) * maxSpeed, rb.velocity.y);
         else
-        rb.velocity = new Vector3((moveDirection) * maxSpeed * 1.25f, rb.velocity.y);
+        rb.velocity = new Vector3((moveDirection) * maxSpeed * 1.90f, rb.velocity.y);
 
 
     }

@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 
-    [HideInInspector]public List<GameObject> bulletsAmount = new List<GameObject>();
+    [HideInInspector] public List<GameObject> bulletsAmount = new List<GameObject>();
     [HideInInspector] public int curNumber = 0;
     [HideInInspector] public GameObject bullet;
     [HideInInspector] public bool addedBullet;
     [HideInInspector] public static GameManager instance;
 
-    public float playerHp;
+    private TextMeshProUGUI hpNumber;
 
+    public float playerHp;
     public List<GameObject> bulletPictures = new List<GameObject>();
     public GameObject _player;
 
@@ -43,7 +45,6 @@ public class GameManager : MonoBehaviour
     {
         AddToList();
         Death();
-        _PlayerHp.value = playerHp;
 
     }
     public void looseCondition()

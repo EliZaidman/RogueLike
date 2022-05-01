@@ -1374,13 +1374,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886641657}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.009315447, y: -0.017111162, z: -0.0011199979, w: 0.99980956}
   m_LocalPosition: {x: 14.898212, y: 5.2767806, z: 4.6804867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.065, y: -1.962, z: -0.147}
 --- !u!1 &1949809825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,8 +1573,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 153377939761278544, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153377939761278544, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153377939761278544, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.9000092
+      objectReference: {fileID: 0}
+    - target: {fileID: 153377939847633588, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043823359168840370, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_RootOrder
@@ -1722,8 +1734,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 121
-  orthographic: 1
+  field of view: 120
+  orthographic: 0
   orthographic size: 20.68
   m_Depth: -1
   m_CullingMask:
@@ -1775,6 +1787,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1823059040640791165, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2826845810033693834, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1822,6 +1838,14 @@ PrefabInstance:
     - target: {fileID: 3202386877578235440, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202386877578235441, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
+      propertyPath: wantedRotation.w
+      value: -0.8616292
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202386877578235441, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}
+      propertyPath: wantedRotation.x
+      value: 0.5075384
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c05bc7009a91a4c9ad1b618112ee34, type: 3}

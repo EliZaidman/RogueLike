@@ -16,7 +16,7 @@ public class InteractionsManager : MonoBehaviour
     {
         if (timeIsSlowed)
         {
-            Time.timeScale = 0.7f;
+            Time.timeScale = 0.3f;
         }
         else
         {
@@ -32,13 +32,9 @@ public class InteractionsManager : MonoBehaviour
         {
         swaped = !swaped;
             if (swaped)
-            {
                 timeIsSlowed = true;
-            }
             else
-            {
                 timeIsSlowed = false;
-            }
         }
     }
 }
