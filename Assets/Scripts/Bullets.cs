@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class Bullets : MonoBehaviour
 {
-    float moveSpeed = 7f;
-
-    Rigidbody rb;
-
-    MovementV2 Player;
-    Vector2 moveDirection;
+    private GameObject _player;
+    public float speed;
+    public float destroyTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        Player = GameObject.FindObjectOfType<MovementV2>();
-        moveDirection = (Player.transform.position - transform.position).normalized * moveSpeed;
-        rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
-        Destroy(gameObject, 3f);
+        _player = GameObject.FindGameObjectWithTag("Player");
+    }
+    private void Update()
+    {
+        Bullet();
+        Invoke("gameObject.SetActive(false)", destroyTime);
+    }
+    private void Bullet()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Equals("Player"))
+        if (collision.transform.tag == "Player")
         {
-            Debug.Log("HIT!");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            Debug.Log("HIT");
         }
+        else
+            gameObject.SetActive(false);
+            Debug.Log("HIL");
     }
 }
