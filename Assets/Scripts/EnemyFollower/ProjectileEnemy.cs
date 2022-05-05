@@ -25,7 +25,7 @@ public class ProjectileEnemy : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, Layer);
 
         if(colliders.Length > 0)
-        currentBall = objPooler.SpawnFromPool("Clock",bulletResPos.position, bulletResPos.rotation);
+        currentBall = objPooler.SpawnFromPool("ClockBullet",bulletResPos.position, bulletResPos.rotation);
         }
     }
 

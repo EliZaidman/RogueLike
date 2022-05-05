@@ -5,24 +5,35 @@ using UnityEngine;
 public class Bullets : MonoBehaviour
 {
     private GameObject _player;
-    public float speed;
-    public float destroyTime;
+    private Rigidbody rb;
+    public float speed, destroyTime, rotateSpeed;
 
-    // Start is called before the first frame update
     void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+    private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
-        Bullet();
-        Invoke("gameObject.SetActive(false)", destroyTime);
+        Invoke("gameObject.SetActive(false)",destroyTime);
     }
-    private void Bullet()
+    private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
+        Bullet();
     }
 
+    private void Bullet()
+    {
+        Vector3 direction = (Vector3)_player.transform.position - rb.position;
+        direction = direction.normalized;
+        float rotateAmount = Vector3.Cross(direction, transform.up).z;
+        rb.angularVelocity = new Vector3(0,0,rotateAmount * rotateSpeed);
+        rb.velocity = - transform.up * speed;
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player")
