@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pop: {fileID: 680196891947758571, guid: eb471844b1893fb40b824a96be68941b, type: 3}
+  speed: 15
 --- !u!54 &-6088093535988166448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!1001 &4007034971241975398
 PrefabInstance:

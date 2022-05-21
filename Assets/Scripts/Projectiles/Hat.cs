@@ -31,14 +31,9 @@ public class Hat : MonoBehaviour
     }
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 dir;
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 30f))
-        {
-            dir = hit.point - transform.position;
-            rb.AddForce(dir * 15, ForceMode.Impulse);
-        }
+        var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        gameObject.transform.rotation = Quaternion.Euler(pop.rotation.x, transform.rotation.y, transform.rotation.z);
+        rb.velocity = mousePosition * speed;
 
 
     }
