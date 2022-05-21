@@ -41,7 +41,7 @@ public class Pooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
-                obj.transform.SetParent(canvas.transform, false);
+               // obj.transform.SetParent(canvas.transform, false);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
