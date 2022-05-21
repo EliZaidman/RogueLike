@@ -13,7 +13,7 @@ public class MovementV2 : MonoBehaviour
     public float jumpHeight = 6.5f;
     public float _depth;
     public float rayLenugh;
-    public Camera mainCamera;
+    //public Camera mainCamera;
 
     public bool facingRight = true;
     float moveDirection = 0;
@@ -45,10 +45,10 @@ public class MovementV2 : MonoBehaviour
         //rb.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
 
-        if (mainCamera)
-        {
-            cameraPos = mainCamera.transform.position;
-        }
+        //if (mainCamera)
+        //{
+        //    cameraPos = mainCamera.transform.position;
+        //}
     }
 
     // Update is called once per frame
@@ -59,10 +59,10 @@ public class MovementV2 : MonoBehaviour
         Jumping();
         
         // Camera follow
-        if (mainCamera)
-        {
-            mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
-        }
+        //if (mainCamera)
+        //{
+        //    mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
+        //}
     }
 
     void FixedUpdate()
