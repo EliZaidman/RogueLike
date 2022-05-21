@@ -10,6 +10,7 @@ TagManager:
   - Picture
   - HP
   - Spell1
+  - Platform
   layers:
   - Default
   - TransparentFX
