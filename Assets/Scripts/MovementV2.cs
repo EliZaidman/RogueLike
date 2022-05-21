@@ -11,15 +11,18 @@ public class MovementV2 : MonoBehaviour
     // Move player in  space
     public float maxSpeed = 1f;
     public float jumpHeight = 6.5f;
-    public float _depth;
+    public float fallMultiplayer = 2.1f;
     public float rayLenugh;
     public Camera mainCamera;
+    public float _counter;
 
     public bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
-    bool isGroundedDown = false;
+    public bool isGroundedDown;
     bool isJumped = false;
+
+    bool stuckToWall;
     Vector3 cameraPos;
     Rigidbody rb;
     CapsuleCollider mainCollider;
@@ -44,47 +47,55 @@ public class MovementV2 : MonoBehaviour
         //rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         //rb.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
-
         if (mainCamera)
         {
             cameraPos = mainCamera.transform.position;
         }
     }
 
-    // Update is called once per frame
+    private Vector3 aim;
     void Update()
     {
+        NotGroundedFor(1.5f);
         Directions();
         Shooting();
         Jumping();
-        
+
+        aim = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.transform.position.z * -1));
+        bulletResPos.transform.LookAt(aim);
+        if (facingRight)
+            bulletResPos.transform.position = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z);
+        else
+            bulletResPos.transform.position = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
+
         // Camera follow
         if (mainCamera)
         {
             mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
         }
+
     }
 
     void FixedUpdate()
     {
 
-        CheckPlatformUnder();
-        GroundCheck(_depth);
+        //CheckPlatformUnder();
+        GroundCheck();
         // Apply movement velocity
-        if (Time.timeScale == 1)      
-        rb.velocity = new Vector3((moveDirection) * maxSpeed, rb.velocity.y);
+        if (Time.timeScale == 1)
+            rb.velocity = new Vector3((moveDirection) * maxSpeed, rb.velocity.y);
         else
-        rb.velocity = new Vector3((moveDirection) * maxSpeed * 1.90f, rb.velocity.y);
+            rb.velocity = new Vector3((moveDirection) * maxSpeed * 1.90f, rb.velocity.y);
 
 
     }
 
-    private void GroundCheck(float Depth)
+    private void GroundCheck()
     {
 
         Bounds colliderBounds = mainCollider.bounds;
-        float colliderRadius = mainCollider.bounds.size.x * Depth * Mathf.Abs(transform.localScale.x);
-        Vector3 groundCheckPos = colliderBounds.center + new Vector3(colliderBounds.size.x /** 0.2f*/, colliderRadius - 5, 0);
+        float colliderRadius = mainCollider.bounds.size.x * -0.35f * Mathf.Abs(transform.localScale.x);
+        Vector3 groundCheckPos = colliderBounds.center + new Vector3(colliderBounds.size.x - 1.25f, colliderRadius - 1, -0.3f);
         // Check if player is grounded
         Collider[] colliders = Physics.OverlapSphere(groundCheckPos, colliderRadius);
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
@@ -109,25 +120,25 @@ public class MovementV2 : MonoBehaviour
 
     }
 
-    private void CheckPlatformUnder()
-    {
+    //private void CheckPlatformUnder()
+    //{
 
-        if (isGrounded)
-        {
-            if (Physics.Raycast(raypos.transform.position, Vector3.down, 5))
-            {
+    //    if (isGrounded)
+    //    {
+    //        if (Physics.Raycast(raypos.transform.position, Vector3.down, 5))
+    //        {
 
-                isGroundedDown = true;
-                // Debug.Log("Can Go Down");
-            }
-            else
-            {
-                isGroundedDown = false;
-                // Debug.Log("You Cannot Go Down");
-            }
+    //            isGroundedDown = true;
+    //            // Debug.Log("Can Go Down");
+    //        }
+    //        else
+    //        {
+    //            isGroundedDown = false;
+    //            // Debug.Log("You Cannot Go Down");
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
     private IEnumerator GoDownPlatform()
     {
@@ -142,8 +153,9 @@ public class MovementV2 : MonoBehaviour
 
     private void Directions()
     {
+
         // Movement controls
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A) /*&& !stuckToWall*/|| Input.GetKey(KeyCode.D) /*&& !stuckToWall*/)
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         }
@@ -173,16 +185,18 @@ public class MovementV2 : MonoBehaviour
         if (Time.timeScale == 1)
         {
             //Shooting
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (GameManager.instance.bulletsAmount.Count < 3)
                 {
-                    currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, bulletResPos.rotation);
+                    currentBall = objPooler.SpawnFromPool("Hat", bulletResPos.position, Quaternion.identity);
                     GameManager.instance.addedBullet = false;
-                    if (facingRight)
-                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity;
-                    else
-                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity;
+
+                    //if (facingRight)
+
+                    //    currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity;
+                    //else
+                    //    currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity;
                 }
             }
         }
@@ -197,7 +211,7 @@ public class MovementV2 : MonoBehaviour
                     if (facingRight)
                         currentBall.GetComponent<Rigidbody>().velocity = Vector3.right * bulletVelocity * 1.25f;
                     else
-                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.left *  bulletVelocity * 1.25f;
+                        currentBall.GetComponent<Rigidbody>().velocity = Vector3.left * bulletVelocity * 1.25f;
                 }
             }
         }
@@ -205,7 +219,7 @@ public class MovementV2 : MonoBehaviour
 
     private void Jumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.S) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.S))
         {
             StartCoroutine(GoDownPlatform());
         }
@@ -214,8 +228,7 @@ public class MovementV2 : MonoBehaviour
         {
             if (mainCollider.enabled)
             {
-                rb.velocity = new Vector3(rb.velocity.x, jumpHeight);
-                isJumped = true;
+                rb.AddForce(new Vector3(0, jumpHeight), ForceMode.Impulse); isJumped = true;
             }
 
         }
@@ -224,9 +237,41 @@ public class MovementV2 : MonoBehaviour
         {
             if (mainCollider.enabled)
             {
-                isJumped = false;
-                rb.velocity = new Vector3(rb.velocity.x, jumpHeight);
+                rb.AddForce(new Vector3(0, jumpHeight / 2), ForceMode.Impulse); isJumped = false;
             }
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag != "Platform")
+        {
+            isGroundedDown = true;
+            Debug.Log("Toching");
+        }
+        else
+        {
+            isGroundedDown = false;
+            Debug.Log("Not Toching");
+        }
+    }
+    private void NotGroundedFor(float Seconds)
+    {
+        _counter += Time.deltaTime;
+        if (!isGrounded)
+        {
+            if (_counter >= Seconds)
+            {
+                stuckToWall = true;
+                Debug.Log("StuckToWall");
+            }
+        }   
+        else
+        {
+            Debug.Log("NotStuckToWall");
+            _counter = 0;
+            stuckToWall = false;
+        }
+
     }
 }
