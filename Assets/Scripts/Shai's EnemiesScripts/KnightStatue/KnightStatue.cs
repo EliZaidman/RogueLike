@@ -27,7 +27,7 @@ public class KnightStatue : MonoBehaviour
     public bool drawHeightDiff = false;
     [Header("Platform Check")]
     public Transform platCheck;
-    public int platCheckRange;
+    private int platCheckRange;
     public bool drawPlatCheck = false;
     [HideInInspector]public bool isRamming;
 

@@ -18,6 +18,10 @@ public class PlayerControllerV3: MonoBehaviour
         HandleJumping();
 
         HandleDashing();
+
+        HandleAiming();
+
+        HandleShooting();
     }
 
     #region Inputs
@@ -147,8 +151,8 @@ public class PlayerControllerV3: MonoBehaviour
         }
 
         // Fall faster and allow small jumps. _jumpVelocityFalloff is the point at which we start adding extra gravity. Using 0 causes floating
-        //if (_rb.velocity.y < _jumpVelocityFalloff || _rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
-        //    _rb.velocity += _fallMultiplier * Physics.gravity.y * Vector3.up * Time.deltaTime;
+        if (_rb.velocity.y < _jumpVelocityFalloff || _rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            _rb.velocity += _fallMultiplier * Physics.gravity.y * Vector3.up * Time.deltaTime;
     }
 
     #endregion
@@ -226,6 +230,42 @@ public class PlayerControllerV3: MonoBehaviour
         }
 
         _hasDashed = false;
+    }
+
+    #endregion
+
+    #region Aiming+Shooting
+
+    [Header("Aiming and Shooting")]
+    public float bulletForce = 5;
+    public Transform bulletPos;
+    [SerializeField]Pooler pooler;
+    GameObject currentObj;
+    Vector3 lookPos;
+    [SerializeField]Vector3 shotDir;
+
+
+    void HandleShooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            currentObj = pooler.SpawnFromPool("Hat", bulletPos.position, bulletPos.rotation);
+            currentObj.GetComponent<Rigidbody>().velocity = shotDir * -bulletForce;
+        }
+    }
+    void HandleAiming()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Vector3 _lookPos = hit.point;
+            _lookPos.z = transform.position.z;
+            lookPos = _lookPos;
+        }
+        shotDir = (transform.position - lookPos).normalized;
     }
 
     #endregion
