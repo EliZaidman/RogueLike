@@ -10,11 +10,13 @@ public class MovementV2 : MonoBehaviour
 {
     // Move player in  space
     public float maxSpeed = 1f;
+    public float gravity;
     public float jumpHeight = 6.5f;
     public float fallMultiplayer = 2.1f;
     public float rayLenugh;
     public Camera mainCamera;
     public float _counter;
+    bool Didntjump = true;
 
     public bool facingRight = true;
     float moveDirection = 0;
@@ -69,10 +71,10 @@ public class MovementV2 : MonoBehaviour
             bulletResPos.transform.position = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
 
         // Camera follow
-        if (mainCamera)
-        {
-            mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
-        }
+        //if (mainCamera)
+        //{
+        //    mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
+        //}
 
     }
 
@@ -83,7 +85,7 @@ public class MovementV2 : MonoBehaviour
         GroundCheck();
         // Apply movement velocity
         if (Time.timeScale == 1)
-            rb.velocity = new Vector3((moveDirection) * maxSpeed, rb.velocity.y);
+            rb.velocity = new Vector3((moveDirection) * maxSpeed, rb.velocity.y - gravity);
         else
             rb.velocity = new Vector3((moveDirection) * maxSpeed * 1.90f, rb.velocity.y);
 
@@ -107,6 +109,7 @@ public class MovementV2 : MonoBehaviour
                 if (colliders[i] != mainCollider)
                 {
                     isGrounded = true;
+                    Didntjump = true;
                     break;
                 }
             }
@@ -228,18 +231,45 @@ public class MovementV2 : MonoBehaviour
         {
             if (mainCollider.enabled)
             {
-                rb.AddForce(new Vector3(0, jumpHeight), ForceMode.Impulse); isJumped = true;
+                rb.AddForce(new Vector3(0, jumpHeight), ForceMode.Impulse);
+                isJumped = true;
+                Didntjump = false;
+                Debug.Log("Normal Jump");
             }
 
         }
 
-        else if (Input.GetKeyDown(KeyCode.Space) && isJumped)
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && Didntjump && !isJumped)
         {
             if (mainCollider.enabled)
             {
-                rb.AddForce(new Vector3(0, jumpHeight / 2), ForceMode.Impulse); isJumped = false;
+                rb.AddForce(new Vector3(0, jumpHeight * 1.5f), ForceMode.Impulse); isJumped = true; Didntjump = false;
+                Debug.Log("Didnt Jump");
+
             }
         }
+
+        else if (Input.GetKeyDown(KeyCode.Space) && isJumped && !isGrounded)
+        {
+            if (mainCollider.enabled)
+            {
+                if (Didntjump)
+                {
+                    rb.AddForce(new Vector3(0, jumpHeight), ForceMode.Impulse); isJumped = false; Didntjump = false;
+                    Debug.Log("Second Jump");
+                }
+                else
+                {
+                    rb.AddForce(new Vector3(0, jumpHeight / 2), ForceMode.Impulse); isJumped = false; Didntjump = false;
+                    Debug.Log("Second Jump");
+                }
+            }
+        }
+
+
+
+
+
     }
 
     private void OnCollisionStay(Collision collision)
@@ -247,12 +277,12 @@ public class MovementV2 : MonoBehaviour
         if (collision.gameObject.tag != "Platform")
         {
             isGroundedDown = true;
-            Debug.Log("Toching");
+            //Debug.Log("Toching");
         }
         else
         {
             isGroundedDown = false;
-            Debug.Log("Not Toching");
+            //Debug.Log("Not Toching");
         }
     }
     private void NotGroundedFor(float Seconds)
@@ -263,12 +293,12 @@ public class MovementV2 : MonoBehaviour
             if (_counter >= Seconds)
             {
                 stuckToWall = true;
-                Debug.Log("StuckToWall");
+                //Debug.Log("StuckToWall");
             }
-        }   
+        }
         else
         {
-            Debug.Log("NotStuckToWall");
+            //Debug.Log("NotStuckToWall");
             _counter = 0;
             stuckToWall = false;
         }
