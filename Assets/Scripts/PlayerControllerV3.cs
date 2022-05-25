@@ -22,6 +22,8 @@ public class PlayerControllerV3: MonoBehaviour
         HandleAiming();
 
         HandleShooting();
+
+        HandleRotation();
     }
 
     #region Inputs
@@ -239,6 +241,7 @@ public class PlayerControllerV3: MonoBehaviour
     [Header("Aiming and Shooting")]
     public float bulletForce = 5;
     public Transform bulletPos;
+    public Transform bulletPosAnchor;
     [SerializeField]Pooler pooler;
     GameObject currentObj;
     Vector3 lookPos;
@@ -268,6 +271,16 @@ public class PlayerControllerV3: MonoBehaviour
         shotDir = (transform.position - lookPos).normalized;
     }
 
+    void HandleRotation()
+    {
+        bulletPosAnchor.transform.LookAt(lookPos);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(bulletPos.position, 0.3f);
+    }
     #endregion
 
     private struct FrameInputs
