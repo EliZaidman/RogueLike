@@ -2281,11 +2281,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6331465339854227073, guid: 8e8c8d1e94525ac4c9cbca020194b14a, type: 3}
   m_PrefabInstance: {fileID: 1875708768}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &2096142041 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3178257582693829575, guid: cabab7beff386754b990b88579817b36, type: 3}
-  m_PrefabInstance: {fileID: 153377938715069187}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &153377938715069187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2646,12 +2641,12 @@ MonoBehaviour:
   _jumpForce: 15
   _fallMultiplier: 7
   _jumpVelocityFalloff: 8
-  _jumpLaunchPoof: {fileID: 2096142041}
+  _jumpLaunchPoof: {fileID: 0}
   _coyoteTime: 0.2
   _enableDoubleJump: 1
   _dashSpeed: 50
   _dashLength: 1
-  _dashRing: {fileID: 2096142041}
+  _dashRing: {fileID: 0}
   wallDetectorRange: 1
   _wall: 0
   _deathExplosion: {fileID: 0}

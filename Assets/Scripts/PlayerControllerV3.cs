@@ -147,7 +147,7 @@ public class PlayerControllerV3: MonoBehaviour
     [SerializeField] private float _fallMultiplier = 7;
     [SerializeField] private float _jumpVelocityFalloff = 8;
    // [SerializeField] private ParticleSystem _jumpParticles;
-    [SerializeField] private Transform _jumpLaunchPoof;
+    //[SerializeField] private Transform _jumpLaunchPoof;
     [SerializeField] private float _coyoteTime = 0.2f;
     [SerializeField] private bool _enableDoubleJump = true;
     private float _timeLeftGrounded = -10;
@@ -168,7 +168,7 @@ public class PlayerControllerV3: MonoBehaviour
         void ExecuteJump(Vector3 dir, bool doubleJump = false)
         {
             _rb.velocity = dir;
-            _jumpLaunchPoof.up = _rb.velocity;
+            //_jumpLaunchPoof.up = _rb.velocity;
             //_jumpParticles.Play();
             _hasDoubleJumped = doubleJump;
             _hasJumped = true;
@@ -186,7 +186,7 @@ public class PlayerControllerV3: MonoBehaviour
     [Header("Dash")] [SerializeField] private float _dashSpeed = 15;
     [SerializeField] private float _dashLength = 1;
    // [SerializeField] private ParticleSystem _dashParticles;
-    [SerializeField] private Transform _dashRing;
+    //[SerializeField] private Transform _dashRing;
     [SerializeField] private float wallDetectorRange = 3;
     //[SerializeField] private ParticleSystem _dashVisual;
 
@@ -194,7 +194,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     private bool _hasDashed;
     private bool _dashing;
-    [SerializeField]private bool _wall;
+    private bool _wall;
     private float _timeStartedDash;
     private Vector3 _dashDir;
 
@@ -205,7 +205,7 @@ public class PlayerControllerV3: MonoBehaviour
         {
             _dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
             if (_dashDir == Vector3.zero) _dashDir = _facingLeft ? Vector3.left : Vector3.right;
-            _dashRing.up = _dashDir;
+            //_dashRing.up = _dashDir;
             //_dashParticles.Play();
             _dashing = true;
             _hasDashed = true;
