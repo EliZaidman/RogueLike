@@ -5,7 +5,9 @@ using UnityEngine;
 public class KnightStatue : MonoBehaviour
 {
     #region Properties
-    [SerializeField]private string currentState = "Idle";
+    [Header("General Settings")]
+    [SerializeField]private states _currentState = states.Idle;
+    public BoxCollider shield;
     public float speed = 6;
     public float agroRange = 5;
     public float attackRange = 2;
@@ -17,24 +19,47 @@ public class KnightStatue : MonoBehaviour
     [Header("Ram Settings")]
     public float ramSpeed = 5;
     public float ramDistance = 5;
-    public float ramChargeTime = 1.5f;
+    public float knockBackStrength = 8;
+    public float ramCooldown = 4;
+    public float recoveryTime = 3;
     [Tooltip("Height differential required for attacking")]
     public float heightDiff;
     public bool drawHeightDiff = false;
+    [Header("Platform Check")]
+    public Transform platCheck;
+    private int platCheckRange;
+    public bool drawPlatCheck = false;
+    [HideInInspector]public bool isRamming;
 
 
+    [HideInInspector]public enum states { Idle, Follow, Attack, Recover }
     private GameObject target;
     private float _distanceFromTarget;
     private float _heightDiff;
+    [HideInInspector]public float _ramTimer;
+    private float _ramCooldownTimer = 0;
+    private bool _isChargingRam;
+    private bool _canRam;
+    private Rigidbody _rb;
+    private Animator _animator;
     #endregion
 
     private void Start()
     {
+        
+        _ramTimer = ramDistance;
         target = GameObject.FindGameObjectWithTag("Player");
+        _animator = GetComponent<Animator>();
+        _rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
+        if (!isRamming)
+        {
+            _ramCooldownTimer -= Time.deltaTime;
+        }
+        Ram();
         CheckDistance();
         HandleStates();
     }
@@ -42,18 +67,22 @@ public class KnightStatue : MonoBehaviour
     #region State Machine
     void HandleStates()
     {
-        switch (currentState)
+        switch (_currentState)
         {
-            case "Idle":
+            case states.Idle:
                 Idle();
                 break;
 
-            case "Follow":
+            case states.Follow:
                 FollowTarget();
                 break;
 
-            case "Attack":
+            case states.Attack:
                 Attack();
+                break;
+
+            case states.Recover:
+                Recover();
                 break;
 
             default:
@@ -62,20 +91,59 @@ public class KnightStatue : MonoBehaviour
         }
     }
 
-    #region States
+    #region States 
     void Attack()
     {
-
+        if (!isRamming)
+        {
+            FacePlayer();
+        }
+        if (_ramCooldownTimer <= 0 && !isRamming && _heightDiff < heightDiff)
+        {
+            _ramCooldownTimer = ramCooldown;
+            if (!isRamming || !_isChargingRam)
+            {
+               RamCharge();
+            }
+        }
+        if (isRamming)
+        {
+            _animator.SetBool("Charge", false);
+        }
+        if (!IsTargetInAttackRange() && !_isChargingRam && !isRamming)
+        {
+            ChangeState(states.Follow);
+        }
     }
 
     void FollowTarget()
     {
-
+        if (!isRamming)
+        {
+            FacePlayer();
+        }
+        if (IsTargetInAttackRange())
+        {
+            ChangeState(states.Attack);
+        }
+        if (Check4EndOfPlatform() && !_isChargingRam)
+        {
+        _rb.velocity = transform.right * speed;
+        }
     }
 
     void Idle()
     {
+        if (IsTargetDetected())
+        {
+            ChangeState(states.Follow);
+        }
+    }
 
+    void Recover()
+    {
+        //Recover anim
+        StartCoroutine(Recover2Follow());
     }
     #endregion
 
@@ -94,9 +162,40 @@ public class KnightStatue : MonoBehaviour
         }
     }
 
-    void RamSignal()
+    void RamCharge()
     {
+        if (!isRamming && !_isChargingRam)
+        {
+            _animator.SetBool("Charge", true);
+        }
+    }
 
+    void Switch2Follow()
+    {
+        ChangeState(states.Follow);
+    }
+
+    void Ram()
+    {
+        if (isRamming)
+        {
+            _ramTimer -= Time.deltaTime;
+            _rb.velocity = transform.right * ramSpeed;
+            if (_ramTimer <= 0)
+            {
+                isRamming = false;
+                _isChargingRam = false;
+                _ramTimer = ramDistance;
+                _rb.velocity = Vector3.zero;
+                _currentState = states.Recover;
+            }
+        }
+    }
+
+    IEnumerator Recover2Follow()
+    {
+        yield return new WaitForSeconds(recoveryTime);
+        ChangeState(states.Follow);
     }
 
     bool IsTargetInAttackRange()
@@ -117,12 +216,50 @@ public class KnightStatue : MonoBehaviour
         return false;
     }
 
-    //RayCast to check for drop? ask game designers
+    /// <summary>
+    /// returns false if near an end of a platform
+    /// </summary>
+    /// <returns></returns>
+    bool Check4EndOfPlatform()
+    {
+        Collider[] colliders = Physics.OverlapSphere(platCheck.position, platCheckRange);
+        foreach (var item in colliders)
+        {
+            if (item.tag == "Platform")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     void CheckDistance()
     {
         _distanceFromTarget = Vector3.Distance(transform.position, target.transform.position);
         _heightDiff = Mathf.Abs(transform.position.y - target.transform.position.y);
+    }
+
+    public void ChangeState(states state)
+    {
+        _currentState = state;
+    }
+
+    #endregion
+
+    #region AnimationFuncs
+    public void SetRamTrue()
+    {
+        isRamming = true;
+    }
+
+    public void SetChargeTrue()
+    {
+        _isChargingRam = true;
+    }
+
+    public void SetChargeFalse()
+    {
+        _isChargingRam = false;
     }
     #endregion
 
@@ -145,6 +282,13 @@ public class KnightStatue : MonoBehaviour
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y+heightDiff, 0));
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y-heightDiff, 0));
         }
+        if (drawPlatCheck)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(platCheck.position, platCheckRange);
+        }
     }
-    #endregion
+
+#endregion
+
 }
