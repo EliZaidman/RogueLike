@@ -227,7 +227,7 @@ public class PlayerControllerV3: MonoBehaviour
                 _collider.enabled = true;
             }
 
-            if (Time.time >= _timeStartedDash + _dashLength)
+            if (Time.time >= _timeStartedDash + _dashLength || isWallDetected())
             {
                // _dashParticles.Stop();
                 _dashing = false;

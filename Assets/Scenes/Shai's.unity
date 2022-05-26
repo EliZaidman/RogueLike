@@ -2373,6 +2373,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 9140012906169328242, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cabab7beff386754b990b88579817b36, type: 3}
 --- !u!114 &3325154518607945601
@@ -2648,11 +2652,11 @@ MonoBehaviour:
   _dashSpeed: 50
   _dashLength: 1
   _dashRing: {fileID: 2096142041}
-  wallDetectorRange: 3
+  wallDetectorRange: 1
   _wall: 0
   _deathExplosion: {fileID: 0}
   _minImpactForce: 2
-  bulletForce: 5
+  bulletForce: 15
   bulletPos: {fileID: 1347526719}
   bulletPosAnchor: {fileID: 1848083735}
   pooler: {fileID: 1577087842}
