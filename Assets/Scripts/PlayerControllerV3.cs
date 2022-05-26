@@ -6,9 +6,17 @@ public class PlayerControllerV3: MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;
     private FrameInputs _inputs;
+    private CapsuleCollider _collider;
+
+    private void Start()
+    {
+        _collider = GetComponent<CapsuleCollider>();
+    }
 
     private void Update()
     {
+        _wall = isWallDetected();
+
         GatherInputs();
 
         HandleGrounding();
@@ -28,7 +36,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     #region Inputs
 
-    private bool _facingLeft;
+    [SerializeField]private bool _facingLeft;
 
     private void GatherInputs()
     {
@@ -36,7 +44,18 @@ public class PlayerControllerV3: MonoBehaviour
         _inputs.RawY = (int)Input.GetAxisRaw("Vertical");
         _inputs.X = Input.GetAxis("Horizontal");
         _inputs.Y = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            _facingLeft = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.D))
+        {
+            _facingLeft= false;
+        }
     }
+
+
 
     #endregion
 
@@ -80,6 +99,9 @@ public class PlayerControllerV3: MonoBehaviour
     private void OnDrawGizmos()
     {
         DrawGrounderGizmos();
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, wallDetectorRange);
     }
 
     #endregion
@@ -165,18 +187,21 @@ public class PlayerControllerV3: MonoBehaviour
     [SerializeField] private float _dashLength = 1;
    // [SerializeField] private ParticleSystem _dashParticles;
     [SerializeField] private Transform _dashRing;
+    [SerializeField] private float wallDetectorRange = 3;
     //[SerializeField] private ParticleSystem _dashVisual;
 
     public static event Action OnStartDashing, OnStopDashing;
 
     private bool _hasDashed;
     private bool _dashing;
+    [SerializeField]private bool _wall;
     private float _timeStartedDash;
     private Vector3 _dashDir;
 
     private void HandleDashing()
     {
-        if (Input.GetKeyDown(KeyCode.X) && !_hasDashed)
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed)
         {
             _dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
             if (_dashDir == Vector3.zero) _dashDir = _facingLeft ? Vector3.left : Vector3.right;
@@ -186,13 +211,21 @@ public class PlayerControllerV3: MonoBehaviour
             _hasDashed = true;
             _timeStartedDash = Time.time;
             _rb.useGravity = false;
-           // _dashVisual.Play();
+            // _dashVisual.Play();
             OnStartDashing?.Invoke();
         }
 
         if (_dashing)
         {
             _rb.velocity = _dashDir * _dashSpeed;
+            if (!isWallDetected())
+            {
+                _collider.enabled = false;
+            }
+            else
+            {
+                _collider.enabled = true;
+            }
 
             if (Time.time >= _timeStartedDash + _dashLength)
             {
@@ -202,12 +235,23 @@ public class PlayerControllerV3: MonoBehaviour
                 _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y > 3 ? 3 : _rb.velocity.y);
                 _rb.useGravity = true;
                 if (IsGrounded) _hasDashed = false;
-               // _dashVisual.Stop();
+                _collider.enabled = true;
+                // _dashVisual.Stop();
                 OnStopDashing?.Invoke();
             }
         }
     }
 
+    private bool isWallDetected()
+    {
+        Collider[] colls = Physics.OverlapSphere(transform.position, wallDetectorRange);
+        foreach (Collider collider in colls)
+        {
+            if (collider.tag == "Platform") return true;
+        }
+        return false;
+    }
+    
     #endregion
 
     #region Impacts
@@ -288,4 +332,5 @@ public class PlayerControllerV3: MonoBehaviour
         public float X, Y;
         public int RawX, RawY;
     }
+
 }

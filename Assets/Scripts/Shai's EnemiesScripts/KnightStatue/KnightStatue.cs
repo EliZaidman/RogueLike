@@ -170,11 +170,6 @@ public class KnightStatue : MonoBehaviour
         }
     }
 
-    void Switch2Follow()
-    {
-        ChangeState(states.Follow);
-    }
-
     void Ram()
     {
         if (isRamming)
