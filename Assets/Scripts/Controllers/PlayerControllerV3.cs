@@ -6,6 +6,7 @@ public class PlayerControllerV3: MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private CapsuleCollider _collider;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private FrameInputs _inputs;
 
    
@@ -30,6 +31,8 @@ public class PlayerControllerV3: MonoBehaviour
         HandleRotation();
 
         HandleGoUpDownPlatforms();
+
+        HandleFaceDir();
     }
 
     #region Inputs
@@ -331,7 +334,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     void DropThroughPlat()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
         {
             //Checks for platfroms below player and ignores collision with it if the conditions are right
             _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.3f);
@@ -402,6 +405,20 @@ public class PlayerControllerV3: MonoBehaviour
 
     #endregion
 
+    #region FaceDirection
+    void HandleFaceDir()
+    {
+        if (bulletPos.transform.position.x < transform.position.x)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else
+        {
+            _spriteRenderer.flipX = true;
+        }
+    }
+    #endregion
+
     #region Gizmos
 
     [Header("Gizmos")]
@@ -420,6 +437,7 @@ public class PlayerControllerV3: MonoBehaviour
         Gizmos.DrawWireSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.3f);
     }
     #endregion
+
 
     private struct FrameInputs
     {

@@ -688,6 +688,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6331465339854227072, guid: 8e8c8d1e94525ac4c9cbca020194b14a, type: 3}
   m_PrefabInstance: {fileID: 1875708768}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &653126459 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9140012906169328242, guid: cabab7beff386754b990b88579817b36, type: 3}
+  m_PrefabInstance: {fileID: 153377938715069187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,6 +2410,10 @@ PrefabInstance:
       value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: 9140012906169328242, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140012906169328242, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -2670,6 +2679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 4181546505320741796}
   _collider: {fileID: 4181546505320741797}
+  _spriteRenderer: {fileID: 653126459}
   _facingLeft: 0
   _groundMask:
     serializedVersion: 2
@@ -2689,8 +2699,6 @@ MonoBehaviour:
   _dashLength: 0.2
   wallDetectorRange: 1
   _wall: 0
-  _deathExplosion: {fileID: 0}
-  _minImpactForce: 2
   bulletForce: 15
   bulletPos: {fileID: 1347526719}
   bulletPosAnchor: {fileID: 1848083735}
