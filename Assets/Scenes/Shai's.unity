@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 63883945}
   m_Layer: 0
   m_Name: KnightStatue
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,8 +618,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9999991, y: 2.03835, z: 0.9999999}
-  m_Center: {x: 0, y: 0.5191748, z: 0}
+  m_Size: {x: 0.99999785, y: 0.94554096, z: 0.9999999}
+  m_Center: {x: 0, y: -0.027229784, z: 0}
 --- !u!23 &492976864
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -792,7 +792,9 @@ GameObject:
   - component: {fileID: 728847842}
   - component: {fileID: 728847841}
   - component: {fileID: 728847840}
+  - component: {fileID: 728847844}
   - component: {fileID: 728847839}
+  - component: {fileID: 728847843}
   m_Layer: 12
   m_Name: Platform (1)
   m_TagString: Platform
@@ -876,6 +878,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &728847843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728847838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b251327e264a2fb4db98b22fc8b4f3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &728847844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728847838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d63dfc980c10147b00bdbad92088e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dropThrough: 1
+  _jumpThrough: 1
 --- !u!1 &1002817516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,6 +2316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 153377938765905888, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.68
+      objectReference: {fileID: 0}
     - target: {fileID: 153377938765905889, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2367,6 +2399,10 @@ PrefabInstance:
     - target: {fileID: 4046270996378120358, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_Constraints
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046270996378120359, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Height
+      value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: 9140012906169328242, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_Enabled
@@ -2610,6 +2646,11 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4046270996378120358, guid: cabab7beff386754b990b88579817b36, type: 3}
   m_PrefabInstance: {fileID: 153377938715069187}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &4181546505320741797 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4046270996378120359, guid: cabab7beff386754b990b88579817b36, type: 3}
+  m_PrefabInstance: {fileID: 153377938715069187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4181546505320741798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1043823359168840370, guid: cabab7beff386754b990b88579817b36, type: 3}
@@ -2628,6 +2669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 4181546505320741796}
+  _collider: {fileID: 4181546505320741797}
   _facingLeft: 0
   _groundMask:
     serializedVersion: 2
@@ -2641,12 +2683,10 @@ MonoBehaviour:
   _jumpForce: 15
   _fallMultiplier: 7
   _jumpVelocityFalloff: 8
-  _jumpLaunchPoof: {fileID: 0}
   _coyoteTime: 0.2
   _enableDoubleJump: 1
   _dashSpeed: 50
-  _dashLength: 1
-  _dashRing: {fileID: 0}
+  _dashLength: 0.2
   wallDetectorRange: 1
   _wall: 0
   _deathExplosion: {fileID: 0}
@@ -2656,3 +2696,4 @@ MonoBehaviour:
   bulletPosAnchor: {fileID: 1848083735}
   pooler: {fileID: 1577087842}
   shotDir: {x: 0, y: 0, z: 0}
+  _drawGizmos: 0

@@ -5,14 +5,10 @@ using Random = UnityEngine.Random;
 public class PlayerControllerV3: MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private CapsuleCollider _collider;
     private FrameInputs _inputs;
-    private CapsuleCollider _collider;
 
-    private void Start()
-    {
-        _collider = GetComponent<CapsuleCollider>();
-    }
-
+   
     private void Update()
     {
         _wall = isWallDetected();
@@ -32,6 +28,8 @@ public class PlayerControllerV3: MonoBehaviour
         HandleShooting();
 
         HandleRotation();
+
+        HandleGoUpDownPlatforms();
     }
 
     #region Inputs
@@ -99,9 +97,6 @@ public class PlayerControllerV3: MonoBehaviour
     private void OnDrawGizmos()
     {
         DrawGrounderGizmos();
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, wallDetectorRange);
     }
 
     #endregion
@@ -194,7 +189,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     private bool _hasDashed;
     private bool _dashing;
-    private bool _wall;
+    [SerializeField]private bool _wall;
     private float _timeStartedDash;
     private Vector3 _dashDir;
 
@@ -320,10 +315,97 @@ public class PlayerControllerV3: MonoBehaviour
         bulletPosAnchor.transform.LookAt(lookPos);
     }
 
+    #endregion
+
+    #region GoUpDownPlatforms
+
+    Collider[] _downPlats;
+    Collider[] _upPlats;
+
+    void HandleGoUpDownPlatforms()
+    {
+        DropThroughPlat();
+
+        JumpThroughPlat();
+    }
+
+    void DropThroughPlat()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            //Checks for platfroms below player and ignores collision with it if the conditions are right
+            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.3f);
+            foreach (var plat in _downPlats)
+            {
+                if (plat.tag == "Platform" && plat.GetComponent<TwoWayPlatform>() != null)
+                {
+                    if (plat.GetComponent<TwoWayPlatform>()._dropThrough)
+                    {
+                        Physics.IgnoreCollision(_collider, plat);
+                    }
+                }
+            }
+        }
+        if (_downPlats != null)
+        {
+            //disables ignoreCollision with previous platforms
+            foreach (var plat in _downPlats)
+            {
+                if (plat.bounds.min.y > _collider.bounds.max.y)
+                {
+                    Physics.IgnoreCollision(_collider, plat, false);
+                }
+            }    
+        }
+    }
+
+    void JumpThroughPlat()
+    {
+        if (_rb.velocity.y > 0)//Checks for platfroms above player while jumping and ignores collision with it if the conditions are right
+        {
+            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), 0.3f);
+            foreach (var plat in _upPlats)
+            {
+                if (plat.tag == "Platform" && plat.GetComponent<TwoWayPlatform>() != null)
+                {
+                    if (plat.GetComponent<TwoWayPlatform>()._jumpThrough)
+                    {
+                        Physics.IgnoreCollision(_collider, plat);
+                    }
+                }
+            }
+        }
+        if (_upPlats != null)
+        {
+            //disables ignoreCollision with previous platforms
+            foreach (var plat in _downPlats)
+            {
+                if (plat.bounds.min.y > _collider.bounds.max.y || plat.bounds.max.y < _collider.bounds.min.y)
+                {
+                    Physics.IgnoreCollision(_collider, plat, false);
+                }
+            }
+        }
+    }
+
+    #endregion
+
+    #region Gizmos
+
+    [Header("Gizmos")]
+    [SerializeField] bool _drawGizmos;
     private void OnDrawGizmosSelected()
     {
+        if (_drawGizmos)
+        {
+          DrawMinPos();
+        }
+    }
+
+    void DrawMinPos()
+    {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(bulletPos.position, 0.3f);
+        Gizmos.DrawWireSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.3f);
     }
     #endregion
 
