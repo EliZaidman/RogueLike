@@ -12,7 +12,6 @@ public class PlayerControllerV3: MonoBehaviour
    
     private void Update()
     {
-        _wall = isWallDetected();
 
         GatherInputs();
 
@@ -192,7 +191,6 @@ public class PlayerControllerV3: MonoBehaviour
 
     private bool _hasDashed;
     private bool _dashing;
-    [SerializeField]private bool _wall;
     private float _timeStartedDash;
     private Vector3 _dashDir;
 
@@ -202,7 +200,7 @@ public class PlayerControllerV3: MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed)
         {
             _dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
-            if (_dashDir == Vector3.zero) _dashDir = _facingLeft ? Vector3.left : Vector3.right;
+            if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
             //_dashRing.up = _dashDir;
             //_dashParticles.Play();
             _dashing = true;
