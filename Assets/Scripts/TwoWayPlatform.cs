@@ -6,5 +6,4 @@ public class TwoWayPlatform : MonoBehaviour
 {
     public bool _dropThrough;
     public bool _jumpThrough;
-
 }

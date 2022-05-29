@@ -40,7 +40,7 @@ public class CameraFollow2D : MonoBehaviour
 
     void FollowAndCrouch()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.S))
         {
             Vector3 targetCamPosition = crouchPos.position;
             transform.position = Vector3.SmoothDamp(transform.position, targetCamPosition, ref velocity, smoothSpeed);

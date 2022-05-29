@@ -152,7 +152,7 @@ public class PlayerControllerV3: MonoBehaviour
     private void HandleJumping()
     {
         if (_dashing) return;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !Input.GetKey(KeyCode.S))
         {
              if (IsGrounded || Time.time < _timeLeftGrounded + _coyoteTime || _enableDoubleJump && !_hasDoubleJumped)
             {
@@ -251,27 +251,27 @@ public class PlayerControllerV3: MonoBehaviour
 
     #region Impacts
 
-    [Header("Collisions")]
+    //[Header("Collisions")]
     //[SerializeField]private ParticleSystem _impactParticles;
 
-    [SerializeField] private GameObject _deathExplosion;
-    [SerializeField] private float _minImpactForce = 2;
+    //[SerializeField] private GameObject _deathExplosion;
+    //[SerializeField] private float _minImpactForce = 2;
 
     //private void OnCollisionEnter(Collision collision)
     //{
-   //     if (collision.relativeVelocity.magnitude > _minImpactForce && IsGrounded) _impactParticles.Play();
+    //    if (collision.relativeVelocity.magnitude > _minImpactForce && IsGrounded) _impactParticles.Play();
     //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Death"))
-        {
-            Instantiate(_deathExplosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Death"))
+    //    {
+    //        Instantiate(_deathExplosion, transform.position, Quaternion.identity);
+    //        Destroy(gameObject);
+    //    }
 
-        _hasDashed = false;
-    }
+    //    _hasDashed = false;
+    //}
 
     #endregion
 
@@ -374,13 +374,25 @@ public class PlayerControllerV3: MonoBehaviour
                     }
                 }
             }
+            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.3f);
+            if (_downPlats != null)
+            {
+                foreach (var plat in _downPlats)
+                {
+                    if (plat.bounds.max.y < _collider.bounds.min.y)
+                    {
+                        Physics.IgnoreCollision(_collider, plat, false);
+                    }
+                }
+
+            }
         }
         if (_upPlats != null)
         {
             //disables ignoreCollision with previous platforms
-            foreach (var plat in _downPlats)
+            foreach (var plat in _upPlats)
             {
-                if (plat.bounds.min.y > _collider.bounds.max.y || plat.bounds.max.y < _collider.bounds.min.y)
+                if (plat.bounds.min.y > _collider.bounds.max.y)
                 {
                     Physics.IgnoreCollision(_collider, plat, false);
                 }
