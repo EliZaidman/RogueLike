@@ -2409,6 +2409,10 @@ PrefabInstance:
       propertyPath: m_Height
       value: 4.28
       objectReference: {fileID: 0}
+    - target: {fileID: 4046270996378120359, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 3ba3664beba09d745ba3581d40452480, type: 2}
     - target: {fileID: 9140012906169328242, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_FlipX
       value: 1
@@ -2698,7 +2702,6 @@ MonoBehaviour:
   _dashSpeed: 50
   _dashLength: 0.2
   wallDetectorRange: 1
-  _wall: 0
   bulletForce: 15
   bulletPos: {fileID: 1347526719}
   bulletPosAnchor: {fileID: 1848083735}

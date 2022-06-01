@@ -385,7 +385,6 @@ public class PlayerControllerV3: MonoBehaviour
                         Physics.IgnoreCollision(_collider, plat, false);
                     }
                 }
-
             }
         }
         if (_upPlats != null)
@@ -416,6 +415,7 @@ public class PlayerControllerV3: MonoBehaviour
         }
     }
     #endregion
+
 
     #region Gizmos
 
