@@ -11,6 +11,7 @@ public class ProjectileEnemy : MonoBehaviour
     public float detectionRange;
     public LayerMask Layer;
     public float waitTime;
+    public int damage;
     void Start()
     {
         objPooler = Pooler.Instance;

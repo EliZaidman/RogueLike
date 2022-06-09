@@ -7,6 +7,7 @@ public class Bullets : MonoBehaviour
     private GameObject _player;
     private Rigidbody rb;
     public float speed, destroyTime, rotateSpeed;
+    public int damage;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class Bullets : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             gameObject.SetActive(false);
+            collision.collider.GetComponent<HPSystem>().TakeDamage(damage);
             Debug.Log("HIT");
         }
         else
