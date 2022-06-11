@@ -8,8 +8,19 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if(coll.transform.tag == "Enemy")
-        coll.collider.GetComponent<HPSystem>().TakeDamage(damage);
-        gameObject.SetActive(false);
+        switch (coll.transform.tag)
+        {
+            case "Enemy":
+                //coll.collider.GetComponent<HPSystem>().TakeDamage(damage);
+                gameObject.SetActive(false);
+                PlayerControllerV3.Instance.AddMgCharge(1);
+                break;
+            case "KnightsShield":
+                gameObject.SetActive(false);
+                PlayerControllerV3.Instance.AddMgCharge(1);
+                break;
+            default:
+                break;
+        }
     }
 }

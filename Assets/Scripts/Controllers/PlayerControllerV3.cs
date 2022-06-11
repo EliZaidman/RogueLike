@@ -7,9 +7,25 @@ public class PlayerControllerV3: MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    public static PlayerControllerV3 Instance { get; set; }
     private FrameInputs _inputs;
 
-   
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        _currentMgCharges = maxMagicalBullets;
+    }
     private void Update()
     {
 
@@ -182,6 +198,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     [Header("Dash")] [SerializeField] private float _dashSpeed = 15;
     [SerializeField] private float _dashLength = 1;
+    [SerializeField] private float dashCooldown = 1.5f;
    // [SerializeField] private ParticleSystem _dashParticles;
     //[SerializeField] private Transform _dashRing;
     [SerializeField] private float wallDetectorRange = 3;
@@ -191,20 +208,33 @@ public class PlayerControllerV3: MonoBehaviour
 
     private bool _hasDashed;
     private bool _dashing;
+    private bool _dashCdReady;
     private float _timeStartedDash;
+    private float _dashCdTimer;
     private Vector3 _dashDir;
+
 
     private void HandleDashing()
     {
-
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed)
+        DashCooldown();
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed && _dashCdReady)
         {
-            _dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
-            if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
+            //_dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
+            //if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
+            if (!_spriteRenderer.flipX)
+            {
+                _dashDir = Vector3.left;
+            }
+            else
+            {
+                _dashDir = Vector3.right;
+
+            }
             //_dashRing.up = _dashDir;
             //_dashParticles.Play();
             _dashing = true;
             _hasDashed = true;
+            _dashCdTimer = 0;
             _timeStartedDash = Time.time;
             _rb.useGravity = false;
             // _dashVisual.Play();
@@ -247,7 +277,21 @@ public class PlayerControllerV3: MonoBehaviour
         }
         return false;
     }
-    
+
+    void DashCooldown()
+    {
+        _dashCdTimer += Time.deltaTime;
+        if (_dashCdTimer >= dashCooldown)
+        {
+            _dashCdReady = true;
+            _dashCdTimer = dashCooldown;
+        }
+        else
+        {
+            _dashCdReady = false;
+        }
+    }
+
     #endregion
 
     #region Impacts
@@ -277,24 +321,28 @@ public class PlayerControllerV3: MonoBehaviour
     #endregion
 
     #region Aiming+Shooting
-
+    [Header("Aiming and Shooting Setup")]
     [Header("Aiming and Shooting")]
-    public float bulletForce = 5;
-    public Transform bulletPos;
-    public Transform bulletPosAnchor;
+    [SerializeField] Transform bulletPos;
+    [SerializeField] Transform bulletPosAnchor;
     [SerializeField]Pooler pooler;
     GameObject currentObj;
     Vector3 lookPos;
-    [SerializeField]Vector3 shotDir;
+    Vector3 shotDir;
+
+    [Header("Shooting Settings")]
+    [SerializeField] float bulletForce = 5;
+    [SerializeField] int maxMagicalBullets = 3;
+    [SerializeField][Tooltip("MB = Magical Bullets")] int mbRegenTime = 3;
+
+    int _currentMgCharges;
+    float _mgRegenTimer;
 
 
     void HandleShooting()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            currentObj = pooler.SpawnFromPool("Hat", bulletPos.position, bulletPos.rotation);
-            currentObj.GetComponent<Rigidbody>().velocity = shotDir * -bulletForce;
-        }
+        ShotInput();
+        MbRegen();
     }
     void HandleAiming()
     {
@@ -310,7 +358,42 @@ public class PlayerControllerV3: MonoBehaviour
         }
         shotDir = (transform.position - lookPos).normalized;
     }
+    void ShotInput()
+    {
 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (_currentMgCharges > 0)
+            {
+                currentObj = pooler.SpawnFromPool("Hat", bulletPos.position, bulletPos.rotation);
+                currentObj.GetComponent<Rigidbody>().velocity = shotDir * -bulletForce;
+                _currentMgCharges--;
+            }
+            _mgRegenTimer = 0; 
+        }
+    }
+
+    void MbRegen() 
+    {
+        if (_mgRegenTimer < mbRegenTime)
+        {
+            _mgRegenTimer += Time.deltaTime;
+        }
+        if (_mgRegenTimer >= mbRegenTime)
+        {
+            _currentMgCharges = maxMagicalBullets;
+            _mgRegenTimer = 0;
+        }
+    }
+    
+    public void AddMgCharge(int toAdd)
+    {
+        _currentMgCharges += toAdd;
+        if (_currentMgCharges >= maxMagicalBullets)
+        {
+            _currentMgCharges = maxMagicalBullets;
+        }
+    }
     void HandleRotation()
     {
         bulletPosAnchor.transform.LookAt(lookPos);
@@ -415,7 +498,6 @@ public class PlayerControllerV3: MonoBehaviour
         }
     }
     #endregion
-
 
     #region Gizmos
 
