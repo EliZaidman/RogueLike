@@ -13,8 +13,6 @@ public class Shield : MonoBehaviour
     void Start()
     {
         knight = transform.parent.GetComponent<KnightStatue>();
-        _rb = GetComponent<Rigidbody>();
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,6 +23,7 @@ public class Shield : MonoBehaviour
         {
             //MovementV2.
             Vector3 direction = transform.position - collision.transform.position;
+            direction.y = direction.y * knight.knockBackStrength + 20;
             _rb.AddForce(direction.normalized * knight.knockBackStrength, ForceMode.Impulse);
             knight._ramTimer = 0;
             knight.ChangeState(KnightStatue.states.Recover);

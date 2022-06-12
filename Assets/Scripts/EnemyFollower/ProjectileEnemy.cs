@@ -22,7 +22,7 @@ public class ProjectileEnemy : MonoBehaviour
     {
         while (true)
         {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime * EnemyTimeController.Instance.currentTimeScale);
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, Layer);
 
         if(colliders.Length > 0)
