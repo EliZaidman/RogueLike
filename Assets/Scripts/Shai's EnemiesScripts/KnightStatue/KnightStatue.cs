@@ -8,27 +8,27 @@ public class KnightStatue : MonoBehaviour
     [Header("General Settings")]
     [SerializeField]private states _currentState = states.Idle;
     public BoxCollider shield;
-    public float speed = 6;
-    public float agroRange = 5;
-    public float attackRange = 2;
-    public bool drawAgroRange = false;
-    public bool drawAttackRange = false;
+    [SerializeField] float speed = 6;
+    [SerializeField] float agroRange = 5;
+    [SerializeField] float attackRange = 2;
+    [SerializeField] bool drawAgroRange = false;
+    [SerializeField] bool drawAttackRange = false;
     [Header("Combat Stats")]
     public int health = 50;
     public int damage = 5;
     [Header("Ram Settings")]
-    public float ramSpeed = 5;
-    public float ramDistance = 5;
+    [SerializeField] float ramSpeed = 5;
+    [SerializeField] float ramDistance = 5;
     public float knockBackStrength = 8;
-    public float ramCooldown = 4;
-    public float recoveryTime = 3;
+    [SerializeField] float ramCooldown = 4;
+    [SerializeField] float recoveryTime = 3;
     [Tooltip("Height differential required for attacking")]
-    public float heightDiff;
-    public bool drawHeightDiff = false;
+    [SerializeField] float heightDiff;
+    [SerializeField] bool drawHeightDiff = false;
     [Header("Platform Check")]
-    public Transform platCheck;
-    private int platCheckRange;
-    public bool drawPlatCheck = false;
+    [SerializeField] Transform platCheck;
+    [SerializeField] bool drawPlatCheck = false;
+    private float platCheckRange = 3;
     [HideInInspector]public bool isRamming;
 
 
@@ -128,7 +128,7 @@ public class KnightStatue : MonoBehaviour
         }
         if (Check4EndOfPlatform() && !_isChargingRam)
         {
-        _rb.velocity = transform.right * speed;
+           _rb.velocity = transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
         }
     }
 
@@ -164,7 +164,7 @@ public class KnightStatue : MonoBehaviour
 
     void RamCharge()
     {
-        if (!isRamming && !_isChargingRam)
+        if (!isRamming && !_isChargingRam && Check4EndOfPlatform())
         {
             _animator.SetBool("Charge", true);
         }
@@ -174,8 +174,8 @@ public class KnightStatue : MonoBehaviour
     {
         if (isRamming)
         {
-            _ramTimer -= Time.deltaTime;
-            _rb.velocity = transform.right * ramSpeed;
+            _ramTimer -= Time.deltaTime * EnemyTimeController.Instance.currentTimeScale;
+            _rb.velocity = transform.right * ramSpeed * EnemyTimeController.Instance.currentTimeScale;
             if (_ramTimer <= 0)
             {
                 isRamming = false;
@@ -210,6 +210,8 @@ public class KnightStatue : MonoBehaviour
         }
         return false;
     }
+
+
 
     /// <summary>
     /// returns false if near an end of a platform
