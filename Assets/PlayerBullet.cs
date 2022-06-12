@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
         switch (coll.transform.tag)
         {
             case "Enemy":
-                //coll.collider.GetComponent<HPSystem>().TakeDamage(damage);
+                coll.collider.GetComponent<HPSystem>().TakeDamage(damage);
                 gameObject.SetActive(false);
                 PlayerControllerV3.Instance.AddMgCharge(1);
                 break;

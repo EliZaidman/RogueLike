@@ -18,6 +18,7 @@ public class HPSystem : MonoBehaviour
         {
             hp = maxHP;
         }
+        Dead();
     }
 
    public void TakeDamage(int damage)
@@ -32,13 +33,13 @@ public class HPSystem : MonoBehaviour
 
     void Dead()
     {
-        if (true)
+        if (gameObject.tag == "Enemy" && hp <= 0)
         {
-
+            Destroy(this.gameObject);
         }
-        if (true)
+        if (gameObject.tag == "Player" && hp <= 0)
         {
-
+            Debug.Log("Player dead");
         }
     }
 }
