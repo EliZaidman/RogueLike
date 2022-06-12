@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class Consumable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [SerializeField] int hpAmount = 5;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +12,8 @@ public class Consumable : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                GameManager.instance.playerHp += 0.25f;
+                //GameManager.instance.playerHp += 0.25f;
+                other.GetComponent<HPSystem>().Heal(hpAmount);
                 Destroy(gameObject);
             }
         }

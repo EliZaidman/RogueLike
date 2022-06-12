@@ -27,6 +27,7 @@ public class Shield : MonoBehaviour
             _rb.AddForce(direction.normalized * knight.knockBackStrength, ForceMode.Impulse);
             knight._ramTimer = 0;
             knight.ChangeState(KnightStatue.states.Recover);
+            controller.GetComponent<HPSystem>().TakeDamage(knight.damage);
             Debug.Log("Hit");
         }
     }

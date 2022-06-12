@@ -26,7 +26,7 @@ public class HPSystem : MonoBehaviour
         hp -= damage;
     }
 
-    void Heal(int heal)
+    public void Heal(int heal)
     {
         hp += heal;
     }

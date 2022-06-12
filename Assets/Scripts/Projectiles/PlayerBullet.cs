@@ -20,6 +20,7 @@ public class PlayerBullet : MonoBehaviour
                 PlayerControllerV3.Instance.AddMgCharge(1);
                 break;
             default:
+                gameObject.SetActive(false);
                 break;
         }
     }

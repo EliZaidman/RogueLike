@@ -96,13 +96,13 @@ public class PlayerControllerV3: MonoBehaviour
             _hasJumped = false;
             _currentMovementLerpSpeed = 100;
             OnTouchedGround?.Invoke();
-            transform.SetParent(_ground[0].transform);
+            //transform.SetParent(_ground[0].transform);
         }
         else if (IsGrounded && !grounded)
         {
             IsGrounded = false;
             _timeLeftGrounded = Time.time;
-            transform.SetParent(null);
+            //transform.SetParent(null);
         }
     }
 

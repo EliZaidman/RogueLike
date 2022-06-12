@@ -1619,14 +1619,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 153377939761278544, guid: cabab7beff386754b990b88579817b36, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 153377939761278544, guid: cabab7beff386754b990b88579817b36, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1043823359168840370, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1671,10 +1663,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4046270996378120352, guid: cabab7beff386754b990b88579817b36, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 3325154518607945604}
     - target: {fileID: 4046270996378120353, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_Name
       value: Player 2D
@@ -1683,14 +1671,6 @@ PrefabInstance:
       propertyPath: pooler
       value: 
       objectReference: {fileID: 1577087842}
-    - target: {fileID: 4181546505320741799, guid: cabab7beff386754b990b88579817b36, type: 3}
-      propertyPath: _drawGizmos
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181546505320741799, guid: cabab7beff386754b990b88579817b36, type: 3}
-      propertyPath: maxMagicalBullets
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cabab7beff386754b990b88579817b36, type: 3}
 --- !u!114 &3325154518607945601
@@ -1924,24 +1904,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4046270996378120353, guid: cabab7beff386754b990b88579817b36, type: 3}
   m_PrefabInstance: {fileID: 153377938715069187}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4181546505320741795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4181546505320741794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e6899e149c0b498667a6602f28585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTimeScale: 0
-  enemySlowScale: 0.1
-  bulletTimeMaxCharge: 10
-  bulletTimeChargeDepletionRate: 3
-  _currentCharge: 0
-  _isSlowed: 0
 --- !u!4 &4181546505320741798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1043823359168840370, guid: cabab7beff386754b990b88579817b36, type: 3}
@@ -1957,10 +1919,6 @@ PrefabInstance:
     - target: {fileID: 8421476041088406048, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
       propertyPath: m_Name
       value: KnightStatue
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406049, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: m_Mass
-      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8421476041088406053, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
       propertyPath: m_RootOrder
@@ -2007,40 +1965,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: speed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: ramSpeed
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: agroRange
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: attackRange
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: drawAgroRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
       propertyPath: drawPlatCheck
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
       propertyPath: platCheckRange
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: drawAttackRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8421476041088406058, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}
-      propertyPath: knockBackStrength
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4c25a4efac125d409b3c8afb3772e1e, type: 3}

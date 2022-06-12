@@ -42,6 +42,9 @@ public class CuckooBullets : MonoBehaviour
             gameObject.SetActive(false);
             collision.collider.GetComponent<HPSystem>().TakeDamage(damage);
             Debug.Log("HIT");
+        }else if (collision.transform.tag == "Enemy")
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
         }
         else
             gameObject.SetActive(false);

@@ -14,7 +14,6 @@ public class KnightStatue : MonoBehaviour
     [SerializeField] bool drawAgroRange = false;
     [SerializeField] bool drawAttackRange = false;
     [Header("Combat Stats")]
-    public int health = 50;
     public int damage = 5;
     [Header("Ram Settings")]
     [SerializeField] float ramSpeed = 5;
@@ -28,7 +27,7 @@ public class KnightStatue : MonoBehaviour
     [Header("Platform Check")]
     [SerializeField] Transform platCheck;
     [SerializeField] bool drawPlatCheck = false;
-    private float platCheckRange = 3;
+    private float platCheckRange = 0.5f;
     [HideInInspector]public bool isRamming;
 
 
@@ -57,7 +56,7 @@ public class KnightStatue : MonoBehaviour
     {
         if (!isRamming)
         {
-            _ramCooldownTimer -= Time.deltaTime;
+            _ramCooldownTimer -= Time.deltaTime * EnemyTimeController.Instance.currentTimeScale;
         }
         Ram();
         CheckDistance();

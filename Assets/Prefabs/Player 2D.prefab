@@ -1037,8 +1037,8 @@ GameObject:
   - component: {fileID: 1043823359168840370}
   - component: {fileID: 4046270996378120359}
   - component: {fileID: 4046270996378120358}
-  - component: {fileID: 4046270996378120352}
   - component: {fileID: 4181546505320741799}
+  - component: {fileID: 4181546505320741795}
   m_Layer: 0
   m_Name: Player 2D
   m_TagString: Player
@@ -1095,33 +1095,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &4046270996378120352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4046270996378120353}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba2b2ec32023c5449292cb6b66c1add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 10
-  gravity: 0
-  jumpHeight: 12
-  fallMultiplayer: 2.1
-  rayLenugh: 0
-  mainCamera: {fileID: 0}
-  _counter: 0
-  facingRight: 1
-  isGroundedDown: 0
-  currentBall: {fileID: 0}
-  activeBalls: []
-  bulletResPos: {fileID: 3172146051657954892}
-  sprite: {fileID: 2952819966207218074}
-  bulletVelocity: 20
-  raypos: {fileID: 153377938765905889}
 --- !u!114 &4181546505320741799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,10 +1127,30 @@ MonoBehaviour:
   _enableDoubleJump: 1
   _dashSpeed: 50
   _dashLength: 0.2
+  dashCooldown: 1.5
   wallDetectorRange: 1
-  bulletForce: 15
   bulletPos: {fileID: 1347526719}
   bulletPosAnchor: {fileID: 1848083735}
   pooler: {fileID: 0}
-  shotDir: {x: 0, y: 0, z: 0}
+  bulletForce: 15
+  maxMagicalBullets: 3
+  mbRegenTime: 3
   _drawGizmos: 0
+--- !u!114 &4181546505320741795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046270996378120353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760e6899e149c0b498667a6602f28585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTimeScale: 0
+  enemySlowScale: 0.1
+  bulletTimeMaxCharge: 10
+  bulletTimeChargeDepletionRate: 3
+  _currentCharge: 0
+  _isSlowed: 0
