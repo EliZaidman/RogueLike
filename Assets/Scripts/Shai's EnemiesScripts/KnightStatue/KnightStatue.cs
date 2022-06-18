@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class KnightStatue : MonoBehaviour
 {
+    public SkeletonAnimation skeletonAnimation;
+    public AnimationReferenceAsset idle, walking, attack;
     #region Properties
     [Header("General Settings")]
     [SerializeField]private states _currentState = states.Idle;
@@ -42,9 +45,11 @@ public class KnightStatue : MonoBehaviour
     private Animator _animator;
     #endregion
 
+
     private void Start()
     {
-        
+        SetAnimation(idle, true, 1f);
+
         _ramTimer = ramDistance;
         target = GameObject.FindGameObjectWithTag("Player");
         _animator = GetComponent<Animator>();
@@ -61,6 +66,10 @@ public class KnightStatue : MonoBehaviour
         CheckDistance();
         HandleStates();
         StayOnPlatform();
+    }
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
     }
 
     #region State Machine
@@ -103,6 +112,7 @@ public class KnightStatue : MonoBehaviour
             if (!isRamming || !_isChargingRam)
             {
                RamCharge();
+                SetAnimation(attack, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
             }
         }
         if (isRamming)
@@ -120,6 +130,7 @@ public class KnightStatue : MonoBehaviour
         if (!isRamming)
         {
             FacePlayer();
+            SetAnimation(walking, true, 1f * EnemyTimeController.Instance.currentTimeScale);
         }
         if (IsTargetInAttackRange())
         {
@@ -133,6 +144,7 @@ public class KnightStatue : MonoBehaviour
 
     void Idle()
     {
+        SetAnimation(idle, true, 1f * EnemyTimeController.Instance.currentTimeScale);
         if (IsTargetDetected())
         {
             ChangeState(states.Follow);
