@@ -258,7 +258,8 @@ public class PlayerControllerV3: MonoBehaviour
                // _dashParticles.Stop();
                 _dashing = false;
                 // Clamp the velocity so they don't keep shooting off
-                _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y > 3 ? 3 : _rb.velocity.y);
+                //_rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y > 3 ? 3 : _rb.velocity.y);
+                _rb.velocity = Vector3.zero;
                 _rb.useGravity = true;
                 if (IsGrounded) _hasDashed = false;
                 _collider.enabled = true;

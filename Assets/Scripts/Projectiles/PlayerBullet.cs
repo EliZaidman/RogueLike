@@ -12,12 +12,15 @@ public class PlayerBullet : MonoBehaviour
         {
             case "Enemy":
                 coll.collider.GetComponent<HPSystem>().TakeDamage(damage);
-                gameObject.SetActive(false);
                 PlayerControllerV3.Instance.AddMgCharge(1);
+                gameObject.SetActive(false);
                 break;
             case "KnightsShield":
-                gameObject.SetActive(false);
                 PlayerControllerV3.Instance.AddMgCharge(1);
+                gameObject.SetActive(false);
+                break;
+            case "Player":
+                Physics.IgnoreCollision(GetComponent<Collider>(), coll.collider);
                 break;
             default:
                 gameObject.SetActive(false);

@@ -7,7 +7,6 @@ public class KnightStatue : MonoBehaviour
     #region Properties
     [Header("General Settings")]
     [SerializeField]private states _currentState = states.Idle;
-    public BoxCollider shield;
     [SerializeField] float speed = 6;
     [SerializeField] float agroRange = 5;
     [SerializeField] float attackRange = 2;
@@ -61,6 +60,7 @@ public class KnightStatue : MonoBehaviour
         Ram();
         CheckDistance();
         HandleStates();
+        StayOnPlatform();
     }
 
     #region State Machine
@@ -235,10 +235,19 @@ public class KnightStatue : MonoBehaviour
         _heightDiff = Mathf.Abs(transform.position.y - target.transform.position.y);
     }
 
+    void StayOnPlatform()
+    {
+        if (!Check4EndOfPlatform())
+        {
+            _rb.velocity = Vector3.zero;
+        }
+    }
+
     public void ChangeState(states state)
     {
         _currentState = state;
     }
+
 
     #endregion
 
