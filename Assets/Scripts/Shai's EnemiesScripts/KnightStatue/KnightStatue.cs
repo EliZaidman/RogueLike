@@ -5,8 +5,11 @@ using Spine.Unity;
 
 public class KnightStatue : MonoBehaviour
 {
+
     public SkeletonAnimation skeletonAnimation;
     public AnimationReferenceAsset idle, walking, attack;
+    public string currentAnimation;
+
     #region Properties
     [Header("General Settings")]
     [SerializeField]private states _currentState = states.Idle;
@@ -69,7 +72,12 @@ public class KnightStatue : MonoBehaviour
     }
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
     {
+        if (animation.name.Equals(currentAnimation))
+        {
+            return;
+        }
         skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        currentAnimation = animation.name;
     }
 
     #region State Machine

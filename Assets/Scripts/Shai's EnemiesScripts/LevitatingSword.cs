@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class LevitatingSword : MonoBehaviour
 {
+    public SkeletonAnimation skeletonAnimation;
+    public AnimationReferenceAsset idle, walking, attack;
+    public string currentAnimation;
+
     [Header("General")]
     [SerializeField] float agroRange = 10; 
     [SerializeField] float attackRange = 3; 
@@ -27,6 +32,16 @@ public class LevitatingSword : MonoBehaviour
         StayOnPlatform();
     }
 
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(currentAnimation))
+        {
+            return;
+        }
+        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        currentAnimation = animation.name;
+    }
+
 
     #region StateMachine
     [HideInInspector] public enum states { Idle, Follow, Attack }
@@ -39,14 +54,17 @@ public class LevitatingSword : MonoBehaviour
         {
             case states.Idle:
                 Idle();
+                SetAnimation(idle, true, 1f);
                 break;
 
             case states.Follow:
                 FollowTarget();
+                SetAnimation(walking, true, 1f);
                 break;
 
             case states.Attack:
                 Attack();
+                SetAnimation(attack, true, 1f);
                 break;
 
             default:

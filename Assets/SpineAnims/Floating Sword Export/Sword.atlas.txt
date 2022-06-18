@@ -1,0 +1,20 @@
+
+Sword.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Blade Runner
+  rotate: true
+  xy: 2, 341
+  size: 102, 846
+  orig: 102, 846
+  offset: 0, 0
+  index: -1
+The Hilton
+  rotate: false
+  xy: 2, 2
+  size: 356, 337
+  orig: 356, 337
+  offset: 0, 0
+  index: -1

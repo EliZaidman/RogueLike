@@ -1,0 +1,194 @@
+{
+"skeleton": {
+	"hash": "HhLtH/tzul4fyqgFkvdv15MDaVA",
+	"spine": "3.8.99",
+	"x": -179.57,
+	"y": -384.14,
+	"width": 356.85,
+	"height": 1079.68,
+	"images": "./images/",
+	"audio": "C:/Users/yarde/Desktop/Limudim/Production A (2nd Year)/Floating Sword Enemy"
+},
+"bones": [
+	{ "name": "root", "rotation": 0.14, "x": -2.02, "y": 717.84 },
+	{ "name": "Hilt Bone", "parent": "root", "length": 258.69, "rotation": -89.99, "x": -2.82, "y": -25.84 },
+	{ "name": "Blade Bone", "parent": "Hilt Bone", "length": 797.72, "rotation": 0.1, "x": 262.03, "y": -1.38 },
+	{ "name": "bone", "parent": "root", "length": 1548.62, "rotation": -0.14, "x": -311.71, "y": -1214.52 }
+],
+"slots": [
+	{ "name": "Blade Runner", "bone": "Blade Bone", "attachment": "Blade Runner" },
+	{ "name": "The Hilton", "bone": "Hilt Bone", "attachment": "The Hilton" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Blade Runner": {
+				"Blade Runner": { "x": 390.99, "y": 1.04, "rotation": 89.89, "width": 102, "height": 846 }
+			},
+			"The Hilton": {
+				"The Hilton": { "x": 165.41, "y": 3.19, "rotation": 89.99, "width": 356, "height": 337 }
+			}
+		}
+	}
+],
+"animations": {
+	"Attack Animation": {
+		"bones": {
+			"Hilt Bone": {
+				"rotate": [
+					{ "angle": 10.12 },
+					{ "time": 0.4667, "angle": -140.5 },
+					{ "time": 0.8, "angle": 165.98, "curve": "stepped" },
+					{ "time": 1.0333, "angle": 165.98 },
+					{ "time": 1.1333, "angle": -66.54 },
+					{ "time": 1.1667, "angle": 7.07 },
+					{ "time": 1.4667, "angle": 29.77 },
+					{ "time": 1.9667, "angle": 10.12 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1.9667 }
+				]
+			},
+			"root": {
+				"translate": [
+					{ "time": 1.1333, "x": -7.02 }
+				]
+			}
+		}
+	},
+	"Death Animation": {
+		"slots": {
+			"Blade Runner": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffffff" },
+					{ "time": 0.8, "color": "ffffff00" }
+				]
+			},
+			"The Hilton": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffffff" },
+					{ "time": 0.8, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"Hilt Bone": {
+				"rotate": [
+					{ "angle": 10.12 },
+					{ "time": 0.1333, "angle": -12.13, "curve": "stepped" },
+					{ "time": 0.2667, "angle": -12.13 },
+					{ "time": 0.3667, "angle": -32.02 },
+					{ "time": 0.4333, "angle": -75.16 },
+					{ "time": 0.4667, "angle": -90.09, "curve": "stepped" },
+					{ "time": 0.8, "angle": -90.09 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1333, "x": 266.86, "y": 327.45, "curve": "stepped" },
+					{ "time": 0.2667, "x": 266.86, "y": 327.45 },
+					{ "time": 0.3667, "x": 535.93, "y": 214.02 },
+					{ "time": 0.4, "x": 846.88, "y": -59.25 },
+					{ "time": 0.4333, "x": 1013.47, "y": -444.91 },
+					{ "time": 0.4667, "x": 1071.24, "y": -1157.86, "curve": "stepped" },
+					{ "time": 0.8, "x": 1071.24, "y": -1157.86 }
+				]
+			}
+		}
+	},
+	"Idle Animation": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"bone": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"Blade Bone": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"Hilt Bone": {
+				"rotate": [
+					{ "angle": -4.47 },
+					{ "time": 0.1667, "angle": -4.47 },
+					{ "time": 0.6667, "angle": 3.93 },
+					{ "time": 1, "angle": -1.67 },
+					{ "time": 1.1667, "angle": -4.47 }
+				],
+				"translate": [
+					{ "x": -0.08, "y": -31.99 },
+					{ "time": 0.5, "x": 0.05, "y": 18.01 },
+					{ "time": 1, "x": -0.08, "y": -31.99 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			}
+		}
+	},
+	"Walking Animation": {
+		"bones": {
+			"Hilt Bone": {
+				"rotate": [
+					{ "angle": 10.12 },
+					{ "time": 0.3, "angle": 4.43, "curve": 0.317, "c2": 0.28, "c3": 0.655, "c4": 0.63 },
+					{ "time": 0.6333, "angle": -0.43, "curve": 0.334, "c2": 0.34, "c3": 0.678, "c4": 0.7 },
+					{ "time": 0.9333, "angle": -3.08, "curve": 0.382, "c2": 0.58, "c3": 0.733 },
+					{ "time": 1.3, "angle": 10.12 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "x": -61.98, "y": 40.06, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2333, "x": -97.28, "y": 106.66, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "x": -70.48, "y": 186.41, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6333, "x": 0.65, "y": 257.17, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.7667, "x": 75.86, "y": 190.47, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9333, "x": 128.86, "y": 110.53 },
+					{ "time": 1.3 }
+				]
+			}
+		}
+	}
+}
+}
