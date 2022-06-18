@@ -640,6 +640,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dropThrough: 1
   _jumpThrough: 1
+--- !u!4 &990184230 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7908764014976781834, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
+  m_PrefabInstance: {fileID: 7908764015127448876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002817516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,7 +1960,7 @@ PrefabInstance:
     - target: {fileID: 7908764016418549447, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: platCheck
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 990184230}
     - target: {fileID: 7908764016418549451, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: m_Name
       value: KnightStatueNew

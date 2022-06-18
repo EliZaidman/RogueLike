@@ -112,7 +112,7 @@ public class KnightStatue : MonoBehaviour
             if (!isRamming || !_isChargingRam)
             {
                RamCharge();
-                SetAnimation(attack, true, 0.6f);
+                SetAnimation(attack, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
             }
         }
         if (isRamming)
@@ -130,6 +130,7 @@ public class KnightStatue : MonoBehaviour
         if (!isRamming)
         {
             FacePlayer();
+            SetAnimation(walking, true, 1f * EnemyTimeController.Instance.currentTimeScale);
         }
         if (IsTargetInAttackRange())
         {
@@ -138,13 +139,12 @@ public class KnightStatue : MonoBehaviour
         if (Check4EndOfPlatform() && !_isChargingRam)
         {
            _rb.velocity = transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
-            SetAnimation(walking, true, 1f);
         }
     }
 
     void Idle()
     {
-        SetAnimation(idle, true, 1f);
+        SetAnimation(idle, true, 1f * EnemyTimeController.Instance.currentTimeScale);
         if (IsTargetDetected())
         {
             ChangeState(states.Follow);
