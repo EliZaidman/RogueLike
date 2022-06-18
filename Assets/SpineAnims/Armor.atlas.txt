@@ -1,0 +1,69 @@
+
+Armor.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Goofball
+  rotate: false
+  xy: 2, 278
+  size: 544, 733
+  orig: 544, 733
+  offset: 0, 0
+  index: -1
+Katef Bakar R
+  rotate: false
+  xy: 1198, 125
+  size: 219, 290
+  orig: 219, 290
+  offset: 0, 0
+  index: -1
+Katef bakar L
+  rotate: true
+  xy: 1024, 604
+  size: 407, 309
+  orig: 407, 309
+  offset: 0, 0
+  index: -1
+Magen David
+  rotate: false
+  xy: 548, 386
+  size: 474, 625
+  orig: 474, 625
+  offset: 0, 0
+  index: -1
+Pussy on a pedestal
+  rotate: false
+  xy: 2, 2
+  size: 614, 274
+  orig: 614, 274
+  offset: 0, 0
+  index: -1
+So no head
+  rotate: false
+  xy: 1419, 106
+  size: 203, 309
+  orig: 203, 309
+  offset: 0, 0
+  index: -1
+Strip Tease
+  rotate: false
+  xy: 1024, 417
+  size: 431, 185
+  orig: 431, 185
+  offset: 0, 0
+  index: -1
+Yad Vashem L
+  rotate: false
+  xy: 618, 31
+  size: 578, 353
+  orig: 578, 353
+  offset: 0, 0
+  index: -1
+Yad Vashem R
+  rotate: false
+  xy: 1335, 689
+  size: 247, 322
+  orig: 247, 322
+  offset: 0, 0
+  index: -1

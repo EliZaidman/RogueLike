@@ -1,0 +1,1241 @@
+{
+"skeleton": {
+	"hash": "VCF2H4lGazJJ8rw+C5ye1oKLmMY",
+	"spine": "3.8.99",
+	"x": -413.51,
+	"y": -3.09,
+	"width": 732.4,
+	"height": 1189.54,
+	"images": "./images/",
+	"audio": "C:/Users/yarde/Desktop/Limudim/Production A (2nd Year)/Knight Statue Enemy"
+},
+"bones": [
+	{ "name": "root", "rotation": 0.07, "color": "9c9c9cff" },
+	{
+		"name": "Pedestal Bone R",
+		"parent": "root",
+		"length": 334.77,
+		"rotation": 127.71,
+		"x": 283.84,
+		"y": 2.52,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Pedestal Bone L",
+		"parent": "Pedestal Bone R",
+		"length": 481.5,
+		"rotation": -93.53,
+		"x": 361.8,
+		"y": 474.79,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Torso Bone",
+		"parent": "Pedestal Bone L",
+		"length": 673.27,
+		"rotation": 54.13,
+		"x": 478.76,
+		"y": 3.08,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Shoulder Bone L",
+		"parent": "Torso Bone",
+		"length": 298.4,
+		"rotation": 136.89,
+		"x": 715.27,
+		"y": 213.27,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Shoulder Bone R",
+		"parent": "Torso Bone",
+		"length": 180.6,
+		"rotation": -141.26,
+		"x": 699.08,
+		"y": -28.28,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Arm Bone L",
+		"parent": "Shoulder Bone L",
+		"length": 375.97,
+		"rotation": 122.91,
+		"x": 307.76,
+		"y": 34.6,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Arm Bone R",
+		"parent": "Shoulder Bone R",
+		"length": 147.14,
+		"rotation": -100.91,
+		"x": 264.24,
+		"y": -36.97,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Shield Bone",
+		"parent": "Arm Bone L",
+		"length": 541.01,
+		"rotation": -77.86,
+		"x": 394.48,
+		"y": 222.36,
+		"color": "9c9c9cff"
+	},
+	{
+		"name": "Head Bone",
+		"parent": "Torso Bone",
+		"length": 211.01,
+		"rotation": 1.07,
+		"x": 699.02,
+		"y": 34.08,
+		"color": "9c9c9cff"
+	}
+],
+"slots": [
+	{ "name": "Yad Vashem R", "bone": "Arm Bone R", "attachment": "Yad Vashem R" },
+	{ "name": "Katef Bakar R", "bone": "Shoulder Bone R", "attachment": "Katef Bakar R" },
+	{ "name": "So no head", "bone": "Head Bone", "attachment": "So no head" },
+	{ "name": "Goofball", "bone": "Torso Bone", "attachment": "Goofball" },
+	{ "name": "Pussy on a pedestal", "bone": "Pedestal Bone L", "attachment": "Pussy on a pedestal" },
+	{ "name": "Yad Vashem L", "bone": "Arm Bone L", "attachment": "Yad Vashem L" },
+	{ "name": "Katef bakar L", "bone": "Shoulder Bone L", "attachment": "Katef bakar L" },
+	{ "name": "Strip Tease", "bone": "Shield Bone", "attachment": "Strip Tease" },
+	{ "name": "Magen David", "bone": "Shield Bone", "attachment": "Magen David" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Goofball": {
+				"Goofball": { "x": 309.79, "y": 112.86, "rotation": -88.31, "width": 544, "height": 733 }
+			},
+			"Katef Bakar R": {
+				"Katef Bakar R": { "x": 48.51, "y": -12.86, "rotation": 52.94, "width": 219, "height": 290 }
+			},
+			"Katef bakar L": {
+				"Katef bakar L": { "x": 81.62, "y": 23.18, "rotation": 134.8, "width": 407, "height": 309 }
+			},
+			"Magen David": {
+				"Magen David": { "x": 285.51, "y": -73.34, "rotation": 89.75, "width": 474, "height": 625 }
+			},
+			"Pussy on a pedestal": {
+				"Pussy on a pedestal": { "x": 326.76, "y": -57.52, "rotation": -34.18, "width": 614, "height": 274 }
+			},
+			"So no head": {
+				"So no head": { "x": 61.95, "y": 29.36, "rotation": -89.39, "width": 203, "height": 309 }
+			},
+			"Strip Tease": {
+				"Strip Tease": { "x": 287.57, "y": -59.85, "rotation": 89.75, "width": 431, "height": 185 }
+			},
+			"Yad Vashem L": {
+				"Yad Vashem L": { "x": 182.77, "y": 4.25, "rotation": 11.89, "width": 578, "height": 353 }
+			},
+			"Yad Vashem R": {
+				"Yad Vashem R": { "x": 65.3, "y": -11.66, "rotation": 153.85, "width": 247, "height": 322 }
+			}
+		}
+	}
+],
+"animations": {
+	"Death Animation": {
+		"slots": {
+			"Goofball": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Katef Bakar R": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.1667, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Katef bakar L": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Magen David": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Pussy on a pedestal": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"So no head": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Strip Tease": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Yad Vashem L": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"Yad Vashem R": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.5, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"Pedestal Bone L": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.0667, "angle": 7.15 },
+					{ "time": 0.1667, "angle": 9.58 },
+					{ "time": 0.2667, "angle": -0.5 },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Head Bone": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1667, "angle": 11.06 },
+					{ "time": 0.2667, "angle": -16.29 },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "angle": 45.04, "curve": "stepped" },
+					{ "time": 0.8333, "angle": 45.04 },
+					{ "time": 0.9667, "angle": 91.8 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.0667, "x": -0.57, "y": 20.12 },
+					{ "time": 0.1667, "x": 4.35, "y": 39.64 },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "x": 40.24, "y": 1.14, "curve": "stepped" },
+					{ "time": 0.8333, "x": 40.24, "y": 1.14 },
+					{ "time": 0.9667, "x": -8.16, "y": 58.4, "curve": "stepped" },
+					{ "time": 1.1333, "x": -8.16, "y": 58.4 },
+					{ "time": 1.3, "x": -104.98, "y": 172.93 },
+					{ "time": 1.4, "x": -761.39, "y": 396.65 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Torso Bone": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.0667, "angle": 3.42 },
+					{ "time": 0.1667, "angle": 6.17 },
+					{ "time": 0.2667, "angle": -0.87 },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "angle": 11.35, "curve": "stepped" },
+					{ "time": 0.8333, "angle": 11.35 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Arm Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Shoulder Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.5333, "angle": -10.91 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.0667, "x": -42.33, "y": 18.94 },
+					{ "time": 0.1667, "x": -13.82, "y": 35.98 },
+					{ "time": 0.2667, "x": -81.03, "y": -28 },
+					{ "time": 0.4333, "x": -41.76, "y": -1.18, "curve": "stepped" },
+					{ "time": 0.5, "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "x": -159.65, "y": -105.2, "curve": "stepped" },
+					{ "time": 0.8333, "x": -159.65, "y": -105.2 },
+					{ "time": 1.0667, "x": -290.78, "y": -82.71 },
+					{ "time": 1.1667, "x": -564.61, "y": -35.76 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Shield Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "x": 23.85, "y": -66.3, "curve": "stepped" },
+					{ "time": 0.8333, "x": 23.85, "y": -66.3 },
+					{ "time": 0.9, "x": 42.23, "y": -190.16 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Arm Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Shoulder Bone L": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.2667, "angle": 10.15 },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "angle": -7.97, "curve": "stepped" },
+					{ "time": 0.8333, "angle": -7.97 },
+					{ "time": 0.9667, "angle": 43.24 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.0667, "x": -42.33, "y": 18.94 },
+					{ "time": 0.1667, "x": -53.65, "y": 56.39 },
+					{ "time": 0.2667, "x": -51.38, "y": 12.84 },
+					{ "time": 0.4333, "x": -41.76, "y": -1.18, "curve": "stepped" },
+					{ "time": 0.5, "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.6667, "x": -75.3, "y": -2.13, "curve": "stepped" },
+					{ "time": 0.8333, "x": -75.3, "y": -2.13 },
+					{ "time": 0.9, "x": -191.16, "y": 134.86 },
+					{ "time": 0.9667, "x": -447.18, "y": 287.94 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			},
+			"Pedestal Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.4333, "curve": "stepped" },
+					{ "time": 0.5 }
+				]
+			}
+		}
+	},
+	"Idle Animation": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Head Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.5, "x": -26.1, "y": -0.74, "curve": 0.25, "c3": 0.156 },
+					{ "time": 1.5, "x": 5.22, "y": 0.15, "curve": 0.25, "c3": 0.156 },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Shield Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Arm Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Arm Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Shoulder Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 1, "x": -2.61, "y": -0.07, "curve": 0.25, "c3": 0.156 },
+					{ "time": 2, "x": -41.76, "y": -1.18 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Shoulder Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 1, "x": -2.61, "y": -0.07, "curve": 0.25, "c3": 0.156 },
+					{ "time": 2, "x": -41.76, "y": -1.18 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Torso Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Pedestal Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Pedestal Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			}
+		}
+	},
+	"Ram Animation": {
+		"slots": {
+			"Goofball": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Katef Bakar R": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Katef bakar L": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Magen David": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Pussy on a pedestal": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"So no head": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Strip Tease": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ce8c66ff" },
+					{ "time": 0.6, "color": "d9753bff" },
+					{ "time": 0.6667, "color": "fb0c0cff", "curve": "stepped" },
+					{ "time": 1, "color": "fb0c0cff" },
+					{ "time": 1.0333, "color": "ce8c66ff" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Yad Vashem L": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			},
+			"Yad Vashem R": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.6667, "color": "ffffffff" }
+				]
+			}
+		},
+		"bones": {
+			"Pedestal Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.2333, "angle": 11.08 },
+					{ "time": 0.3333, "angle": 14.27 },
+					{ "time": 0.5, "angle": 16.93, "curve": "stepped" },
+					{ "time": 0.6667, "angle": 16.93 },
+					{ "time": 0.7333, "angle": -0.43 },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Head Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "x": -20.34, "y": -4.47 },
+					{ "time": 0.3333, "x": 45.21, "y": 15.79 },
+					{ "time": 0.5, "x": -5.68, "y": 14.83, "curve": "stepped" },
+					{ "time": 0.6667, "x": -5.68, "y": 14.83 },
+					{ "time": 0.8333, "x": -4.92, "y": -25.42 },
+					{ "time": 0.9667, "x": -5.32, "y": -4.45 },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.3333, "x": 1.221 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667 },
+					{ "time": 0.9667, "x": 1.1, "curve": "stepped" },
+					{ "time": 1.0333, "x": 1.1 },
+					{ "time": 1.1, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Torso Bone": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "angle": 2.63, "curve": "stepped" },
+					{ "time": 0.5, "angle": 2.63, "curve": "stepped" },
+					{ "time": 0.6667, "angle": 2.63 },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "x": -16.17, "y": 11.01 },
+					{ "time": 0.3333, "x": -59.03, "y": -9.31, "curve": "stepped" },
+					{ "time": 0.5, "x": -59.03, "y": -9.31, "curve": "stepped" },
+					{ "time": 0.6667, "x": -59.03, "y": -9.31 },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Arm Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": 0.442, "c3": 0.559, "c4": 0.52 },
+					{ "time": 0.5, "x": -24.17, "y": 37.35, "curve": "stepped" },
+					{ "time": 0.6667, "x": -24.17, "y": 37.35, "curve": 0.166, "c2": 0.52, "c3": 0.438 },
+					{ "time": 0.9333, "x": -28.56, "y": 44.12 },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Shoulder Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "x": -22.99, "y": -4.54 },
+					{ "time": 0.3333, "x": 42.56, "y": 15.71 },
+					{ "time": 0.5, "x": 12.99, "y": 0.61, "curve": "stepped" },
+					{ "time": 0.6667, "x": 12.99, "y": 0.61 },
+					{ "time": 0.8333, "x": 5.73, "y": 31.06 },
+					{ "time": 1.6667, "x": -41.76, "y": -1.18 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Shield Bone": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "angle": -3.95 },
+					{ "time": 0.5, "angle": -1.43, "curve": "stepped" },
+					{ "time": 0.6667, "angle": -1.43 },
+					{ "time": 0.7667, "angle": 11.2 },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "x": -6.25, "y": 38.63 },
+					{ "time": 0.3333, "x": -19.9, "y": 133.55, "curve": "stepped" },
+					{ "time": 0.5, "x": -19.9, "y": 133.55, "curve": "stepped" },
+					{ "time": 0.6667, "x": -19.9, "y": 133.55 },
+					{ "time": 0.7667, "x": 27.16, "y": 154.14 },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6333 },
+					{ "time": 0.6667, "x": 0.864 },
+					{ "time": 0.7667, "x": 1.285 },
+					{ "time": 1, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Arm Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Shoulder Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.25, "c3": 0.156 },
+					{ "time": 0.1, "x": -22.99, "y": -4.54 },
+					{ "time": 0.3333, "x": 42.56, "y": 15.71 },
+					{ "time": 0.5, "x": 11.57, "y": 21.63, "curve": "stepped" },
+					{ "time": 0.6667, "x": 11.57, "y": 21.63 },
+					{ "time": 0.8333, "x": -13.28, "y": -1.4 },
+					{ "time": 0.9333, "x": -16.57, "y": -63.94 },
+					{ "time": 1.6667, "x": -41.76, "y": -1.18 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			},
+			"Pedestal Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 0.7333 },
+					{ "time": 0.7667, "angle": -11.08 },
+					{ "time": 0.8333, "angle": -13.99 },
+					{ "time": 0.9667, "angle": -17.67 },
+					{ "time": 1, "angle": -15.26 },
+					{ "time": 1.0333, "angle": -8.98 },
+					{ "time": 1.0667, "angle": 0.14 },
+					{ "time": 1.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 0.7333, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 0.7333, "curve": "stepped" },
+					{ "time": 1.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.6667, "curve": "stepped" },
+					{ "time": 0.7333, "curve": "stepped" },
+					{ "time": 1.6667 }
+				]
+			}
+		}
+	},
+	"Walk Animation": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Pedestal Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Torso Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Shoulder Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.407, "c3": 0.721, "c4": 0.38 },
+					{ "time": 0.1667, "x": -33.32, "y": -0.94, "curve": 0.159, "c2": 0.25, "c3": 0.217 },
+					{ "time": 1, "x": -4.8, "y": 23.31, "curve": 0.25, "c3": 0.156 },
+					{ "time": 2, "x": -41.76, "y": -1.18 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Shoulder Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "x": -41.76, "y": -1.18, "curve": 0.407, "c3": 0.721, "c4": 0.38 },
+					{ "time": 0.1667, "x": -33.32, "y": -0.94, "curve": 0.159, "c2": 0.25, "c3": 0.217 },
+					{ "time": 1, "x": -4.8, "y": 23.31, "curve": 0.25, "c3": 0.156 },
+					{ "time": 2, "x": -41.76, "y": -1.18 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Arm Bone L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Arm Bone R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Shield Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Head Bone": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": 0.456, "c3": 0.702, "c4": 0.43 },
+					{ "time": 0.1667, "x": -15.81, "y": -0.45, "curve": 0.133, "c2": 0.4, "c3": 0.312 },
+					{ "time": 0.5, "x": -26.1, "y": -0.74, "curve": 0.32, "c3": 0.274, "c4": 0.75 },
+					{ "time": 1.5, "x": 5.22, "y": 0.15, "curve": 0.25, "c3": 0.156 },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Pedestal Bone R": {
+				"rotate": [
+					{ "curve": 0.451, "c3": 0.592, "c4": 0.5 },
+					{ "time": 1, "angle": -3.73, "curve": 0.157, "c2": 0.5, "c3": 0.416 },
+					{ "time": 2 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 2 }
+				]
+			}
+		}
+	}
+}
+}
