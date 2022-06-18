@@ -25,6 +25,7 @@ public class PlayerControllerV3: MonoBehaviour
     private void Start()
     {
         _currentMgCharges = maxMagicalBullets;
+        _allPlats = GameObject.FindGameObjectsWithTag("Platform");
     }
     private void Update()
     {
@@ -409,9 +410,12 @@ public class PlayerControllerV3: MonoBehaviour
 
     void HandleGoUpDownPlatforms()
     {
+        ResetPlatsCollision();
+
         DropThroughPlat();
 
         JumpThroughPlat();
+
     }
 
     void DropThroughPlat()
@@ -448,7 +452,7 @@ public class PlayerControllerV3: MonoBehaviour
     {
         if (_rb.velocity.y > 0)//Checks for platfroms above player while jumping and ignores collision with it if the conditions are right
         {
-            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), 0.3f);
+            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), 0.5f);
             foreach (var plat in _upPlats)
             {
                 if (plat.tag == "Platform" && plat.GetComponent<TwoWayPlatform>() != null)
@@ -459,7 +463,7 @@ public class PlayerControllerV3: MonoBehaviour
                     }
                 }
             }
-            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.3f);
+            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.5f);
             if (_downPlats != null)
             {
                 foreach (var plat in _downPlats)
@@ -480,6 +484,21 @@ public class PlayerControllerV3: MonoBehaviour
                 {
                     Physics.IgnoreCollision(_collider, plat, false);
                 }
+            }
+        }
+    }
+
+    GameObject[] _allPlats;
+    [SerializeField]Collider[] _nearbyPlats;
+
+    void ResetPlatsCollision()
+    {
+        _nearbyPlats = Physics.OverlapSphere(transform.position, 2.3f);
+        if (_nearbyPlats.Length == 1)
+        {
+            foreach (var plat in _allPlats)
+            {
+                Physics.IgnoreCollision(plat.GetComponent<Collider>(), _collider, false);
             }
         }
     }
@@ -510,6 +529,7 @@ public class PlayerControllerV3: MonoBehaviour
         {
           DrawMinPos();
         }
+
     }
 
     void DrawMinPos()
