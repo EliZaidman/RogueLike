@@ -5,13 +5,16 @@ using UnityEngine;
 public class HPSystem : MonoBehaviour
 {
     public int hp;
-    public int maxHP = 100;
-    public HPBar hpBar;
+    [SerializeField] int maxHP = 100;
+    [SerializeField] HPBar hpBar;
 
     void Start()
     {
         hp = maxHP;
-        hpBar.SetMaxHealth(maxHP);
+        if (tag == "Player")
+        {
+            hpBar.SetMaxHealth(maxHP);
+        }
     }
 
     void Update()

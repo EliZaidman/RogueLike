@@ -27,8 +27,8 @@ public class LevitatingSword : MonoBehaviour
         StayOnPlatform();
     }
 
-    #region HandleStateMachine
 
+    #region StateMachine
     [HideInInspector] public enum states { Idle, Follow, Attack }
     [Header("StateMachine")]
     public states _currentState;
@@ -55,19 +55,20 @@ public class LevitatingSword : MonoBehaviour
         }
     }
 
-    public void ChangeState(states state)
-    {
-        _currentState = state;
-    }
-
-    #region States
 
     [Header("Attack State: ")]
     [SerializeField] float timeBetweenAttacks = 2;
+    [SerializeField] bool isAttacking;
     void Attack()
     {
-        Debug.Log("Attack");
-        WaitForXSeconds(timeBetweenAttacks);
+        if (!isAttacking && IsTargetInAttackRange())
+        {
+            StartCoroutine(Strike(timeBetweenAttacks));
+        }
+        if (!IsTargetInAttackRange() && !isAttacking)
+        {
+            ChangeState(states.Follow);
+        }
     }
 
     void FollowTarget()
@@ -81,6 +82,10 @@ public class LevitatingSword : MonoBehaviour
         {
             ChangeState(states.Attack);
         }
+        if (!IsTargetDetected())
+        {
+            ChangeState(states.Idle);
+        }
     }
 
     void Idle()
@@ -90,12 +95,24 @@ public class LevitatingSword : MonoBehaviour
             ChangeState(states.Follow);
         }
     }
-    #endregion
+
+    public void ChangeState(states state)
+    {
+        _currentState = state;
+    }
+
+    IEnumerator Strike(float seconds)// Stops enemy behavior for given seconds
+    {
+        isAttacking = true;
+        Debug.Log("Attack");
+        yield return new WaitForSeconds(seconds);
+        isAttacking = false;
+    }
 
     #endregion
+
 
     #region DistanceCheckers
-
     /// <summary>
     /// Returns true if targte is in attack range
     /// </summary>
@@ -124,6 +141,8 @@ public class LevitatingSword : MonoBehaviour
     }
     #endregion
 
+
+    #region MiscMethods
     void FacePlayer() // Rotates the enemy 180 degrees to face the player
     {
         if (target.transform.position.x < transform.position.x)
@@ -161,9 +180,36 @@ public class LevitatingSword : MonoBehaviour
         return true;
     }
     
-    IEnumerator WaitForXSeconds(float seconds)// Stops enemy behavior for given seconds
-    {
-        yield return new WaitForSeconds(seconds);
-    }
+    
+    #endregion
 
+
+    #region Gizmos
+    [Header("Gizmos")]
+    [SerializeField] bool drawAgroRange;
+    [SerializeField] bool drawAttackRange;
+    [SerializeField] bool drawPlatCheck;
+
+    private void OnDrawGizmosSelected()
+    {
+        if (drawAgroRange)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, agroRange);
+        }
+
+        if (drawAttackRange)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+
+        if (drawPlatCheck)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(platChecker.position, 0.5f);
+        }
+
+    }
+    #endregion
 }
