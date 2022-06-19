@@ -12,6 +12,7 @@ public class KnightStatue : MonoBehaviour
 
     #region Properties
     [Header("General Settings")]
+    [SerializeField] Collider _collider;
     [SerializeField]private states _currentState = states.Idle;
     [SerializeField] float speed = 6;
     [SerializeField] float agroRange = 5;
@@ -52,7 +53,6 @@ public class KnightStatue : MonoBehaviour
     private void Start()
     {
         SetAnimation(idle, true, 1f);
-
         _ramTimer = ramDistance;
         target = GameObject.FindGameObjectWithTag("Player");
         _animator = GetComponent<Animator>();
@@ -161,7 +161,7 @@ public class KnightStatue : MonoBehaviour
 
     void Recover()
     {
-        //Recover anim
+        SetAnimation(idle, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
         StartCoroutine(Recover2Follow());
     }
     #endregion
@@ -251,8 +251,8 @@ public class KnightStatue : MonoBehaviour
 
     void CheckDistance()
     {
-        _distanceFromTarget = Vector3.Distance(transform.position, target.transform.position);
-        _heightDiff = Mathf.Abs(transform.position.y - target.transform.position.y);
+        _distanceFromTarget = Vector3.Distance(_collider.bounds.center, target.transform.position);
+        _heightDiff = Mathf.Abs(_collider.bounds.center.y - target.transform.position.y);
     }
 
     void StayOnPlatform()
@@ -294,18 +294,18 @@ public class KnightStatue : MonoBehaviour
         if (drawAgroRange)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, agroRange);
+            Gizmos.DrawWireSphere(_collider.bounds.center, agroRange);
         }
         if (drawAttackRange)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
+            Gizmos.DrawWireSphere(_collider.bounds.center, attackRange);
         }
         if (drawHeightDiff)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y+heightDiff, 0));
-            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y-heightDiff, 0));
+            Gizmos.DrawLine(_collider.bounds.center, new Vector3(transform.position.x, transform.position.y+heightDiff, 0));
+            Gizmos.DrawLine(_collider.bounds.center, new Vector3(transform.position.x, transform.position.y-heightDiff, 0));
         }
         if (drawPlatCheck)
         {

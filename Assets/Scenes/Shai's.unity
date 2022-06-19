@@ -2207,6 +2207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevitatingSword
       objectReference: {fileID: 0}
+    - target: {fileID: 808161472025846567, guid: 41af74efcf59c184aa1cb837cff4e05e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 808161472025846573, guid: 41af74efcf59c184aa1cb837cff4e05e, type: 3}
       propertyPath: m_Mass
       value: 30
@@ -2482,7 +2486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908764016418549451, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7908764016418549468, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: m_RootOrder
@@ -2494,7 +2498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908764016418549468, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 7908764016418549468, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: m_LocalPosition.z

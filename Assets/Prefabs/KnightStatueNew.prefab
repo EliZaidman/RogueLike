@@ -171,6 +171,8 @@ MonoBehaviour:
   idle: {fileID: 11400000, guid: 11d38bcaba4b6ff4983dcd7a1c422884, type: 2}
   walking: {fileID: 11400000, guid: 121f706783aebc044be8a418431d752a, type: 2}
   attack: {fileID: 11400000, guid: c50475c26f212694e8745f74fecb93bb, type: 2}
+  currentAnimation: 
+  _collider: {fileID: 7908764016418549445}
   _currentState: 0
   speed: 7
   agroRange: 30
@@ -185,7 +187,7 @@ MonoBehaviour:
   recoveryTime: 3
   heightDiff: 1.98
   drawHeightDiff: 1
-  platCheck: {fileID: 0}
+  platCheck: {fileID: 7908764014976781834}
   drawPlatCheck: 1
   isRamming: 0
   _ramTimer: 0

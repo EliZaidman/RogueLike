@@ -53,7 +53,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     #region Inputs
 
-    [SerializeField]private bool _facingLeft;
+    //[SerializeField]private bool _facingLeft;
 
     private void GatherInputs()
     {
@@ -62,14 +62,14 @@ public class PlayerControllerV3: MonoBehaviour
         _inputs.X = Input.GetAxis("Horizontal");
         _inputs.Y = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _facingLeft = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.D))
-        {
-            _facingLeft= false;
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    _facingLeft = true;
+        //}
+        //else if(Input.GetKeyDown(KeyCode.D))
+        //{
+        //    _facingLeft= false;
+        //}
     }
 
 
