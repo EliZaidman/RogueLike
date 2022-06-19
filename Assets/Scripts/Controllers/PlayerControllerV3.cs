@@ -132,13 +132,17 @@ public class PlayerControllerV3: MonoBehaviour
         // This can be done using just X & Y input as they lerp to max values, but this gives greater control over velocity acceleration
         var acceleration = IsGrounded ? _acceleration : _acceleration * 0.5f;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
+            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
+
             if (_rb.velocity.x > 0) _inputs.X = 0; // Immediate stop and turn. Just feels better
             _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
+            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
+
             if (_rb.velocity.x < 0) _inputs.X = 0;
             _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
         }
@@ -220,6 +224,8 @@ public class PlayerControllerV3: MonoBehaviour
         DashCooldown();
         if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed && _dashCdReady)
         {
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDash);
+
             //_dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
             //if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
             if (!_spriteRenderer.flipX)
@@ -362,11 +368,12 @@ public class PlayerControllerV3: MonoBehaviour
     }
     void ShotInput()
     {
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (_currentMgCharges > 0)
             {
+                SoundManager.PlaySound(SoundManager.Sound.PlayerAttack);
+
                 currentObj = pooler.SpawnFromPool("Hat", bulletPos.position, bulletPos.rotation);
                 currentObj.GetComponent<Rigidbody>().velocity = shotDir * -bulletForce;
                 _currentMgCharges--;
