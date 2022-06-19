@@ -208,6 +208,7 @@ MonoBehaviour:
   walking: {fileID: 11400000, guid: 121f706783aebc044be8a418431d752a, type: 2}
   attack: {fileID: 11400000, guid: c50475c26f212694e8745f74fecb93bb, type: 2}
   currentAnimation: 
+  _collider: {fileID: 0}
   _currentState: 0
   speed: 6
   agroRange: 5
@@ -2472,9 +2473,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1943969341318089348, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867428188967820607, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
+      propertyPath: m_Constraints
+      value: 78
+      objectReference: {fileID: 0}
     - target: {fileID: 7908764016418549443, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908764016418549444, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
+      propertyPath: m_Constraints
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7908764016418549447, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
       propertyPath: platCheck

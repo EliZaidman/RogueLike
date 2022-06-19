@@ -119,8 +119,8 @@ public class KnightStatue : MonoBehaviour
             _ramCooldownTimer = ramCooldown;
             if (!isRamming || !_isChargingRam)
             {
-               RamCharge();
                 SetAnimation(attack, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
+                RamCharge();
             }
         }
         if (isRamming)
@@ -304,8 +304,8 @@ public class KnightStatue : MonoBehaviour
         if (drawHeightDiff)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(_collider.bounds.center, new Vector3(transform.position.x, transform.position.y+heightDiff, 0));
-            Gizmos.DrawLine(_collider.bounds.center, new Vector3(transform.position.x, transform.position.y-heightDiff, 0));
+            Gizmos.DrawLine(_collider.bounds.center, new Vector3(_collider.bounds.center.x, _collider.bounds.center.y+heightDiff, 0));
+            Gizmos.DrawLine(_collider.bounds.center, new Vector3(_collider.bounds.center.x, _collider.bounds.center.y-heightDiff, 0));
         }
         if (drawPlatCheck)
         {
