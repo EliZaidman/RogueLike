@@ -14,6 +14,7 @@ public class LevitatingSword : MonoBehaviour
     [SerializeField] float attackRange = 3; 
     [SerializeField] float speed = 10;
     [SerializeField] Transform platChecker;
+    [SerializeField] Collider blade;
 
     private GameObject target;
     private Rigidbody _rb;
@@ -32,15 +33,7 @@ public class LevitatingSword : MonoBehaviour
         StayOnPlatform();
     }
 
-    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
-    {
-        if (animation.name.Equals(currentAnimation))
-        {
-            return;
-        }
-        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
-        currentAnimation = animation.name;
-    }
+    
 
 
     #region StateMachine
@@ -64,7 +57,6 @@ public class LevitatingSword : MonoBehaviour
 
             case states.Attack:
                 Attack();
-                SetAnimation(attack, true, 1f);
                 break;
 
             default:
@@ -74,9 +66,10 @@ public class LevitatingSword : MonoBehaviour
     }
 
 
-    [Header("Attack State: ")]
+    [Header("Attack")]
     [SerializeField] float timeBetweenAttacks = 2;
-    [SerializeField] bool isAttacking;
+    public int damage;
+    public bool isAttacking;
     void Attack()
     {
         if (!isAttacking && IsTargetInAttackRange())
@@ -122,7 +115,7 @@ public class LevitatingSword : MonoBehaviour
     IEnumerator Strike(float seconds)// Stops enemy behavior for given seconds
     {
         isAttacking = true;
-        Debug.Log("Attack");
+        SetAnimation(attack, true, 1f);
         yield return new WaitForSeconds(seconds);
         isAttacking = false;
     }
@@ -197,8 +190,17 @@ public class LevitatingSword : MonoBehaviour
         }
         return true;
     }
-    
-    
+
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(currentAnimation))
+        {
+            return;
+        }
+        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        currentAnimation = animation.name;
+    }
+
     #endregion
 
 
