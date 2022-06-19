@@ -10,6 +10,7 @@ public static class SoundManager
         PlayerAttack,
         PlayerDash,
         PlayerHit,
+        PlayerHeal
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
