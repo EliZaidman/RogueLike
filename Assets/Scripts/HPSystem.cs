@@ -5,16 +5,14 @@ using UnityEngine;
 public class HPSystem : MonoBehaviour
 {
     public int hp;
-    [SerializeField] int maxHP = 100;
+    [SerializeField] int maxHP = 12;
     [SerializeField] HPBar hpBar;
+    [SerializeField] int nearDeath = 2;
 
     void Start()
     {
         hp = maxHP;
-        if (tag == "Player")
-        {
-            hpBar.SetMaxHealth(maxHP);
-        }
+        hpBar.SetMaxHealth(maxHP);
     }
 
     void Update()
@@ -22,6 +20,10 @@ public class HPSystem : MonoBehaviour
         if (hp > maxHP)
         {
             hp = maxHP;
+        }
+        if (hp <= nearDeath)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.PlayerAlmostDead);
         }
         Dead();
     }
@@ -40,11 +42,7 @@ public class HPSystem : MonoBehaviour
 
     void Dead()
     {
-        if (gameObject.tag == "Enemy" && hp <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-        if (gameObject.tag == "Player" && hp <= 0)
+        if (hp <= 0)
         {
             Debug.Log("Player dead");
         }

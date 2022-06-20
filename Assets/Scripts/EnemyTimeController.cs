@@ -12,6 +12,7 @@ public class EnemyTimeController : MonoBehaviour
 
     [SerializeField] private float _currentCharge;
     [SerializeField]private bool _isSlowed;
+    bool available;
     
     
     
@@ -42,6 +43,20 @@ public class EnemyTimeController : MonoBehaviour
         HandleCharge();
         HandleCurrentTimeScale();
         HandleIsSlowed();
+        HandleAudio();
+    }
+
+    public void HandleAudio()
+    {
+        if (_isSlowed)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.BulletTimeActive);
+        }
+        if (available)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.BulletTimeAvailable);
+            available = false;
+        }
     }
 
     public void AddToCharge(int toAdd)
@@ -53,6 +68,7 @@ public class EnemyTimeController : MonoBehaviour
         if (_currentCharge >= bulletTimeMaxCharge)
         {
             _currentCharge = bulletTimeMaxCharge;
+            available = true;
         }
     }
     

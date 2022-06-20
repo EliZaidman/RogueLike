@@ -6,11 +6,19 @@ public static class SoundManager
 {
     public enum Sound
     {
-        PlayerMove,
-        PlayerAttack,
+        PlayerFootstep,
+        PlayerAlmostDead,
+        BulletTimeActive,
+        EmptyAmmo,
+        PlayerJump,
+        PlayerDoubleJump,
+        PlayerShot,
         PlayerDash,
-        PlayerHit,
-        PlayerHeal
+        KnightStatueAttack,
+        KnightStatueMovement,
+        BulletTimeAvailable,
+        BGMusic
+        
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -18,7 +26,7 @@ public static class SoundManager
     public static void Initialize()
     {
         soundTimerDictionary = new Dictionary<Sound, float>();
-        soundTimerDictionary[Sound.PlayerMove] = 0f;
+        soundTimerDictionary[Sound.PlayerFootstep] = 0f;
     }
     public static void PlaySound(Sound sound)
     {
@@ -36,7 +44,7 @@ public static class SoundManager
         {
             default:
                 return true;
-            case Sound.PlayerMove:
+            case Sound.PlayerFootstep:
                 if (soundTimerDictionary.ContainsKey(sound))
                 {
                     float lastTimePlayed = soundTimerDictionary[sound];

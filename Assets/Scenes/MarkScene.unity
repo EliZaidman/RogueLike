@@ -2182,11 +2182,11 @@ PrefabInstance:
       objectReference: {fileID: 1577087842}
     - target: {fileID: 4181546505320741799, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: mbRegenTime
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4181546505320741799, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: maxMagicalBullets
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cabab7beff386754b990b88579817b36, type: 3}

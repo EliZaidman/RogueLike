@@ -126,6 +126,7 @@ public class KnightStatue : MonoBehaviour
         if (isRamming)
         {
             _animator.SetBool("Charge", false);
+                //SoundManager.PlaySound(SoundManager.Sound.KnightStatueAttack);
         }
         if (!IsTargetInAttackRange() && !_isChargingRam && !isRamming)
         {
@@ -147,6 +148,7 @@ public class KnightStatue : MonoBehaviour
         if (Check4EndOfPlatform() && !_isChargingRam)
         {
            _rb.velocity = transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
+            //SoundManager.PlaySound(SoundManager.Sound.KnightStatueMovement);
         }
     }
 

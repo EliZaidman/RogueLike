@@ -14,7 +14,6 @@ public class Consumable : MonoBehaviour
             {
                 //GameManager.instance.playerHp += 0.25f;
                 other.GetComponent<HPSystem>().Heal(hpAmount);
-                SoundManager.PlaySound(SoundManager.Sound.PlayerHeal);
                 Destroy(this.gameObject);
             }
         }

@@ -134,15 +134,20 @@ public class PlayerControllerV3: MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
+            if (IsGrounded)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep);
+            }
 
             if (_rb.velocity.x > 0) _inputs.X = 0; // Immediate stop and turn. Just feels better
             _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
-
+            if (IsGrounded)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep);
+            }
             if (_rb.velocity.x < 0) _inputs.X = 0;
             _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
         }
@@ -179,7 +184,10 @@ public class PlayerControllerV3: MonoBehaviour
         {
              if (IsGrounded || Time.time < _timeLeftGrounded + _coyoteTime || _enableDoubleJump && !_hasDoubleJumped)
             {
-                if (!_hasJumped || _hasJumped && !_hasDoubleJumped) ExecuteJump(new Vector2(_rb.velocity.x, _jumpForce), _hasJumped); // Ground jump
+                if (!_hasJumped || _hasJumped && !_hasDoubleJumped)
+                {
+                    ExecuteJump(new Vector2(_rb.velocity.x, _jumpForce), _hasJumped); // Ground jump
+                }
             }
         }
 
@@ -190,6 +198,14 @@ public class PlayerControllerV3: MonoBehaviour
             //_jumpParticles.Play();
             _hasDoubleJumped = doubleJump;
             _hasJumped = true;
+            if (!_hasDoubleJumped)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
+            }
+            else
+            {
+                SoundManager.PlaySound(SoundManager.Sound.PlayerDoubleJump);
+            }
         }
 
         // Fall faster and allow small jumps. _jumpVelocityFalloff is the point at which we start adding extra gravity. Using 0 causes floating
@@ -372,11 +388,16 @@ public class PlayerControllerV3: MonoBehaviour
         {
             if (_currentMgCharges > 0)
             {
-                SoundManager.PlaySound(SoundManager.Sound.PlayerAttack);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerShot);
 
                 currentObj = pooler.SpawnFromPool("Hat", bulletPos.position, bulletPos.rotation);
                 currentObj.GetComponent<Rigidbody>().velocity = shotDir * -bulletForce;
                 _currentMgCharges--;
+            }
+            else
+            {
+                SoundManager.PlaySound(SoundManager.Sound.EmptyAmmo);
+                Debug.Log("No bullets");
             }
             _mgRegenTimer = 0; 
         }
