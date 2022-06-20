@@ -23,7 +23,7 @@ public class HPSystem : MonoBehaviour
         }
         if (hp <= nearDeath)
         {
-            SoundManager.PlaySound(SoundManager.Sound.PlayerAlmostDead);
+            //SoundManager.PlaySound(SoundManager.Sound.PlayerAlmostDead);
         }
         Dead();
     }
