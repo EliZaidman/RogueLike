@@ -87,7 +87,7 @@ public class LevitatingSword : MonoBehaviour
         FacePlayer();
         if (!IsNearEndOfPlatform()) //moves towards target
         {
-            _rb.velocity = transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
+            _rb.velocity = -transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
         }
         if (IsTargetInAttackRange()) //switches to attack state
         {
@@ -158,11 +158,11 @@ public class LevitatingSword : MonoBehaviour
     {
         if (target.transform.position.x < transform.position.x)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
         }
     }
 

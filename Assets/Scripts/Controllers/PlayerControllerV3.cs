@@ -24,6 +24,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     private void Start()
     {
+        _tempRegenTime = mbRegenTime;
         _currentMgCharges = maxMagicalBullets;
         _allPlats = GameObject.FindGameObjectsWithTag("Platform");
     }
@@ -49,11 +50,13 @@ public class PlayerControllerV3: MonoBehaviour
         HandleGoUpDownPlatforms();
 
         HandleFaceDir();
+
+        HandleWildMagic();
     }
 
     #region Inputs
 
-    //[SerializeField]private bool _facingLeft;
+    [SerializeField]private bool _facingLeft;
 
     private void GatherInputs()
     {
@@ -62,14 +65,14 @@ public class PlayerControllerV3: MonoBehaviour
         _inputs.X = Input.GetAxis("Horizontal");
         _inputs.Y = Input.GetAxis("Vertical");
 
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    _facingLeft = true;
-        //}
-        //else if(Input.GetKeyDown(KeyCode.D))
-        //{
-        //    _facingLeft= false;
-        //}
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            _facingLeft = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            _facingLeft = false;
+        }
     }
 
 
@@ -244,14 +247,13 @@ public class PlayerControllerV3: MonoBehaviour
 
             //_dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
             //if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
-            if (!_spriteRenderer.flipX)
+            if (_facingLeft)
             {
                 _dashDir = Vector3.left;
             }
             else
             {
                 _dashDir = Vector3.right;
-
             }
             //_dashRing.up = _dashDir;
             //_dashParticles.Play();
@@ -545,6 +547,33 @@ public class PlayerControllerV3: MonoBehaviour
             _spriteRenderer.flipX = true;
         }
     }
+    #endregion
+
+    #region WildMagic
+
+    [Header("WildMagic")]
+    [SerializeField] float _wmDuration = 5;
+    float _wmTimer;
+    int _tempRegenTime;
+
+    void HandleWildMagic()
+    {
+        if (_wmTimer > 0)
+        {
+            mbRegenTime = 0;
+            _wmTimer -= Time.deltaTime;
+        }
+        else
+        {
+            mbRegenTime = _tempRegenTime;
+        }
+    }
+
+    public void ActivateWildMagic()
+    {
+        _wmTimer = _wmDuration;
+    }
+
     #endregion
 
     #region Gizmos
