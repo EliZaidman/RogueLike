@@ -139,7 +139,7 @@ public class PlayerControllerV3: MonoBehaviour
         {
             if (IsGrounded)
             {
-                SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep, transform.position);
             }
 
             if (_rb.velocity.x > 0) _inputs.X = 0; // Immediate stop and turn. Just feels better
@@ -149,7 +149,7 @@ public class PlayerControllerV3: MonoBehaviour
         {
             if (IsGrounded)
             {
-                SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep, transform.position);
             }
             if (_rb.velocity.x < 0) _inputs.X = 0;
             _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
@@ -203,11 +203,11 @@ public class PlayerControllerV3: MonoBehaviour
             _hasJumped = true;
             if (!_hasDoubleJumped)
             {
-                SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerJump, transform.position);
             }
             else
             {
-                SoundManager.PlaySound(SoundManager.Sound.PlayerDoubleJump);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerDoubleJump, transform.position);
             }
         }
 
@@ -243,7 +243,7 @@ public class PlayerControllerV3: MonoBehaviour
         DashCooldown();
         if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed && _dashCdReady)
         {
-            SoundManager.PlaySound(SoundManager.Sound.PlayerDash);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDash, transform.position);
 
             //_dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
             //if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
@@ -390,7 +390,7 @@ public class PlayerControllerV3: MonoBehaviour
         {
             if (_currentMgCharges > 0)
             {
-                SoundManager.PlaySound(SoundManager.Sound.PlayerShot);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerShot, transform.position);
 
                 currentObj = pooler.SpawnFromPool("Hat", bulletPos.position, bulletPos.rotation);
                 currentObj.GetComponent<Rigidbody>().velocity = shotDir * -bulletForce;
@@ -398,7 +398,7 @@ public class PlayerControllerV3: MonoBehaviour
             }
             else
             {
-                SoundManager.PlaySound(SoundManager.Sound.EmptyAmmo);
+                SoundManager.PlaySound(SoundManager.Sound.EmptyAmmo, transform.position);
                 Debug.Log("No bullets");
             }
             _mgRegenTimer = 0; 

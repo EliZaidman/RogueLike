@@ -14,9 +14,19 @@ public static class SoundManager
         PlayerDoubleJump,
         PlayerShot,
         PlayerDash,
-        KnightStatueAttack,
-        KnightStatueMovement,
+        PlayerDeath,
+        HealOrb,
         BulletTimeAvailable,
+
+        KnightStatueAttack,
+        KnightStatuePreAttack,
+        KnightStatueMovement,
+        KnightStatueDeath,
+        KnightStatueTakingHit,
+
+        SwordAttack,
+        SwordDeath,
+
         BGMusic
         
     }
