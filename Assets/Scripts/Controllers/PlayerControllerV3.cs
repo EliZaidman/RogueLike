@@ -52,6 +52,7 @@ public class PlayerControllerV3: MonoBehaviour
         HandleFaceDir();
 
         HandleWildMagic();
+
     }
 
     #region Inputs
