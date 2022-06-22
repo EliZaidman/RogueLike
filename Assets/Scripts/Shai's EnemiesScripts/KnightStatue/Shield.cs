@@ -39,10 +39,9 @@ public class Shield : MonoBehaviour
         {
             //Vector3 direction = transform.position - other.transform.position;
             //direction.y = direction.y * knight.knockBackStrength + 20;
-            //_rb.AddForce(direction.normalized * knight.knockBackStrength, ForceMode.Impulse);
-            //knight._ramTimer = 0;
+            //_playerRb.AddForce(direction.normalized * knight.knockBackStrength, ForceMode.Impulse);
+            knight._ramTimer = 0;
             //knight.ChangeState(KnightStatue.states.Recover);
-            //collision.collider.GetComponent<HPSystem>().TakeDamage(knight.damage);
             _playerHpSystem.TakeDamage(knight.damage);
             Debug.Log("Hit");
         }

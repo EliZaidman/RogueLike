@@ -299,6 +299,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dropThrough: 1
   _jumpThrough: 1
+--- !u!212 &32673449 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2318002145302137684, guid: cabab7beff386754b990b88579817b36, type: 3}
+  m_PrefabInstance: {fileID: 153377938715069187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &37941635
 GameObject:
   m_ObjectHideFlags: 0
@@ -7082,6 +7087,14 @@ PrefabInstance:
     - target: {fileID: 808161472025846567, guid: 41af74efcf59c184aa1cb837cff4e05e, type: 3}
       propertyPath: m_Name
       value: LevitatingSword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049804610887457699, guid: 41af74efcf59c184aa1cb837cff4e05e, type: 3}
+      propertyPath: m_Constraints
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417251979659689408, guid: 41af74efcf59c184aa1cb837cff4e05e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41af74efcf59c184aa1cb837cff4e05e, type: 3}
@@ -16923,6 +16936,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139804045, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139804048, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127771985, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127771988, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848083735, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848083735, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 153377939761278544, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -16983,6 +17020,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2318002145302137684, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4046270996378120352, guid: cabab7beff386754b990b88579817b36, type: 3}
       propertyPath: mainCamera
       value: 
@@ -17003,6 +17044,26 @@ PrefabInstance:
       propertyPath: pooler
       value: 
       objectReference: {fileID: 1577087842}
+    - target: {fileID: 4181546505320741799, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 32673449}
+    - target: {fileID: 7203633542836186804, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352342026759293611, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352342026759293611, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352342026759293611, guid: cabab7beff386754b990b88579817b36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cabab7beff386754b990b88579817b36, type: 3}
 --- !u!114 &3325154518607945601
