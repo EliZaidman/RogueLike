@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4589990356819022032}
   - component: {fileID: 4589990356819022031}
   - component: {fileID: 4589990356819022033}
-  - component: {fileID: 4589990356819022035}
+  - component: {fileID: 6140026577163298535}
   m_Layer: 0
   m_Name: CuckoClock
   m_TagString: Enemy
@@ -121,7 +121,7 @@ CapsuleCollider:
   m_Height: 4.22
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4589990356819022035
+--- !u!114 &6140026577163298535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,11 +130,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4589990356819022030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725ad5a4eab070c41a00e937f00321cf, type: 3}
+  m_Script: {fileID: 11500000, guid: b7a80eff29033894d865a963ce166297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  maxHP: 100
+  maxHP: 30
+  hpBar: {fileID: 0}
 --- !u!1 &4589990357375140583
 GameObject:
   m_ObjectHideFlags: 0
