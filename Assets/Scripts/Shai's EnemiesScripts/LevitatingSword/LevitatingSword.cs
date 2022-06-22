@@ -116,6 +116,7 @@ public class LevitatingSword : MonoBehaviour
     {
         isAttacking = true;
         SetAnimation(attack, true, 1f);
+        SoundManager.PlaySound(SoundManager.Sound.SwordAttack);
         yield return new WaitForSeconds(seconds);
         isAttacking = false;
     }

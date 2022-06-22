@@ -38,7 +38,7 @@ public class HPSystemForEnemy : MonoBehaviour
         {
             if (GetComponent<KnightStatue>())
             {
-                //SoundManager.PlaySound(SoundManager.Sound.KnightStatueDeath);
+                SoundManager.PlaySound(SoundManager.Sound.KnightStatueDeath);
             }
             if (GetComponent<LevitatingSword>())
             {
