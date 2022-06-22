@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 808161472025846572}
   - component: {fileID: 808161472025846573}
   - component: {fileID: 808161472025846574}
+  - component: {fileID: 7727204566385742950}
   m_Layer: 0
   m_Name: LevitatingSword
   m_TagString: Enemy
@@ -252,6 +253,21 @@ MonoBehaviour:
   flipBy180DegreeRotation: 0
   skeletonRenderer: {fileID: 808161472025846566}
   skeletonGraphic: {fileID: 0}
+--- !u!114 &7727204566385742950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808161472025846567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a80eff29033894d865a963ce166297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxHP: 50
+  hpBar: {fileID: 0}
 --- !u!1 &808161472061761247
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 808161472025846561}
+  hpSystem: {fileID: 7727204566385742950}
 --- !u!54 &5049804610887457699
 Rigidbody:
   m_ObjectHideFlags: 0

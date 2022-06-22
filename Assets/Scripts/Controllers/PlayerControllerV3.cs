@@ -540,11 +540,11 @@ public class PlayerControllerV3: MonoBehaviour
     {
         if (bulletPos.transform.position.x < transform.position.x)
         {
-            _spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = true;
         }
         else
         {
-            _spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = false;
         }
     }
     #endregion
