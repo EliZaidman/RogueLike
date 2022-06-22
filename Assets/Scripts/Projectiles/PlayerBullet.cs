@@ -8,14 +8,16 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        switch (coll.transform.tag)
+        switch (coll.collider.tag)
         {
             case "Enemy":
+                Debug.Log("Hit Enemy");
                 coll.collider.GetComponent<HPSystemForEnemy>().TakeDamage(damage);
                 PlayerControllerV3.Instance.AddMgCharge(1);
                 gameObject.SetActive(false);
                 break;
             case "KnightsShield":
+                Debug.Log("shield");
                 PlayerControllerV3.Instance.AddMgCharge(1);
                 gameObject.SetActive(false);
                 break;
@@ -23,6 +25,7 @@ public class PlayerBullet : MonoBehaviour
                 Physics.IgnoreCollision(GetComponent<Collider>(), coll.collider);
                 break;
             default:
+                Debug.Log("noting");
                 gameObject.SetActive(false);
                 break;
         }

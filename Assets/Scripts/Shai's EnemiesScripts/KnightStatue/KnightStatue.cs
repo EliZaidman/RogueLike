@@ -59,6 +59,7 @@ public class KnightStatue : MonoBehaviour
         _rb = gameObject.GetComponent<Rigidbody>();
     }
 
+
     private void Update()
     {
         if (!isRamming)
