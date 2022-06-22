@@ -39,6 +39,7 @@ public static class SoundManager
     {
         soundTimerDictionary = new Dictionary<Sound, float>();
         soundTimerDictionary[Sound.PlayerFootstep] = 0f;
+        soundTimerDictionary[Sound.KnightStatueMovement] = 0f;
     }
     public static void PlaySound(Sound sound, Vector3 position)
     {
@@ -81,6 +82,7 @@ public static class SoundManager
                 {
                     float lastTimePlayed = soundTimerDictionary[sound];
                     float playerMoveTimerMax = .5f;
+
                     if (lastTimePlayed + playerMoveTimerMax < Time.time)
                     {
                         soundTimerDictionary[sound] = Time.time;
@@ -90,6 +92,27 @@ public static class SoundManager
                     {
                         return false;
                     }
+                }
+                else
+                {
+                    return true;
+                }
+                
+            case Sound.KnightStatueMovement:
+                if (soundTimerDictionary.ContainsKey(sound))
+                {
+                    float lastTimePlayed = soundTimerDictionary[sound];
+                    float KnighStatueMoveTimerMax = .65f;
+                    if (lastTimePlayed + KnighStatueMoveTimerMax < Time.time)
+                    {
+                        soundTimerDictionary[sound] = Time.time;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
                 else
                 {

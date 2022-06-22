@@ -17,13 +17,17 @@ public class HPSystem : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TakeDamage(1);
+        }
         if (hp > maxHP)
         {
             hp = maxHP;
         }
         if (hp <= nearDeath)
         {
-            //SoundManager.PlaySound(SoundManager.Sound.PlayerAlmostDead);
+            //SoundManager.PlaySound(SoundManager.Sound.PlayerAlmostDead, transform.position);
         }
         Dead();
     }
