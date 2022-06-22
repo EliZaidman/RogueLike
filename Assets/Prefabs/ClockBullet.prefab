@@ -78,6 +78,7 @@ MonoBehaviour:
   speed: 7
   destroyTime: 700
   rotateSpeed: 1
+  damage: 20
 --- !u!212 &-7172490132731192025
 SpriteRenderer:
   m_ObjectHideFlags: 0

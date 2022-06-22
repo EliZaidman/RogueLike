@@ -11,6 +11,7 @@ TagManager:
   - HP
   - Spell1
   - Platform
+  - KnightsShield
   layers:
   - Default
   - TransparentFX

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         MakeInstance();
+        SoundManager.Initialize();
     }
     void MakeInstance()
     {

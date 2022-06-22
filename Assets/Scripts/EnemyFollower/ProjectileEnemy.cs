@@ -11,6 +11,7 @@ public class ProjectileEnemy : MonoBehaviour
     public float detectionRange;
     public LayerMask Layer;
     public float waitTime;
+    public int damage;
     void Start()
     {
         objPooler = Pooler.Instance;
@@ -21,7 +22,7 @@ public class ProjectileEnemy : MonoBehaviour
     {
         while (true)
         {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime * EnemyTimeController.Instance.currentTimeScale);
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, Layer);
 
         if(colliders.Length > 0)

@@ -1,34 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class KnightStatue : MonoBehaviour
 {
+
+    public SkeletonAnimation skeletonAnimation;
+    public AnimationReferenceAsset idle, walking, attack;
+    public string currentAnimation;
+
     #region Properties
     [Header("General Settings")]
+    [SerializeField] Collider _collider;
     [SerializeField]private states _currentState = states.Idle;
-    public BoxCollider shield;
-    public float speed = 6;
-    public float agroRange = 5;
-    public float attackRange = 2;
-    public bool drawAgroRange = false;
-    public bool drawAttackRange = false;
+    [SerializeField] float speed = 6;
+    [SerializeField] float agroRange = 5;
+    [SerializeField] float attackRange = 2;
+    [SerializeField] bool drawAgroRange = false;
+    [SerializeField] bool drawAttackRange = false;
     [Header("Combat Stats")]
-    public int health = 50;
     public int damage = 5;
     [Header("Ram Settings")]
-    public float ramSpeed = 5;
-    public float ramDistance = 5;
+    [SerializeField] float ramSpeed = 5;
+    [SerializeField] float ramDistance = 5;
     public float knockBackStrength = 8;
-    public float ramCooldown = 4;
-    public float recoveryTime = 3;
+    [SerializeField] float ramCooldown = 4;
+    [SerializeField] float recoveryTime = 3;
     [Tooltip("Height differential required for attacking")]
-    public float heightDiff;
-    public bool drawHeightDiff = false;
+    [SerializeField] float heightDiff;
+    [SerializeField] bool drawHeightDiff = false;
     [Header("Platform Check")]
-    public Transform platCheck;
-    private int platCheckRange;
-    public bool drawPlatCheck = false;
+    [SerializeField] Transform platCheck;
+    [SerializeField] bool drawPlatCheck = false;
+    private float platCheckRange = 0.5f;
     [HideInInspector]public bool isRamming;
 
 
@@ -44,24 +49,36 @@ public class KnightStatue : MonoBehaviour
     private Animator _animator;
     #endregion
 
+
     private void Start()
     {
-        
+        SetAnimation(idle, true, 1f);
         _ramTimer = ramDistance;
         target = GameObject.FindGameObjectWithTag("Player");
         _animator = GetComponent<Animator>();
         _rb = gameObject.GetComponent<Rigidbody>();
     }
 
+
     private void Update()
     {
         if (!isRamming)
         {
-            _ramCooldownTimer -= Time.deltaTime;
+            _ramCooldownTimer -= Time.deltaTime * EnemyTimeController.Instance.currentTimeScale;
         }
         Ram();
         CheckDistance();
         HandleStates();
+        StayOnPlatform();
+    }
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(currentAnimation))
+        {
+            return;
+        }
+        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        currentAnimation = animation.name;
     }
 
     #region State Machine
@@ -103,12 +120,14 @@ public class KnightStatue : MonoBehaviour
             _ramCooldownTimer = ramCooldown;
             if (!isRamming || !_isChargingRam)
             {
-               RamCharge();
+                SetAnimation(attack, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
+                RamCharge();
             }
         }
         if (isRamming)
         {
             _animator.SetBool("Charge", false);
+                //SoundManager.PlaySound(SoundManager.Sound.KnightStatueAttack);
         }
         if (!IsTargetInAttackRange() && !_isChargingRam && !isRamming)
         {
@@ -121,6 +140,7 @@ public class KnightStatue : MonoBehaviour
         if (!isRamming)
         {
             FacePlayer();
+            SetAnimation(walking, true, 1f * EnemyTimeController.Instance.currentTimeScale);
         }
         if (IsTargetInAttackRange())
         {
@@ -128,12 +148,14 @@ public class KnightStatue : MonoBehaviour
         }
         if (Check4EndOfPlatform() && !_isChargingRam)
         {
-        _rb.velocity = transform.right * speed;
+           _rb.velocity = transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
+            //SoundManager.PlaySound(SoundManager.Sound.KnightStatueMovement);
         }
     }
 
     void Idle()
     {
+        SetAnimation(idle, true, 1f * EnemyTimeController.Instance.currentTimeScale);
         if (IsTargetDetected())
         {
             ChangeState(states.Follow);
@@ -142,7 +164,7 @@ public class KnightStatue : MonoBehaviour
 
     void Recover()
     {
-        //Recover anim
+        SetAnimation(idle, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
         StartCoroutine(Recover2Follow());
     }
     #endregion
@@ -164,7 +186,7 @@ public class KnightStatue : MonoBehaviour
 
     void RamCharge()
     {
-        if (!isRamming && !_isChargingRam)
+        if (!isRamming && !_isChargingRam && Check4EndOfPlatform())
         {
             _animator.SetBool("Charge", true);
         }
@@ -174,8 +196,8 @@ public class KnightStatue : MonoBehaviour
     {
         if (isRamming)
         {
-            _ramTimer -= Time.deltaTime;
-            _rb.velocity = transform.right * ramSpeed;
+            _ramTimer -= Time.deltaTime * EnemyTimeController.Instance.currentTimeScale;
+            _rb.velocity = transform.right * ramSpeed * EnemyTimeController.Instance.currentTimeScale;
             if (_ramTimer <= 0)
             {
                 isRamming = false;
@@ -211,6 +233,8 @@ public class KnightStatue : MonoBehaviour
         return false;
     }
 
+
+
     /// <summary>
     /// returns false if near an end of a platform
     /// </summary>
@@ -230,14 +254,23 @@ public class KnightStatue : MonoBehaviour
 
     void CheckDistance()
     {
-        _distanceFromTarget = Vector3.Distance(transform.position, target.transform.position);
-        _heightDiff = Mathf.Abs(transform.position.y - target.transform.position.y);
+        _distanceFromTarget = Vector3.Distance(_collider.bounds.center, target.transform.position);
+        _heightDiff = Mathf.Abs(_collider.bounds.center.y - target.transform.position.y);
+    }
+
+    void StayOnPlatform()
+    {
+        if (!Check4EndOfPlatform())
+        {
+            _rb.velocity = Vector3.zero;
+        }
     }
 
     public void ChangeState(states state)
     {
         _currentState = state;
     }
+
 
     #endregion
 
@@ -264,18 +297,18 @@ public class KnightStatue : MonoBehaviour
         if (drawAgroRange)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, agroRange);
+            Gizmos.DrawWireSphere(_collider.bounds.center, agroRange);
         }
         if (drawAttackRange)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
+            Gizmos.DrawWireSphere(_collider.bounds.center, attackRange);
         }
         if (drawHeightDiff)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y+heightDiff, 0));
-            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y-heightDiff, 0));
+            Gizmos.DrawLine(_collider.bounds.center, new Vector3(_collider.bounds.center.x, _collider.bounds.center.y+heightDiff, 0));
+            Gizmos.DrawLine(_collider.bounds.center, new Vector3(_collider.bounds.center.x, _collider.bounds.center.y-heightDiff, 0));
         }
         if (drawPlatCheck)
         {
