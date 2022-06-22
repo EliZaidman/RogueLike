@@ -28,6 +28,7 @@ public class LSBlade : MonoBehaviour
         else if (other.tag == "Hat")
         {
             hpSystem.TakeDamage(other.GetComponent<PlayerBullet>().damage);
+            other.gameObject.SetActive(false);
             Debug.Log("SwordTookDamage");
         }
     }
