@@ -6,7 +6,7 @@ public class HPSystemForEnemy : MonoBehaviour
 {
     public int hp;
     [SerializeField] int maxHP = 100;
-    [SerializeField] HPBar hpBar;
+    //[SerializeField] HPBar hpBar;
 
     void Start()
     {
@@ -36,6 +36,15 @@ public class HPSystemForEnemy : MonoBehaviour
     {
         if (hp <= 0)
         {
+            if (GetComponent<KnightStatue>())
+            {
+                SoundManager.PlaySound(SoundManager.Sound.KnightStatueDeath);
+            }
+            if (GetComponent<LevitatingSword>())
+            {
+                SoundManager.PlaySound(SoundManager.Sound.SwordDeath);
+            }
+            //Invoke("Destroy", 5);
             Destroy(this.gameObject);
         }
     }

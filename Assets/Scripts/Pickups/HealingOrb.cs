@@ -18,6 +18,7 @@ public class HealingOrb : MonoBehaviour
         {
             player.Heal(_healAmount);
             gameObject.SetActive(false);
+            SoundManager.PlaySound(SoundManager.Sound.HealOrb, transform.position);
         }
     }
 }
