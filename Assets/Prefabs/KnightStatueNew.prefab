@@ -251,7 +251,7 @@ MonoBehaviour:
   _currentState: 0
   speed: 7
   agroRange: 30
-  attackRange: 9
+  attackRange: 12
   drawAgroRange: 1
   drawAttackRange: 1
   damage: 5

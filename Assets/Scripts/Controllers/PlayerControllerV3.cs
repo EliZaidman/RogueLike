@@ -24,6 +24,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         _tempRegenTime = mbRegenTime;
         _currentMgCharges = maxMagicalBullets;
         _allPlats = GameObject.FindGameObjectsWithTag("Platform");
