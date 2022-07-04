@@ -9,9 +9,9 @@ public class EnemyTimeController : MonoBehaviour
     [Tooltip("Percentage of normal scale")][SerializeField][Range(0, 1)] float enemySlowScale;
     [SerializeField] float bulletTimeMaxCharge = 10;
     [SerializeField] float bulletTimeChargeDepletionRate = 1;
-
-    [SerializeField] private float _currentCharge;
-    [SerializeField]private bool _isSlowed;
+    [SerializeField] HPBar bulletTimeBar;
+    [SerializeField] float _currentCharge;
+    [SerializeField] bool _isSlowed;
     bool available;
     
     
@@ -26,6 +26,7 @@ public class EnemyTimeController : MonoBehaviour
         {
             Instance = this;
         }
+        bulletTimeBar.SetMaxHealth(bulletTimeMaxCharge);
     }
 
     private void Update()
@@ -35,6 +36,8 @@ public class EnemyTimeController : MonoBehaviour
         {
             AddToCharge(10);
         }
+
+        bulletTimeBar.SetHealth(_currentCharge);
     }
 
 

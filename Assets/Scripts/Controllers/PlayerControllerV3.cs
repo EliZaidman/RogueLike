@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 public class PlayerControllerV3: MonoBehaviour
@@ -25,6 +26,7 @@ public class PlayerControllerV3: MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        bulletRegenBar.SetMaxHealth(mbRegenTime);
         _tempRegenTime = mbRegenTime;
         _currentMgCharges = maxMagicalBullets;
         _allPlats = GameObject.FindGameObjectsWithTag("Platform");
@@ -353,7 +355,9 @@ public class PlayerControllerV3: MonoBehaviour
     [Header("Aiming and Shooting")]
     [SerializeField] Transform bulletPos;
     [SerializeField] Transform bulletPosAnchor;
-    [SerializeField]Pooler pooler;
+    [SerializeField] Pooler pooler;
+    [SerializeField] GameObject[] bulletsUI;
+    [SerializeField] HPBar bulletRegenBar;
     GameObject currentObj;
     Vector3 lookPos;
     Vector3 shotDir;
@@ -371,6 +375,8 @@ public class PlayerControllerV3: MonoBehaviour
     {
         ShotInput();
         MbRegen();
+        BulletUI();
+        BulletBar();
     }
     void HandleAiming()
     {
@@ -409,7 +415,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     void MbRegen() 
     {
-        if (_mgRegenTimer < mbRegenTime)
+        if (_mgRegenTimer < mbRegenTime && _currentMgCharges < maxMagicalBullets)
         {
             _mgRegenTimer += Time.deltaTime;
         }
@@ -417,6 +423,26 @@ public class PlayerControllerV3: MonoBehaviour
         {
             _currentMgCharges = maxMagicalBullets;
             _mgRegenTimer = 0;
+        }
+    }
+
+    void BulletBar()
+    {
+        bulletRegenBar.SetHealth(_mgRegenTimer);
+    }
+
+    void BulletUI()
+    {
+        for (int i = 0; i < bulletsUI.Length; i++)
+        {
+            if (i < _currentMgCharges)
+            {
+                bulletsUI[i].SetActive(true);
+            }
+            else
+            {
+                bulletsUI[i].SetActive(false);
+            }
         }
     }
     
@@ -521,7 +547,7 @@ public class PlayerControllerV3: MonoBehaviour
     }
 
     GameObject[] _allPlats;
-    [SerializeField]Collider[] _nearbyPlats;
+    Collider[] _nearbyPlats;
 
     void ResetPlatsCollision()
     {
