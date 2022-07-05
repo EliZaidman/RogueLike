@@ -21,6 +21,7 @@ public class PlayerControllerV3: MonoBehaviour
         {
             Instance = this;
         }
+        SoundManager.PlaySound(SoundManager.Sound.BGMusic);
     }
 
     private void Start()
@@ -247,7 +248,7 @@ public class PlayerControllerV3: MonoBehaviour
         DashCooldown();
         if (Input.GetKeyDown(KeyCode.Mouse1) && !_hasDashed && _dashCdReady)
         {
-            SoundManager.PlaySound(SoundManager.Sound.PlayerDash, transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDash);
 
             //_dashDir = new Vector3(_inputs.RawX, _inputs.RawY).normalized;
             //if (_dashDir == Vector3.zero) _dashDir = !_spriteRenderer.flipX ? Vector3.left : Vector3.right;
@@ -630,5 +631,4 @@ public class PlayerControllerV3: MonoBehaviour
         public float X, Y;
         public int RawX, RawY;
     }
-
 }

@@ -1,0 +1,125 @@
+
+Steve For Animation.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm L
+  rotate: true
+  xy: 438, 20
+  size: 104, 233
+  orig: 104, 233
+  offset: 0, 0
+  index: -1
+Arm R
+  rotate: true
+  xy: 757, 195
+  size: 71, 173
+  orig: 71, 173
+  offset: 0, 0
+  index: -1
+Body
+  rotate: true
+  xy: 800, 314
+  size: 195, 254
+  orig: 195, 254
+  offset: 0, 0
+  index: -1
+Eye L
+  rotate: true
+  xy: 800, 274
+  size: 38, 81
+  orig: 38, 81
+  offset: 0, 0
+  index: -1
+Eye R
+  rotate: true
+  xy: 564, 138
+  size: 25, 73
+  orig: 25, 73
+  offset: 0, 0
+  index: -1
+Glasses
+  rotate: false
+  xy: 673, 7
+  size: 334, 156
+  orig: 334, 156
+  offset: 0, 0
+  index: -1
+Hand L
+  rotate: false
+  xy: 564, 268
+  size: 234, 241
+  orig: 234, 241
+  offset: 0, 0
+  index: -1
+Hand R
+  rotate: true
+  xy: 1009, 13
+  size: 152, 171
+  orig: 152, 171
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: false
+  xy: 2, 126
+  size: 560, 383
+  orig: 560, 383
+  offset: 0, 0
+  index: -1
+Leg L
+  rotate: true
+  xy: 2, 2
+  size: 122, 216
+  orig: 122, 216
+  offset: 0, 0
+  index: -1
+Leg L Running
+  rotate: true
+  xy: 220, 2
+  size: 122, 216
+  orig: 122, 216
+  offset: 0, 0
+  index: -1
+Leg R
+  rotate: true
+  xy: 564, 165
+  size: 101, 191
+  orig: 101, 191
+  offset: 0, 0
+  index: -1
+Magic Circle
+  rotate: true
+  xy: 1004, 243
+  size: 69, 64
+  orig: 69, 64
+  offset: 0, 0
+  index: -1
+Pants
+  rotate: false
+  xy: 1070, 169
+  size: 179, 171
+  orig: 179, 171
+  offset: 0, 0
+  index: -1
+Scarf
+  rotate: false
+  xy: 1056, 342
+  size: 210, 167
+  orig: 210, 167
+  offset: 0, 0
+  index: -1
+X Eye L
+  rotate: false
+  xy: 932, 209
+  size: 70, 103
+  orig: 70, 103
+  offset: 0, 0
+  index: -1
+X Eye R
+  rotate: false
+  xy: 1004, 167
+  size: 49, 74
+  orig: 49, 74
+  offset: 0, 0
+  index: -1

@@ -19,6 +19,7 @@ public class CameraFollow2D : MonoBehaviour
 
     private void Start()
     {
+
         //frontView = new Vector3(0, offset.y, offset.z);
         //sideView = new Vector3(90, offset.y, offset.z);
     }

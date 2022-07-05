@@ -27,6 +27,11 @@ public static class SoundManager
         SwordAttack,
         SwordDeath,
 
+        CuckoClockAttack,
+        CuckoClockDeath,
+        CuckoClockBird,
+
+        Door,
         BGMusic
         
     }
