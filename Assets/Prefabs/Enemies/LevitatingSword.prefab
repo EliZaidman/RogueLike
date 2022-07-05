@@ -172,7 +172,7 @@ MonoBehaviour:
   damage: 15
   isAttacking: 0
   attackTimer: 0
-  distanceToFacePlayer: 2
+  distanceToFacePlayer: 4.5
   drawAgroRange: 0
   drawAttackRange: 0
   drawPlatCheck: 0

@@ -101,6 +101,8 @@ public class LevitatingSword : MonoBehaviour
         if (attackTimer >= timeBetweenAttacks)
         {
             SetAnimation(attack, true, 1f * EnemyTimeController.Instance.currentTimeScale);
+            Invoke("StopAttackAnimation", attack.Animation.Duration);
+            Debug.Log("Attacked");
             if (EnemyTimeController.Instance.currentTimeScale == 1)
             {
                 Invoke("StartDamageWindow", damageWindowStart);
@@ -126,6 +128,11 @@ public class LevitatingSword : MonoBehaviour
         isAttacking = false;
     }
 
+    private void StopAttackAnimation()
+    {
+        SetAnimation(attack, false, 1f * EnemyTimeController.Instance.currentTimeScale);
+    }
+
     void AttackTimer()
     {
         if (attackTimer < timeBetweenAttacks)
@@ -143,11 +150,10 @@ public class LevitatingSword : MonoBehaviour
         if (Mathf.Abs((transform.position - PlayerControllerV3.Instance.transform.position).x) > distanceToFacePlayer)
         {
             FacePlayer();
-        }
-
-        if (!IsNearEndOfPlatform()) //moves towards target
-        {
-            _rb.velocity = -transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
+            if (!IsNearEndOfPlatform()) //moves towards target
+            {
+                _rb.velocity = -transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
+            }
         }
         if (IsTargetInAttackRange()) //switches to attack state
         {
