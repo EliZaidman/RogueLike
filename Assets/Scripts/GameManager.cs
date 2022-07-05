@@ -6,7 +6,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
     [HideInInspector] public List<GameObject> bulletsAmount = new List<GameObject>();
     [HideInInspector] public int curNumber = 0;
     [HideInInspector] public GameObject bullet;

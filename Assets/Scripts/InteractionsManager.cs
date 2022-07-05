@@ -14,15 +14,15 @@ public class InteractionsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeIsSlowed)
-        {
-            Time.timeScale = 0.3f;
-        }
-        else
-        {
-            Time.timeScale = 1;
+        //if (timeIsSlowed)
+        //{
+        //    Time.timeScale = 0.3f;
+        //}
+        //else
+        //{
+        //    Time.timeScale = 1;
 
-        }
+        //}
         swap();
     }
 

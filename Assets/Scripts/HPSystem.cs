@@ -7,6 +7,9 @@ public class HPSystem : MonoBehaviour
     public int hp;
     [SerializeField] int maxHP = 12;
     [SerializeField] HPBar hpBar;
+    [SerializeField] PauseMenu menu;
+    [SerializeField] GameObject[] uiToDisable;
+    [SerializeField] GameObject deadText;
     [SerializeField] int nearDeath = 2;
 
     void Start()
@@ -48,6 +51,13 @@ public class HPSystem : MonoBehaviour
     {
         if (hp <= 0)
         {
+            menu.Pause();
+            deadText.SetActive(true);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDeath);
+            foreach (GameObject go in uiToDisable)
+            {
+                go.SetActive(false);
+            }
             Debug.Log("Player dead");
         }
     }
