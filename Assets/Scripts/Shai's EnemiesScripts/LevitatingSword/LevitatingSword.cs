@@ -15,6 +15,9 @@ public class LevitatingSword : MonoBehaviour
     [SerializeField] float speed = 10;
     [SerializeField] Transform platChecker;
     [SerializeField] Collider blade;
+    [SerializeField] Collider SwordStand;
+    [SerializeField] Collider[] collidersToIgnore;
+
 
     private GameObject target;
     private Rigidbody _rb;
@@ -22,6 +25,10 @@ public class LevitatingSword : MonoBehaviour
 
     void Start()
     {
+        foreach (var collider in collidersToIgnore)
+        {
+            Physics.IgnoreCollision(SwordStand, collider);
+        }
         target = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody>();
     }
