@@ -29,12 +29,10 @@ public class PlayerControllerV3: MonoBehaviour
         {
             Instance = this;
         }
-        SoundManager.PlaySound(SoundManager.Sound.BGMusic);
     }
 
     private void Start()
     {
-        Cursor.visible = false;
         bulletRegenBar.SetMaxHealth(mbRegenTime);
         _tempRegenTime = mbRegenTime;
         _currentMgCharges = maxMagicalBullets;
@@ -472,8 +470,8 @@ public class PlayerControllerV3: MonoBehaviour
 
     #region GoUpDownPlatforms
 
-    Collider[] _downPlats;
-    Collider[] _upPlats;
+    [SerializeField] Collider[] _downPlats;
+    [SerializeField] Collider[] _upPlats;
 
     void HandleGoUpDownPlatforms()
     {
@@ -507,7 +505,7 @@ public class PlayerControllerV3: MonoBehaviour
             //disables ignoreCollision with previous platforms
             foreach (var plat in _downPlats)
             {
-                if (plat.bounds.min.y > _collider.bounds.max.y)
+                if (plat.bounds.min.y > _collider.bounds.max.y && plat != null)
                 {
                     Physics.IgnoreCollision(_collider, plat, false);
                 }
