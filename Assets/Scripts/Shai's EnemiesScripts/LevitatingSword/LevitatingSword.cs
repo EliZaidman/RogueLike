@@ -31,6 +31,7 @@ public class LevitatingSword : MonoBehaviour
         }
         target = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody>();
+        attackTimer = timeBetweenAttacks;
     }
 
     void Update()
@@ -38,6 +39,7 @@ public class LevitatingSword : MonoBehaviour
         CheckDistanceFromTargert();
         HandleStateMachine();
         StayOnPlatform();
+        AttackTimer();
     }
 
     
@@ -67,21 +69,26 @@ public class LevitatingSword : MonoBehaviour
                 break;
 
             default:
-                Debug.Log(gameObject.name + "Entered a state that doesnt exists");
                 break;
         }
     }
 
+    #region State: Attack
 
     [Header("Attack")]
     [SerializeField] float timeBetweenAttacks = 2;
+    [SerializeField] float damageWindowStart = 1;
+    [SerializeField] float damageWindowLength = 0.3f;
     public int damage;
     public bool isAttacking;
+
+    public float attackTimer;
+    
     void Attack()
     {
         if (!isAttacking && IsTargetInAttackRange())
         {
-            StartCoroutine(Strike(timeBetweenAttacks));
+            Strike();
         }
         if (!IsTargetInAttackRange() && !isAttacking)
         {
@@ -89,9 +96,46 @@ public class LevitatingSword : MonoBehaviour
         }
     }
 
+    void Strike()
+    {
+        if (attackTimer >= timeBetweenAttacks)
+        {
+            SetAnimation(attack, true, 1f * EnemyTimeController.Instance.currentTimeScale);
+            Invoke("StartDamageWindow", damageWindowStart);
+            Invoke("CloseDamageWindow", damageWindowStart + damageWindowLength);
+            attackTimer = 0;
+        }
+    }
+
+    void StartDamageWindow()
+    {
+        isAttacking = true;
+    }
+
+    void CloseDamageWindow()
+    {
+        isAttacking = false;
+    }
+
+    void AttackTimer()
+    {
+        if (attackTimer < timeBetweenAttacks)
+        {
+            attackTimer += Time.deltaTime;
+        }
+    }
+
+    #endregion
+
+
+    [SerializeField] float distanceToFacePlayer;
     void FollowTarget()
     {
-        FacePlayer();
+        if (Mathf.Abs((transform.position - PlayerControllerV3.Instance.transform.position).x) > distanceToFacePlayer)
+        {
+            FacePlayer();
+        }
+
         if (!IsNearEndOfPlatform()) //moves towards target
         {
             _rb.velocity = -transform.right * speed * EnemyTimeController.Instance.currentTimeScale;
@@ -117,15 +161,6 @@ public class LevitatingSword : MonoBehaviour
     public void ChangeState(states state)
     {
         _currentState = state;
-    }
-
-    IEnumerator Strike(float seconds)// Stops enemy behavior for given seconds
-    {
-        isAttacking = true;
-        SetAnimation(attack, true, 1f);
-        SoundManager.PlaySound(SoundManager.Sound.SwordAttack);
-        yield return new WaitForSeconds(seconds);
-        isAttacking = false;
     }
 
     #endregion

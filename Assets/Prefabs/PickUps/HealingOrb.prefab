@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cadb413a70c344780f6457558a51cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 2
+  _healAmount: 25
   gameObjectsToDestroy:
   - {fileID: 6679364645071501170}
   - {fileID: 7376088801825952613}

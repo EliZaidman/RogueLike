@@ -7,15 +7,7 @@ public class LSBlade : MonoBehaviour
     [SerializeField]LevitatingSword sword;
     [SerializeField] HPSystemForEnemy hpSystem;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Player" && sword.isAttacking) 
-        {
-            Debug.Log("Hit");
-            collision.collider.GetComponent<HPSystem>().TakeDamage(sword.damage);
-            //fill BulletTime charge
-        }
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,8 +16,15 @@ public class LSBlade : MonoBehaviour
             Debug.Log("SwordHit");
             other.GetComponent<Collider>().GetComponent<HPSystem>().TakeDamage(sword.damage);
             //fill BulletTime charge
+
+            PlayerControllerV3.Instance.GetComponent<HPSystem>().TakeDamage(sword.damage);
+            SoundManager.PlaySound(SoundManager.Sound.SwordAttack);
+            Debug.Log("SwordHitPlayer");
+            sword.isAttacking = false;
+            sword.attackTimer = 0;
         }
-        else if (other.tag == "Hat")
+
+        if (other.tag == "Hat")
         {
             hpSystem.TakeDamage(other.GetComponent<PlayerBullet>().damage);
             other.gameObject.SetActive(false);

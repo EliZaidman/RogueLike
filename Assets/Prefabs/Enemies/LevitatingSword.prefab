@@ -171,9 +171,13 @@ MonoBehaviour:
   - {fileID: 7908764016418549445, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
   - {fileID: 2856827508496979367, guid: 085cee1c408457c43b6d1e1639704f39, type: 3}
   _currentState: 0
-  timeBetweenAttacks: 2
-  damage: 0
+  timeBetweenAttacks: 4
+  damageWindowStart: 1
+  damageWindowLength: 0.3
+  damage: 15
   isAttacking: 0
+  attackTimer: 0
+  distanceToFacePlayer: 2
   drawAgroRange: 0
   drawAttackRange: 0
   drawPlatCheck: 0
@@ -503,11 +507,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808161473160459351}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 1.02, z: 0.35}
-  m_Center: {x: 3.83, y: 0, z: 0}
+  m_Size: {x: 10.4, y: 1.02, z: 0.35}
+  m_Center: {x: 2.69, y: 0, z: 0}
 --- !u!114 &1412765409813911774
 MonoBehaviour:
   m_ObjectHideFlags: 0
