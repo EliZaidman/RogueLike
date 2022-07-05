@@ -8,11 +8,10 @@ public class Shield : MonoBehaviour
 
     private Rigidbody _playerRb;
     private HPSystem _playerHpSystem;
-    private KnightStatue knight;
+    [SerializeField] KnightStatue knight;
     
     void Start()
     {
-        knight = transform.parent.GetComponent<KnightStatue>();
         _playerRb = PlayerControllerV3.Instance.GetComponent<Rigidbody>();
         _playerHpSystem = PlayerControllerV3.Instance.GetComponent<HPSystem>();
     }

@@ -45,6 +45,7 @@ public class HPSystemForEnemy : MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.SwordDeath);
             }
             //Invoke("Destroy", 5);
+            EnemyTimeController.Instance.AddToCharge(2);
             Destroy(this.gameObject);
         }
     }

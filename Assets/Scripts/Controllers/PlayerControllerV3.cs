@@ -1,10 +1,18 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Spine.Unity;
 using Random = UnityEngine.Random;
 
 public class PlayerControllerV3: MonoBehaviour
 {
+    [Header("Animations")]
+    [SerializeField] SkeletonAnimation animationSkeleton;
+    [SerializeField] AnimationReferenceAsset idle;
+    [SerializeField] AnimationReferenceAsset run;
+    [SerializeField] AnimationReferenceAsset dead;
+    [SerializeField] AnimationReferenceAsset hit;
+    [Header("")]
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private SpriteRenderer _spriteRenderer;

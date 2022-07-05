@@ -16,7 +16,6 @@ public class LSBlade : MonoBehaviour
             Debug.Log("SwordHit");
             other.GetComponent<Collider>().GetComponent<HPSystem>().TakeDamage(sword.damage);
             //fill BulletTime charge
-
             PlayerControllerV3.Instance.GetComponent<HPSystem>().TakeDamage(sword.damage);
             SoundManager.PlaySound(SoundManager.Sound.SwordAttack);
             Debug.Log("SwordHitPlayer");
@@ -27,6 +26,7 @@ public class LSBlade : MonoBehaviour
         if (other.tag == "Hat")
         {
             hpSystem.TakeDamage(other.GetComponent<PlayerBullet>().damage);
+            PlayerControllerV3.Instance.AddMgCharge(1);
             other.gameObject.SetActive(false);
             Debug.Log("SwordTookDamage");
         }

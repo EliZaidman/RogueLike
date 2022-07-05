@@ -15,8 +15,7 @@ public class LevitatingSword : MonoBehaviour
     [SerializeField] float speed = 10;
     [SerializeField] Transform platChecker;
     [SerializeField] Collider blade;
-    [SerializeField] Collider SwordStand;
-    [SerializeField] Collider[] collidersToIgnore;
+    [SerializeField] int[] layersToIgnore;
 
 
     private GameObject target;
@@ -25,10 +24,11 @@ public class LevitatingSword : MonoBehaviour
 
     void Start()
     {
-        foreach (var collider in collidersToIgnore)
+        foreach (var layer in layersToIgnore)
         {
-            Physics.IgnoreCollision(SwordStand, collider);
+            Physics.IgnoreLayerCollision(14, layer);
         }
+        //Physics.IgnoreCollision(SwordStand, PlayerControllerV3.Instance.GetComponent<Collider>()); 
         target = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody>();
         attackTimer = timeBetweenAttacks;
@@ -101,8 +101,17 @@ public class LevitatingSword : MonoBehaviour
         if (attackTimer >= timeBetweenAttacks)
         {
             SetAnimation(attack, true, 1f * EnemyTimeController.Instance.currentTimeScale);
-            Invoke("StartDamageWindow", damageWindowStart);
-            Invoke("CloseDamageWindow", damageWindowStart + damageWindowLength);
+            if (EnemyTimeController.Instance.currentTimeScale == 1)
+            {
+                Invoke("StartDamageWindow", damageWindowStart);
+                Invoke("CloseDamageWindow", damageWindowStart + damageWindowLength);
+            }
+            else
+            {
+                Invoke("StartDamageWindow", damageWindowStart + 3);
+                Invoke("CloseDamageWindow", damageWindowStart + 3 + damageWindowLength);
+            }
+            
             attackTimer = 0;
         }
     }

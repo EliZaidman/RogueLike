@@ -32,7 +32,7 @@ public class EnemyTimeController : MonoBehaviour
     private void Update()
     {
         HandleBulletTime();
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             AddToCharge(10);
         }
@@ -53,7 +53,7 @@ public class EnemyTimeController : MonoBehaviour
     {
         if (_isSlowed)
         {
-            SoundManager.PlaySound(SoundManager.Sound.BulletTimeActive);
+            //SoundManager.PlaySound(SoundManager.Sound.BulletTimeActive);
         }
         if (available)
         {

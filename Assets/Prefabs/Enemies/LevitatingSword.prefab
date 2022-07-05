@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 808161471168809505}
   - component: {fileID: 808161471168809504}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Hilt Bone
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 808161472025846573}
   - component: {fileID: 808161472025846574}
   - component: {fileID: 7727204566385742950}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: LevitatingSword
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -164,12 +164,7 @@ MonoBehaviour:
   speed: 10
   platChecker: {fileID: 808161472061761246}
   blade: {fileID: 8417251979659689408}
-  SwordStand: {fileID: 808161472025846572}
-  collidersToIgnore:
-  - {fileID: 2018988565589456485, guid: b3df7a86617098141ba1c24f434e4cf4, type: 3}
-  - {fileID: 4046270996378120359, guid: cabab7beff386754b990b88579817b36, type: 3}
-  - {fileID: 7908764016418549445, guid: 8e81cf3e95119d840bad3a0d79675e84, type: 3}
-  - {fileID: 2856827508496979367, guid: 085cee1c408457c43b6d1e1639704f39, type: 3}
+  layersToIgnore: 0d0000000b000000
   _currentState: 0
   timeBetweenAttacks: 4
   damageWindowStart: 1
@@ -286,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808161472061761246}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PlatCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808161472159926057}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SkeletonUtility-SkeletonRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 808161472455458932}
   - component: {fileID: 808161472455458935}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: bone
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 97a43f11e00735147a9dc3dff6d68191, type: 3}
@@ -400,7 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 808161472847841681}
   - component: {fileID: 808161472847841680}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
