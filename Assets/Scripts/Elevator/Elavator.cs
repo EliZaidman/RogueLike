@@ -34,9 +34,10 @@ public class Elavator : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        print("InsideCollider");
         if (other.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 canCallElev = true;
                 UseElavator();
