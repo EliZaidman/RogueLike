@@ -9,7 +9,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
 
-    // Update is called once per frame
+    //0 - MainMenu
+    //1 - GameScene(NewCastle)
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -41,7 +42,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
 
