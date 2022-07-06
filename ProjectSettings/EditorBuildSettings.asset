@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Shai's.unity
-    guid: c2e997615e36bdb459d385f3a5f9542f
-  - enabled: 0
-    path: Assets/Scenes/Yarden.unity
-    guid: c879bda7fe0453b4ca5ad8aff18ba506
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 1e31c0df797805f42a4be3ea498f9368
   - enabled: 1
     path: Assets/Scenes/NewCastle.unity
     guid: 8158af0d8778fcf4d8425d2ea6c8f9bd
