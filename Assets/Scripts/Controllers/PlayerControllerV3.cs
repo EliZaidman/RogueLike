@@ -3,8 +3,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using Spine.Unity;
 using Random = UnityEngine.Random;
+using System.Collections;
 
-public class PlayerControllerV3: MonoBehaviour
+public class PlayerControllerV3 : MonoBehaviour
 {
     [Header("Animations")]
     [SerializeField] SkeletonAnimation animationSkeleton;
@@ -12,6 +13,8 @@ public class PlayerControllerV3: MonoBehaviour
     [SerializeField] AnimationReferenceAsset run;
     [SerializeField] AnimationReferenceAsset dead;
     [SerializeField] AnimationReferenceAsset hit;
+    [SerializeField] AnimationReferenceAsset jump;
+    [SerializeField] string currentAnimation;
     [Header("")]
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private CapsuleCollider _collider;
@@ -67,7 +70,7 @@ public class PlayerControllerV3: MonoBehaviour
 
     #region Inputs
 
-    [SerializeField]private bool _facingLeft;
+    [SerializeField] private bool _facingLeft;
 
     private void GatherInputs()
     {
@@ -153,8 +156,13 @@ public class PlayerControllerV3: MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep, transform.position);
             }
 
-            if (_rb.velocity.x > 0) _inputs.X = 0; // Immediate stop and turn. Just feels better
-            _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
+            if (_rb.velocity.x > 0) _inputs.X = 0;// Immediate stop and turn. Just feels better
+            {
+                StartCoroutine(LerpRotation(0.5f,-180));
+                _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
+                SetAnimation(run, true, 1f);
+            }
+
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
@@ -163,11 +171,17 @@ public class PlayerControllerV3: MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.PlayerFootstep, transform.position);
             }
             if (_rb.velocity.x < 0) _inputs.X = 0;
-            _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
+            {
+                StartCoroutine(LerpRotation(0.5f,0));
+                _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
+                SetAnimation(run, true, 1f);
+            }
         }
         else
         {
             _inputs.X = Mathf.MoveTowards(_inputs.X, 0, acceleration * 2 * Time.deltaTime);
+            SetAnimation(idle, false, 1f);
+
         }
 
         var idealVel = new Vector3(_inputs.X * _walkSpeed, _rb.velocity.y);
@@ -183,7 +197,7 @@ public class PlayerControllerV3: MonoBehaviour
     [Header("Jumping")] [SerializeField] private float _jumpForce = 15;
     [SerializeField] private float _fallMultiplier = 7;
     [SerializeField] private float _jumpVelocityFalloff = 8;
-   // [SerializeField] private ParticleSystem _jumpParticles;
+    // [SerializeField] private ParticleSystem _jumpParticles;
     //[SerializeField] private Transform _jumpLaunchPoof;
     [SerializeField] private float _coyoteTime = 0.2f;
     [SerializeField] private bool _enableDoubleJump = true;
@@ -196,11 +210,12 @@ public class PlayerControllerV3: MonoBehaviour
         if (_dashing) return;
         if (Input.GetKeyDown(KeyCode.Space) && !Input.GetKey(KeyCode.S))
         {
-             if (IsGrounded || Time.time < _timeLeftGrounded + _coyoteTime || _enableDoubleJump && !_hasDoubleJumped)
+            if (IsGrounded || Time.time < _timeLeftGrounded + _coyoteTime || _enableDoubleJump && !_hasDoubleJumped)
             {
                 if (!_hasJumped || _hasJumped && !_hasDoubleJumped)
                 {
                     ExecuteJump(new Vector2(_rb.velocity.x, _jumpForce), _hasJumped); // Ground jump
+                    SetAnimation(jump, false, 1);
                 }
             }
         }
@@ -234,7 +249,7 @@ public class PlayerControllerV3: MonoBehaviour
     [Header("Dash")] [SerializeField] private float _dashSpeed = 15;
     [SerializeField] private float _dashLength = 1;
     [SerializeField] private float dashCooldown = 1.5f;
-   // [SerializeField] private ParticleSystem _dashParticles;
+    // [SerializeField] private ParticleSystem _dashParticles;
     //[SerializeField] private Transform _dashRing;
     [SerializeField] private float wallDetectorRange = 3;
     //[SerializeField] private ParticleSystem _dashVisual;
@@ -291,7 +306,7 @@ public class PlayerControllerV3: MonoBehaviour
 
             if (Time.time >= _timeStartedDash + _dashLength || isWallDetected())
             {
-               // _dashParticles.Stop();
+                // _dashParticles.Stop();
                 _dashing = false;
                 // Clamp the velocity so they don't keep shooting off
                 //_rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y > 3 ? 3 : _rb.velocity.y);
@@ -372,7 +387,7 @@ public class PlayerControllerV3: MonoBehaviour
     [Header("Shooting Settings")]
     [SerializeField] float bulletForce = 5;
     [SerializeField] int maxMagicalBullets = 3;
-    [SerializeField][Tooltip("MB = Magical Bullets")] int mbRegenTime = 3;
+    [SerializeField] [Tooltip("MB = Magical Bullets")] int mbRegenTime = 3;
 
     int _currentMgCharges;
     float _mgRegenTimer;
@@ -416,11 +431,11 @@ public class PlayerControllerV3: MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.EmptyAmmo, transform.position);
                 Debug.Log("No bullets");
             }
-            _mgRegenTimer = 0; 
+            _mgRegenTimer = 0;
         }
     }
 
-    void MbRegen() 
+    void MbRegen()
     {
         if (_mgRegenTimer < mbRegenTime && _currentMgCharges < maxMagicalBullets)
         {
@@ -452,7 +467,7 @@ public class PlayerControllerV3: MonoBehaviour
             }
         }
     }
-    
+
     public void AddMgCharge(int toAdd)
     {
         _currentMgCharges += toAdd;
@@ -509,7 +524,7 @@ public class PlayerControllerV3: MonoBehaviour
                 {
                     Physics.IgnoreCollision(_collider, plat, false);
                 }
-            }    
+            }
         }
     }
 
@@ -619,7 +634,7 @@ public class PlayerControllerV3: MonoBehaviour
     {
         if (_drawGizmos)
         {
-          DrawMinPos();
+            DrawMinPos();
         }
 
     }
@@ -637,4 +652,31 @@ public class PlayerControllerV3: MonoBehaviour
         public float X, Y;
         public int RawX, RawY;
     }
+
+    private void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(currentAnimation))
+        {
+            return;
+        }
+        animationSkeleton.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        currentAnimation = animation.name;
+    }
+
+
+    public IEnumerator LerpRotation(float duration,int Ypos)
+    {
+        float t = 0;
+        while (t < duration)
+        {
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.position.x, Ypos, transform.position.z), t / duration);
+            //print("Inside");
+
+            //duration = 0;
+        }
+
+    }
+
 }
