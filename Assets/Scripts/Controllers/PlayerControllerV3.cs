@@ -158,7 +158,7 @@ public class PlayerControllerV3 : MonoBehaviour
 
             if (_rb.velocity.x > 0) _inputs.X = 0;// Immediate stop and turn. Just feels better
             {
-                StartCoroutine(LerpRotation(0.5f,-180));
+               // StartCoroutine(LerpRotation(0.5f,-180));
                 _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
@@ -172,7 +172,7 @@ public class PlayerControllerV3 : MonoBehaviour
             }
             if (_rb.velocity.x < 0) _inputs.X = 0;
             {
-                StartCoroutine(LerpRotation(0.5f,0));
+                //StartCoroutine(LerpRotation(0.5f,0));
                 _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
