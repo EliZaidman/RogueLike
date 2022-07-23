@@ -21,7 +21,7 @@ public class PlayerControllerV3 : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     public static PlayerControllerV3 Instance { get; set; }
     private FrameInputs _inputs;
-
+    SkeletonUtility skeletonUtility;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -40,6 +40,8 @@ public class PlayerControllerV3 : MonoBehaviour
         _tempRegenTime = mbRegenTime;
         _currentMgCharges = maxMagicalBullets;
         _allPlats = GameObject.FindGameObjectsWithTag("Platform");
+         skeletonUtility = GetComponent<SkeletonUtility>();
+
     }
     private void Update()
     {
@@ -158,7 +160,7 @@ public class PlayerControllerV3 : MonoBehaviour
 
             if (_rb.velocity.x > 0) _inputs.X = 0;// Immediate stop and turn. Just feels better
             {
-               // StartCoroutine(LerpRotation(0.5f,-180));
+                FlipRotationTo180(true);
                 _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
@@ -172,7 +174,7 @@ public class PlayerControllerV3 : MonoBehaviour
             }
             if (_rb.velocity.x < 0) _inputs.X = 0;
             {
-                //StartCoroutine(LerpRotation(0.5f,0));
+                FlipRotationTo180(false);
                 _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
@@ -664,19 +666,18 @@ public class PlayerControllerV3 : MonoBehaviour
     }
 
 
-    public IEnumerator LerpRotation(float duration,int Ypos)
+    private void FlipRotationTo180(bool flip)
     {
-        float t = 0;
-        while (t < duration)
+        if (flip)
         {
-            yield return new WaitForEndOfFrame();
-            t += Time.deltaTime;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.position.x, Ypos, transform.position.z), t / duration);
-            //print("Inside");
-
-            //duration = 0;
+        skeletonUtility.flipBy180DegreeRotation = flip;
+        transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
         }
-
+        else if(!flip)
+        {
+            skeletonUtility.flipBy180DegreeRotation = flip;
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+        }
     }
 
 }
