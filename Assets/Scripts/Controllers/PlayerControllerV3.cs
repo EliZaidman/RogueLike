@@ -160,7 +160,8 @@ public class PlayerControllerV3 : MonoBehaviour
 
             if (_rb.velocity.x > 0) _inputs.X = 0;// Immediate stop and turn. Just feels better
             {
-                FlipRotationTo180(true);
+                gameObject.transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.z);
+                FlipRotationTo180(false);
                 _inputs.X = Mathf.MoveTowards(_inputs.X, -1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
@@ -174,7 +175,7 @@ public class PlayerControllerV3 : MonoBehaviour
             }
             if (_rb.velocity.x < 0) _inputs.X = 0;
             {
-                FlipRotationTo180(false);
+                FlipRotationTo180(true);
                 _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
@@ -668,15 +669,15 @@ public class PlayerControllerV3 : MonoBehaviour
 
     private void FlipRotationTo180(bool flip)
     {
-        if (flip)
+        if (!flip)
         {
-        skeletonUtility.flipBy180DegreeRotation = flip;
-        transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-        }
-        else if(!flip)
-        {
+            gameObject.transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.z);
             skeletonUtility.flipBy180DegreeRotation = flip;
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+        }
+        else
+        {
+            gameObject.transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.z);
+            skeletonUtility.flipBy180DegreeRotation = flip;
         }
     }
 
