@@ -16,10 +16,10 @@ public class FlyingBook : MonoBehaviour
     Transform player;
     bool left;
     Vector3 startpos;
-    [SerializeField] bool shooting = false;
+    bool shooting = false;
     [SerializeField] List<GameObject> bullets;
-    private int wallDetectorRange = 2;
-    private int count = 0;
+    int wallDetectorRange = 2;
+    int count = 0;
 
 
     void Awake()
