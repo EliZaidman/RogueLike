@@ -9,6 +9,7 @@ public class FlockBullet : MonoBehaviour
     private GameObject Paranet;
     public float bulletSpeed;
     private int wallDetectorRange = 1;
+    public int damage;
 
 
     private void OnEnable()
@@ -30,7 +31,7 @@ public class FlockBullet : MonoBehaviour
 
         }
         //FailSafe
-        if (transform.position.x == lastPos.x || transform.position.y == lastPos.y || transform.position.z == lastPos.z)
+        if (transform.position.x == lastPos.x || transform.position.y == lastPos.y)
         {
             gameObject.SetActive(false);
             transform.parent = Paranet.transform;
@@ -55,5 +56,14 @@ public class FlockBullet : MonoBehaviour
             if (collider.tag == "Platform") return true;
         }
         return false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            gameObject.SetActive(false);
+            transform.parent = Paranet.transform;
+            collision.collider.GetComponent<HPSystem>().TakeDamage(damage);
+        }
     }
 }

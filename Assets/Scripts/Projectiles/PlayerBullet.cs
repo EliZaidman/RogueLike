@@ -11,10 +11,10 @@ public class PlayerBullet : MonoBehaviour
         switch (coll.collider.tag)
         {
             case "Enemy":
+                gameObject.SetActive(false);
                 Debug.Log("Hit Enemy");
                 coll.collider.GetComponent<HPSystemForEnemy>().TakeDamage(damage);
                 PlayerControllerV3.Instance.AddMgCharge(1);
-                gameObject.SetActive(false);
                 break;
             case "KnightsShield":
                 Debug.Log("shield");

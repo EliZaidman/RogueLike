@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 1
+  damage: 20
 --- !u!212 &9113051161340155411
 SpriteRenderer:
   m_ObjectHideFlags: 0
