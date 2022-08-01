@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d849b4eb424f94a45b2608553e3f73c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48a950837c25aeb4887990f2f647a535, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -149,6 +149,10 @@ PrefabInstance:
     - target: {fileID: 1257553616489238448, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
       propertyPath: m_Name
       value: FlockBullet (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257553616489238448, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1257553616489238463, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
       propertyPath: m_RootOrder
@@ -194,6 +198,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9113051161340155411, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4020158414049532171, guid: 3a5f70d8bb9cec14584c085fed838118, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
 --- !u!1 &1233687459968237466 stripped
@@ -216,10 +224,6 @@ PrefabInstance:
     - target: {fileID: 1257553616489238448, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
       propertyPath: m_Name
       value: FlockBullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 1257553616489238451, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
-      propertyPath: bulletSpeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1257553616489238463, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
       propertyPath: m_RootOrder
@@ -288,6 +292,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlockBullet (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1257553616489238448, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1257553616489238463, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -332,6 +340,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9113051161340155411, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7561915766734923471, guid: 3a5f70d8bb9cec14584c085fed838118, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 086b671c5d6cdaf4785d7c8b0f19991d, type: 3}
 --- !u!1 &6118381499316573403 stripped
