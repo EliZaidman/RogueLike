@@ -120,7 +120,7 @@ public class KnightStatue : MonoBehaviour
             _ramCooldownTimer = ramCooldown;
             if (!isRamming || !_isChargingRam)
             {
-                SetAnimation(attack, true, 0.5f * EnemyTimeController.Instance.currentTimeScale);
+                SetAnimation(attack, false, 0.5f * EnemyTimeController.Instance.currentTimeScale);
                 RamCharge();
             }
         }
