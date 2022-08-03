@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4589990356819022034}
   - component: {fileID: 4589990356819022032}
   - component: {fileID: 4589990356819022031}
-  - component: {fileID: 4589990356819022033}
   - component: {fileID: 6140026577163298535}
+  - component: {fileID: 5984522673713278339}
   m_Layer: 0
   m_Name: CuckoClock
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4589990356819022030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.45, y: 14.57, z: 0}
-  m_LocalScale: {x: 2.6512, y: 2.6512, z: 2.6512}
+  m_LocalScale: {x: 1.2232976, y: 1.2232976, z: 1.2232976}
   m_Children:
   - {fileID: 4589990357375140584}
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fcedf8e560dfd4b41aecb1ca25e06463, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efa4b909c9dff254f96aa3272b634034, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,20 +107,6 @@ MonoBehaviour:
     m_Bits: 2048
   waitTime: 3
   damage: 20
---- !u!136 &4589990356819022033
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4589990356819022030}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.52
-  m_Height: 4.22
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6140026577163298535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +121,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   maxHP: 30
-  hpBar: {fileID: 0}
+--- !u!65 &5984522673713278339
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589990356819022030}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.18, y: 4.859046, z: 0.19999999}
+  m_Center: {x: -0.000015202065, y: 1.3963841, z: 0}
 --- !u!1 &4589990357375140583
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4589990357375140583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.15, z: 0}
+  m_LocalPosition: {x: 0, y: 1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4589990356819022034}
