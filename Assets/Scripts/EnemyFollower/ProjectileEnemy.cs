@@ -16,6 +16,7 @@ public class ProjectileEnemy : MonoBehaviour
     {
         objPooler = Pooler.Instance;
         StartCoroutine("Shoot");
+        Physics.IgnoreCollision(GetComponent<Collider>(), PlayerControllerV3.Instance._collider, true);
     }
     
     private IEnumerator Shoot()
