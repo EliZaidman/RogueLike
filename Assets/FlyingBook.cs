@@ -46,6 +46,35 @@ public class FlyingBook : MonoBehaviour
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
                     player.position.x / 2,
+                    player.position.y,
+                    transform.position.z),
+                    Time.deltaTime / ChaseSpeed);
+            }
+            else
+            {
+                if (!shooting)
+                {
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(
+                    player.position.x * 2,
+                    player.position.y,
+                    transform.position.z),
+                    Time.deltaTime / ChaseSpeed);
+                }
+
+            }
+            if (dist < ShootingPlayerRange && ShootCDTimer >= ShootCD)
+            {
+                StartCoroutine(IterateWithPause());
+            }
+        }
+        else if (dist < RangeToFindPlayer && isWallDetected())
+        {
+            ShootCDTimer += Time.deltaTime;
+            Debug.Log("Player");
+            if (left && !shooting)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(
+                    player.position.x / 2,
                     transform.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
@@ -67,6 +96,7 @@ public class FlyingBook : MonoBehaviour
                 StartCoroutine(IterateWithPause());
             }
         }
+
         else
         {
             transform.position = transform.position = Vector3.Lerp(transform.position, startpos, Time.deltaTime / 2);
