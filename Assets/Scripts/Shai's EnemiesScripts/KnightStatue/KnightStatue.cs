@@ -39,6 +39,7 @@ public class KnightStatue : MonoBehaviour
 
     [HideInInspector]public enum states { Idle, Follow, Attack, Recover }
     private GameObject target;
+    private Collider tarColl;
     private float _distanceFromTarget;
     private float _heightDiff;
     [HideInInspector]public float _ramTimer;
@@ -55,6 +56,7 @@ public class KnightStatue : MonoBehaviour
         SetAnimation(idle, true, 1f);
         _ramTimer = ramDistance;
         target = GameObject.FindGameObjectWithTag("Player");
+        tarColl = target.GetComponent<Collider>();
         _animator = GetComponent<Animator>();
         _rb = gameObject.GetComponent<Rigidbody>();
     }
@@ -254,8 +256,8 @@ public class KnightStatue : MonoBehaviour
 
     void CheckDistance()
     {
-        _distanceFromTarget = Vector3.Distance(_collider.bounds.center, target.transform.position);
-        _heightDiff = Mathf.Abs(_collider.bounds.center.y - target.transform.position.y);
+        _distanceFromTarget = Vector3.Distance(_collider.bounds.center, tarColl.bounds.center);
+        _heightDiff = Mathf.Abs(_collider.bounds.center.y - tarColl.bounds.center.y);
     }
 
     void StayOnPlatform()
