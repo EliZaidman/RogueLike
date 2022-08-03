@@ -45,7 +45,7 @@ public class FlyingBook : MonoBehaviour
             if (left && !shooting)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
-                    player.position.x / 2,
+                    player.position.x / 3.5f,
                     player.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
@@ -55,7 +55,7 @@ public class FlyingBook : MonoBehaviour
                 if (!shooting)
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(
-                    player.position.x * 2,
+                    player.position.x * 3.5f,
                     player.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
