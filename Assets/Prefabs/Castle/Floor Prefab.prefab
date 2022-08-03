@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7418033168054195822}
   m_Layer: 12
   m_Name: D Floor
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

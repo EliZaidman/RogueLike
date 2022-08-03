@@ -241,7 +241,7 @@ public class PlayerControllerV3 : MonoBehaviour
         }
 
         // Fall faster and allow small jumps. _jumpVelocityFalloff is the point at which we start adding extra gravity. Using 0 causes floating
-        if (_rb.velocity.y < _jumpVelocityFalloff || _rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        if (_rb.velocity.y < _jumpVelocityFalloff /*|| _rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space)*/)
             _rb.velocity += _fallMultiplier * Physics.gravity.y * Vector3.up * Time.deltaTime;
     }
 

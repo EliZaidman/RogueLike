@@ -169,6 +169,7 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   damageWindowStart: 1
   damageWindowLength: 0.3
+  isStriking: 0
   damage: 15
   isAttacking: 0
   attackTimer: 0
@@ -535,5 +536,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
