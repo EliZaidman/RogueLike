@@ -11,15 +11,14 @@ public class LSBlade : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && sword.isAttacking)
+        if (other.tag == "Player" && sword.isStriking)
         {
             Debug.Log("SwordHit");
             other.GetComponent<Collider>().GetComponent<HPSystem>().TakeDamage(sword.damage);
-            //fill BulletTime charge
             PlayerControllerV3.Instance.GetComponent<HPSystem>().TakeDamage(sword.damage);
             SoundManager.PlaySound(SoundManager.Sound.SwordAttack);
             Debug.Log("SwordHitPlayer");
-            sword.isAttacking = false;
+            //sword.isStriking = false;
             sword.attackTimer = 0;
         }
 

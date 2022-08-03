@@ -56,12 +56,12 @@ public class LevitatingSword : MonoBehaviour
         {
             case states.Idle:
                 Idle();
-                SetAnimation(idle, true, 1f);
+                SetAnimation(idle, true, 1f * EnemyTimeController.Instance.currentTimeScale);
                 break;
 
             case states.Follow:
                 FollowTarget();
-                SetAnimation(walking, true, 1f);
+                SetAnimation(walking, true, 1f * EnemyTimeController.Instance.currentTimeScale);
                 break;
 
             case states.Attack:
@@ -79,9 +79,9 @@ public class LevitatingSword : MonoBehaviour
     [SerializeField] float timeBetweenAttacks = 2;
     [SerializeField] float damageWindowStart = 1;
     [SerializeField] float damageWindowLength = 0.3f;
+    public bool isStriking;
     public int damage;
     public bool isAttacking;
-
     public float attackTimer;
     
     void Attack()
@@ -100,8 +100,9 @@ public class LevitatingSword : MonoBehaviour
     {
         if (attackTimer >= timeBetweenAttacks)
         {
-            SetAnimation(attack, true, 1f * EnemyTimeController.Instance.currentTimeScale);
-            Invoke("StopAttackAnimation", attack.Animation.Duration);
+            SetAnimation(attack, false, 1f * EnemyTimeController.Instance.currentTimeScale);
+            isAttacking = true;
+            Invoke("SetIsAttackingFalse", attack.Animation.Duration * EnemyTimeController.Instance.currentTimeScale);
             Debug.Log("Attacked");
             if (EnemyTimeController.Instance.currentTimeScale == 1)
             {
@@ -120,17 +121,17 @@ public class LevitatingSword : MonoBehaviour
 
     void StartDamageWindow()
     {
-        isAttacking = true;
+        isStriking = true;
     }
 
     void CloseDamageWindow()
     {
-        isAttacking = false;
+        isStriking = false;
     }
-
-    private void StopAttackAnimation()
+    
+    void SetIsAttackingFalse()
     {
-        SetAnimation(attack, false, 1f * EnemyTimeController.Instance.currentTimeScale);
+        isAttacking = false;
     }
 
     void AttackTimer()
