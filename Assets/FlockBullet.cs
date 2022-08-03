@@ -37,7 +37,11 @@ public class FlockBullet : MonoBehaviour
             transform.parent = Paranet.transform;
 
         }
+<<<<<<< Updated upstream
         transform.rotation =  Quaternion.Euler(transform.position.x, transform.position.y, +bulletRotation);
+=======
+        transform.rotation = Quaternion.Euler(transform.position.x, transform.position.y, +bulletRotation);
+>>>>>>> Stashed changes
     }
 
     IEnumerator DeActivate()

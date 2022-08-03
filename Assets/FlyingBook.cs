@@ -70,14 +70,22 @@ public class FlyingBook : MonoBehaviour
                 StartCoroutine(IterateWithPause());
             }
         }
+<<<<<<< Updated upstream
         else if (dist < RangeToFindPlayer /3.5f && isWallDetected())
+=======
+        else if (dist < RangeToFindPlayer / 2 && isWallDetected())
+>>>>>>> Stashed changes
         {
             ShootCDTimer += Time.deltaTime;
             Debug.Log("Player");
             if (left && !shooting)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
+<<<<<<< Updated upstream
                     player.position.x / 5,
+=======
+                    player.position.x / 1.5f,
+>>>>>>> Stashed changes
                     transform.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
@@ -89,7 +97,11 @@ public class FlyingBook : MonoBehaviour
                 if (!shooting)
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(
+<<<<<<< Updated upstream
                     player.position.x * 5,
+=======
+                    player.position.x * 1.5f,
+>>>>>>> Stashed changes
                     transform.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);

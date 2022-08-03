@@ -441,7 +441,7 @@ public class PlayerControllerV3 : MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.EmptyAmmo, transform.position);
                 Debug.Log("No bullets");
             }
-            _mgRegenTimer = 0;
+            //_mgRegenTimer = 0;
         }
     }
 
