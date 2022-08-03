@@ -68,6 +68,7 @@ public class PlayerControllerV3 : MonoBehaviour
 
         HandleWildMagic();
 
+
     }
 
     #region Inputs
@@ -88,6 +89,7 @@ public class PlayerControllerV3 : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             _facingLeft = false;
+
         }
     }
 
@@ -176,6 +178,7 @@ public class PlayerControllerV3 : MonoBehaviour
             if (_rb.velocity.x < 0) _inputs.X = 0;
             {
                 FlipRotationTo180(true);
+
                 _inputs.X = Mathf.MoveTowards(_inputs.X, 1, acceleration * Time.deltaTime);
                 SetAnimation(run, true, 1f);
             }
@@ -599,6 +602,7 @@ public class PlayerControllerV3 : MonoBehaviour
         else
         {
             _spriteRenderer.flipX = false;
+
         }
     }
     #endregion
@@ -680,15 +684,13 @@ public class PlayerControllerV3 : MonoBehaviour
         if (!flip)
         {
             gameObject.transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.z);
-            crouch.position = new Vector3(transform.rotation.x, transform.rotation.y, 10);
+            crouch.transform.position = new Vector3(crouch.position.x, crouch.position.y, -10);
             skeletonUtility.flipBy180DegreeRotation = flip;
         }
         else
         {
             gameObject.transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.z);
-            crouch.position = new Vector3(transform.rotation.x, transform.rotation.y, -10);
-
-
+            crouch.transform.position = new Vector3(crouch.position.x, crouch.position.y, -10);
             skeletonUtility.flipBy180DegreeRotation = flip;
         }
     }
