@@ -45,20 +45,23 @@ public class FlyingBook : MonoBehaviour
             if (left && !shooting)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
-                    player.position.x / 3.5f,
+                    player.position.x / 1.5f,
                     player.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
+                GetComponent<SpriteRenderer>().flipX = false;
             }
             else
             {
                 if (!shooting)
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(
-                    player.position.x * 3.5f,
+                    player.position.x * 1.5f,
                     player.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
+                    GetComponent<SpriteRenderer>().flipX = true;
+
                 }
 
             }
@@ -67,27 +70,31 @@ public class FlyingBook : MonoBehaviour
                 StartCoroutine(IterateWithPause());
             }
         }
-        else if (dist < RangeToFindPlayer && isWallDetected())
+        else if (dist < RangeToFindPlayer /3.5f && isWallDetected())
         {
             ShootCDTimer += Time.deltaTime;
             Debug.Log("Player");
             if (left && !shooting)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
-                    player.position.x / 2,
+                    player.position.x / 5,
                     transform.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
+                GetComponent<SpriteRenderer>().flipX = false;
+
             }
             else
             {
                 if (!shooting)
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(
-                    player.position.x * 2,
+                    player.position.x * 5,
                     transform.position.y,
                     transform.position.z),
                     Time.deltaTime / ChaseSpeed);
+                    GetComponent<SpriteRenderer>().flipX = true;
+
                 }
 
             }

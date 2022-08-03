@@ -10,7 +10,7 @@ public class FlockBullet : MonoBehaviour
     public float bulletSpeed;
     private int wallDetectorRange = 1;
     public int damage;
-
+    public float bulletRotation;
 
     private void OnEnable()
     {
@@ -37,6 +37,7 @@ public class FlockBullet : MonoBehaviour
             transform.parent = Paranet.transform;
 
         }
+        transform.rotation =  Quaternion.Euler(transform.position.x, transform.position.y, +bulletRotation);
     }
 
     IEnumerator DeActivate()

@@ -91,6 +91,10 @@ public class PlayerControllerV3 : MonoBehaviour
             _facingLeft = false;
 
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(reset());
+        }
     }
 
 
@@ -695,4 +699,11 @@ public class PlayerControllerV3 : MonoBehaviour
         }
     }
 
+    IEnumerator reset()
+    {
+        _collider.isTrigger = true;
+        yield return new WaitForSeconds(0.2f);
+        _collider.isTrigger = false;
+
+    }
 }
