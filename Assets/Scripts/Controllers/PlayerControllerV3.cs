@@ -325,7 +325,7 @@ public class PlayerControllerV3 : MonoBehaviour
 
     private bool isWallDetected()
     {
-        Collider[] colls = Physics.OverlapSphere(transform.position, wallDetectorRange);
+        Collider[] colls = Physics.OverlapSphere(_collider.bounds.center, wallDetectorRange);
         foreach (Collider collider in colls)
         {
             if (collider.tag == "Platform") return true;
@@ -638,8 +638,15 @@ public class PlayerControllerV3 : MonoBehaviour
         if (_drawGizmos)
         {
             DrawMinPos();
+            DrawWallDetector();
         }
 
+    }
+
+    void DrawWallDetector()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(_collider.bounds.center, wallDetectorRange);
     }
 
     void DrawMinPos()

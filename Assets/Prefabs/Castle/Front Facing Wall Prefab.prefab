@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5646509100103836302}
   - component: {fileID: 2718687898153383726}
   - component: {fileID: 622470140762050383}
+  - component: {fileID: 3998741123884564033}
   m_Layer: 0
   m_Name: Front Facing Wall Prefab
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3998741123884564033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8582118550313169229}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.000004, y: 4.308062, z: 0.9000002}
+  m_Center: {x: 5.000002, y: 2.154031, z: -0.4500001}
