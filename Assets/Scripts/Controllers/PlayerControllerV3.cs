@@ -531,11 +531,12 @@ public class PlayerControllerV3 : MonoBehaviour
         }
     }
 
+    [SerializeField] float platThroughRange;
     void JumpThroughPlat()
     {
         if (_rb.velocity.y > 0)//Checks for platfroms above player while jumping and ignores collision with it if the conditions are right
         {
-            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), 0.5f);
+            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), platThroughRange);
             foreach (var plat in _upPlats)
             {
                 if (plat.tag == "Platform" && plat.GetComponent<TwoWayPlatform>() != null)
@@ -546,7 +547,7 @@ public class PlayerControllerV3 : MonoBehaviour
                     }
                 }
             }
-            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), 0.5f);
+            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), platThroughRange);
             if (_downPlats != null)
             {
                 foreach (var plat in _downPlats)
@@ -673,17 +674,21 @@ public class PlayerControllerV3 : MonoBehaviour
         currentAnimation = animation.name;
     }
 
-
+    [SerializeField] Transform crouch;
     private void FlipRotationTo180(bool flip)
     {
         if (!flip)
         {
             gameObject.transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.z);
+            crouch.position = new Vector3(transform.rotation.x, transform.rotation.y, 10);
             skeletonUtility.flipBy180DegreeRotation = flip;
         }
         else
         {
             gameObject.transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.z);
+            crouch.position = new Vector3(transform.rotation.x, transform.rotation.y, -10);
+
+
             skeletonUtility.flipBy180DegreeRotation = flip;
         }
     }

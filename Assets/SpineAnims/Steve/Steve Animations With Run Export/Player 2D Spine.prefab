@@ -91,6 +91,8 @@ MonoBehaviour:
   run: {fileID: 11400000, guid: 0f33126a3ddd6fc499706002d31de81a, type: 2}
   dead: {fileID: 11400000, guid: fc9ae9075443fcf48961205df5072f70, type: 2}
   hit: {fileID: 11400000, guid: 6fa0956c52f7b534980a50578b007c7f, type: 2}
+  jump: {fileID: 0}
+  currentAnimation: 
   _rb: {fileID: 384784665458127842}
   _collider: {fileID: 384784665458127843}
   _spriteRenderer: {fileID: 2115296812320458768}
@@ -129,8 +131,10 @@ MonoBehaviour:
   mbRegenTime: 3
   _downPlats: []
   _upPlats: []
+  platThroughRange: 0
   _wmDuration: 5
   _drawGizmos: 0
+  crouch: {fileID: 4427101746999047164}
 --- !u!114 &538162500518574311
 MonoBehaviour:
   m_ObjectHideFlags: 0
