@@ -17,7 +17,7 @@ public class PlayerControllerV3 : MonoBehaviour
     [SerializeField] string currentAnimation;
     [Header("")]
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private CapsuleCollider _collider;
+    [HideInInspector] public CapsuleCollider _collider;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     public static PlayerControllerV3 Instance { get; set; }
     private FrameInputs _inputs;
@@ -539,7 +539,7 @@ public class PlayerControllerV3 : MonoBehaviour
     {
         if (_rb.velocity.y > 0)//Checks for platfroms above player while jumping and ignores collision with it if the conditions are right
         {
-            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), platThroughRange);
+            _upPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.max.y), platThroughRange, _groundMask);
             foreach (var plat in _upPlats)
             {
                 if (plat.tag == "Platform" && plat.GetComponent<TwoWayPlatform>() != null)
@@ -550,7 +550,7 @@ public class PlayerControllerV3 : MonoBehaviour
                     }
                 }
             }
-            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), platThroughRange);
+            _downPlats = Physics.OverlapSphere(new Vector3(transform.position.x, _collider.bounds.min.y), platThroughRange, _groundMask);
             if (_downPlats != null)
             {
                 foreach (var plat in _downPlats)
