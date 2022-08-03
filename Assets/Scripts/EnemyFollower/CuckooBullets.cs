@@ -6,11 +6,13 @@ public class CuckooBullets : MonoBehaviour
 {
     private GameObject _player;
     private Rigidbody rb;
+    private SpriteRenderer sprite;
     public float speed, destroyTime, rotateSpeed;
     public int damage;
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
     }
     private void Awake()
@@ -30,6 +32,14 @@ public class CuckooBullets : MonoBehaviour
     {
         Vector3 direction = (Vector3)_player.transform.position - rb.position;
         direction = direction.normalized;
+        if (direction.x < 0)
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
         rb.angularVelocity = new Vector3(0,0,rotateAmount * rotateSpeed * EnemyTimeController.Instance.currentTimeScale);
         rb.velocity = - transform.up * speed * EnemyTimeController.Instance.currentTimeScale;
@@ -50,4 +60,5 @@ public class CuckooBullets : MonoBehaviour
             gameObject.SetActive(false);
             Debug.Log("HIL");
     }
+
 }
