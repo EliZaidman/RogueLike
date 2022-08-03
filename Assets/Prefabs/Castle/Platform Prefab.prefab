@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5063284549533692002}
   - component: {fileID: 6862780043028279639}
   - component: {fileID: 7740181468685885104}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Platform Prefab
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
