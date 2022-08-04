@@ -57,7 +57,7 @@ public class EnemyTimeController : MonoBehaviour
         }
         if (available)
         {
-            SoundManager.PlaySound(SoundManager.Sound.BulletTimeAvailable);
+            //SoundManager.PlaySound(SoundManager.Sound.BulletTimeAvailable);
             available = false;
         }
     }
