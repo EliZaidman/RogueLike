@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 1e31c0df797805f42a4be3ea498f9368
   - enabled: 1
-    path: Assets/Scenes/Castle2.0.unity
-    guid: bf0144444143e114e8acc8a89ecc3ea6
+    path: Assets/Scenes/Final.unity
+    guid: b1a44029fbe8f48488c1444bd4b1ef11
   m_configObjects: {}
